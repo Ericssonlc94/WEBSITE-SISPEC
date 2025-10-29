@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SisPeC - Contabilidade para Pequenas Empresas</title>
+    <style>
+        :root {
+            --primary-color: #049b8c;
+            --secondary-color: #246cc3;
+            --accent-color: #1484a6;
+            --accent-light: #0c8c9c;
+            --accent-dark: #1c7cb1;
+            --light-color: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray-medium: #e9ecef;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #fff;
+            --text-gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            padding: 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 3px 20px rgba(0,0,0,0.15);
+            height: 120px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100%;
+        }
+        
+        .header-content {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            height: 100%;
+            column-gap: 2rem; /* Add space between columns */
+        }
+        
+        .logo {
+            grid-column: 1;
+            justify-self: start;
+        }
+        
+        .logo img {
+            height: 100px;
+            width: auto; /* Fix aspect ratio */
+        }
+        
+        nav {
+            grid-column: 2;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        nav ul li a.active {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 70%;
+        }
+        
+        .hero {
+            background-color: var(--primary-color);
+            background-image: 
+                linear-gradient(rgba(4, 155, 140, 0.92), rgba(20, 132, 166, 0.92)),
+                url("{{ url_for('static', filename='Simbolo-positivo.png') }}");
+            background-repeat: no-repeat, repeat;
+            background-size: cover, 150px;
+            background-position: center, center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 120px; /* Changed from margin-top to padding-top */
+            box-sizing: border-box; /* Ensure padding is included in height */
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid var(--secondary-color);
+            margin: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--secondary-color);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--secondary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        section {
+            padding: 6rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+            border-radius: 3px;
+        }
+        
+        .section-title p {
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 1rem auto 0;
+        }
+        
+        .services {
+            background-color: var(--gray-light);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            border: 1px solid var(--gray-medium);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(20, 132, 166, 0.2);
+            border-color: var(--accent-color);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .service-card p {
+            color: var(--text-gray);
+        }
+        
+        .simuladores {
+            background-color: white;
+        }
+        
+        .about {
+            background-color: var(--gray-light);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .team-members {
+            margin-top: 2rem;
+        }
+        
+        .member-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-top: 3px solid var(--accent-color);
+            transition: transform 0.3s;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(20, 132, 166, 0.15);
+        }
+        
+        .member-card h4 {
+            color: var(--accent-color);
+        }
+        
+        .about-image {
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .contact {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .contact .section-title h2 {
+            color: white;
+        }
+        
+        .contact .section-title p {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--gray-medium);
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(4, 155, 140, 0.2);
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-section ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            border-top: 1px solid #444;
+            padding-top: 1.5rem;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+        
+        .news-section {
+            background-color: white;
+            padding: 2rem 0;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .news-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--secondary-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(36, 108, 195, 0.15);
+        }
+        
+        .news-card h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+        
+        .simulator-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border: 1px solid var(--gray-medium);
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .simulator-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(4, 155, 140, 0.15);
+        }
+        
+        .simulator-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        /* --- Estilos da Calculadora --- */
+        .collapsible-anexo {
+            margin-bottom: 1rem;
+        }
+        .collapsible-header {
+            background-color: var(--gray-medium);
+            color: var(--dark-color);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .collapsible-header:hover {
+            background-color: #ccc;
+        }
+        .collapsible-header.active {
+            background-color: var(--accent-light);
+            color: white;
+        }
+        .collapsible-content {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: var(--gray-light);
+            border-radius: 0 0 5px 5px;
+        }
+        .collapsible-content p {
+            margin-top: 1rem;
+        }
+        .anexo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        .anexo-table th, .anexo-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .anexo-table th {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+        .anexo-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .anexo-table tr.highlight {
+            background-color: #d4edda; /* Light green */
+            font-weight: bold;
+            color: #155724;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                height: auto;
+                padding: 1rem 0;
+            }
+
+            .hero {
+                padding-top: 200px; /* Adjusted for taller mobile header */
+            }
+            
+            .header-content {
+                display: flex; /* Switch back to flex for stacking */
+                flex-direction: column;
+            }
+
+            .logo {
+                grid-column: auto; /* Reset grid property */
+                justify-self: auto; /* Reset grid property */
+                margin-bottom: 1rem;
+            }
+
+            nav {
+                grid-column: auto; /* Reset grid property */
+            }
+            
+            nav ul {
+                margin-top: 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 4rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='SisPeC.png') }}" alt="SisPeC Logo">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home" class="active">Home</a></li>
+                        <li><a href="#noticias">Notícias</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#simuladores">Simuladores</a></li>
+                        <li><a href="#quem-somos">Quem Somos</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </nav>
+                <div></div> <!-- Spacer for grid centering -->
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Contabilidade Especializada para Pequenas Empresas</h1>
+            <p>Atuamos com empresas que utilizam o regime tributário do Simples Nacional ou Lucro Presumido. Sedeados em Salvador, atendemos online e presencialmente em todo o Brasil.</p>
+            <a href="#servicos" class="btn btn-primary">Nossos Serviços</a>
+            <a href="#contato" class="btn btn-outline">Fale Conosco</a>
+        </div>
+    </section>
+
+    <section id="noticias" class="news-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Últimas Notícias</h2>
+                <p>Mantemos você informado sobre as principais novidades fiscais e contábeis</p>
+            </div>
+            <div class="news-grid">
+                <div class="news-card">
+                    <h3>Novas regras para MEIs em 2025</h3>
+                    <p>Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa...</p>
+                    <a href="#" class="btn btn-primary">Ler mais</a>
+                </div>
+                <div class="news-card">
+                    <h3>Benefícios do Simples Nacional</h3>
+                    <p>Veja como optar pelo regime simplificado pode reduzir sua carga tributária...</p>
+                    <a href="#" class="btn btn-primary">Ler mais</a>
+                </div>
+                <div class="news-card">
+                    <h3>Declaração de Imposto de Renda</h3>
+                    <p>Principais cuidados ao declarar seus rendimentos e deduções este ano...</p>
+                    <a href="#" class="btn btn-primary">Ler mais</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Serviços</h2>
+                <p>Oferecemos uma ampla gama de serviços contábeis especializados para pequenas empresas</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3>Abertura de Empresa</h3>
+                    <p>Assessoria completa na abertura de empresas, MEIs e demais tipos societários.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Assessoria Contábil</h3>
+                    <p>Serviços completos de contabilidade para empresas no Simples Nacional e Lucro Presumido.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏛️</div>
+                    <h3>Assessoria Fiscal</h3>
+                    <p>Orientação sobre obrigações fiscais, emissão de documentos fiscais e compliance tributário.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💰</div>
+                    <h3>Assessoria Financeira</h3>
+                    <p>Controle financeiro, fluxo de caixa e planejamento tributário para sua empresa.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📋</div>
+                    <h3>Declaração de Imposto de Renda</h3>
+                    <p>Assessoria na elaboração e entrega da declaração de imposto de renda pessoal e empresarial.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3>Folha de Pagamento</h3>
+                    <p>Gestão completa da folha de pagamento e obrigações trabalhistas da sua empresa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="simuladores" class="simuladores">
+        <div class="container">
+            <div class="section-title">
+                <h2>Simuladores</h2>
+                <p>Ferramentas para cálculo de tributos e planejamento fiscal</p>
+            </div>
+            <div class="simulator-card">
+                <h3>Simulador de Simples Nacional</h3>
+                
+                <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+                    <label for="faturamento_anual" style="font-weight: 500;">Faturamento anual (R$)</label>
+                    <input type="text" id="faturamento_anual" placeholder="Ex: 150000,00" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #fff; color: #333;">
+                </div>
+
+                <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+                    <label for="area_atuacao" style="font-weight: 500;">Área de atuação</label>
+                    <select id="area_atuacao" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #fff; color: #333;">
+                        <option value="" disabled selected>Selecione uma área</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <button id="analisar-btn" class="btn btn-primary" style="margin-right: 10px;">Analisar</button>
+                    <button id="limpar-btn" class="btn btn-outline" style="background-color: #6c757d; border-color: #6c757d; color: white;">Limpar</button>
+                    <button id="toggle-tabelas-btn" class="btn">Exibir Tabelas</button>
+                </div>
+
+                <div id="resultado-simulador" style="margin-top: 20px; text-align: left; font-weight: bold; min-height: 50px;">
+                    <!-- Result goes here -->
+                </div>
+
+                <!-- ANEXOS TABLES START HERE -->
+                <div class="anexos-container" style="margin-top: 2rem; display: none;">
+                    <div class="section-title" style="margin-bottom: 2rem; text-align: left;">
+                        <h4 style="font-size: 1.5rem; color: var(--dark-color);">Tabelas de Anexos do Simples Nacional</h4>
+                    </div>
+                    <!-- Anexos will be generated by JS -->
+                </div>
+
+            </div>
+            <div class="simulator-card">
+                <h3>Simulador de Lucro Presumido</h3>
+                <p>Calcule o valor aproximado dos impostos de sua empresa sob o regime de Lucro Presumido.</p>
+                <a href="#" class="btn btn-primary">Acessar Simulador</a>
+            </div>
+            <div class="simulator-card">
+                <h3>Calculadora de Imposto de Renda</h3>
+                <p>Simule o valor do imposto de renda a pagar ou restituir com base em suas informações.</p>
+                <a href="#" class="btn btn-primary">Acessar Calculadora</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="quem-somos" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Quem Somos</h2>
+                <p>História e equipe da SisPeC Contabilidade</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Nossa História</h2>
+                    <p>Atuamos na área contábil desde 2019, assessorando empresas e sempre buscando os melhores caminhos para que nossos clientes tenham clareza com as informações contábeis e segurança na tomada de decisões.</p>
+                    <p>Com sede em Salvador, nossa atuação se estende a clientes de todo o Brasil, proporcionando um atendimento personalizado e especializado em regimes tributários como Simples Nacional e Lucro Presumido.</p>
+                    <p>Comprometidos com a excelência, oferecemos soluções completas para pequenos negócios, MEIs e empreendedores que buscam crescimento sustentável e conformidade fiscal.</p>
+                    
+                    <div class="team-members">
+                        <h3>Nossa Equipe</h3>
+                        <div class="member-card">
+                            <h4>Ericsson Lemos Cardoso</h4>
+                            <p>Graduado em Ciências Contábeis pela Universidade do Estado da Bahia - Campus I (UNEB)</p>
+                        </div>
+                        <div class="member-card">
+                            <h4>Ricardo Vicente Galiano Junior</h4>
+                            <p>Graduado em Ciências Contábeis pela Universidade do Estado da Bahia - Campus I (UNEB)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'><rect width='400' height='300' fill='%23f8f9fa'/><circle cx='100' cy='100' r='40' fill='%23049b8c'/><rect x='150' y='80' width='180' height='100' fill='%23246cc3' rx='5'/><path d='M160 100 H310 M160 120 H280 M160 140 H250' stroke='white' stroke-width='3'/><rect x='200' y='200' width='60' height='60' fill='%231484a6' rx='5'/><circle cx='230' cy='230' r='15' fill='white'/><path d='M220 230 H240 M230 220 V240' stroke='%231484a6' stroke-width='2'/></svg>" alt="SisPeC - Contabilidade para Pequenas Empresas">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contato</h2>
+                <p>Entre em contato conosco para mais informações sobre nossos serviços</p>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone">
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo-empresa">Tipo de Empresa</label>
+                        <select id="tipo-empresa">
+                            <option value="">Selecione</option>
+                            <option value="mei">MEI - Microempreendedor Individual</option>
+                            <option value="simples">Simples Nacional</option>
+                            <option value="presumido">Lucro Presumido</option>
+                            <option value="outra">Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SisPeC</h3>
+                    <p>Contabilidade para Pequenas Empresas</p>
+                    <p>Sede em Salvador - BA</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#simuladores">Simuladores</a></li>
+                        <li><a href="#quem-somos">Quem Somos</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li>Email: contato@contabilidadesispec.com.br</li>
+                        <li>Telefone: (71) 9606-6673</li>
+                        <li>Endereço: Av. Sete de Setembro, 1000 - Sala 101, Salvador - BA</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 SisPeC Contabilidade. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Update active class
+                document.querySelectorAll('nav ul li a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+        
+        // Highlight active section in navigation as user scrolls
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav ul li a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if(pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // --- SIMULADOR SIMPLES NACIONAL ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const anexos = {
+                "Anexo I": {"nome": "Comércio", "descricao": "Venda de mercadorias.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 4.0, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 7.3, "deducao": 5940}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 9.5, "deducao": 13860}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 10.7, "deducao": 22500}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 14.3, "deducao": 87300}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 19.0, "deducao": 378000}]},
+                "Anexo II": {"nome": "Indústria", "descricao": "Produção e manufatura.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 4.5, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 7.8, "deducao": 5940}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 10.0, "deducao": 13860}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 11.2, "deducao": 22500}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 14.7, "deducao": 85500}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 30.0, "deducao": 720000}]},
+                "Anexo III": {"nome": "Serviços (fator r < 28%)", "descricao": "Instalação, reparos, contabilidade, academias, etc.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 6.0, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 11.2, "deducao": 9360}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 13.5, "deducao": 17640}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 16.0, "deducao": 35640}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 21.0, "deducao": 125640}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 33.0, "deducao": 648000}]},
+                "Anexo IV": {"nome": "Serviços (sem CPP no DAS)", "descricao": "Limpeza, vigilância, obras, advocacia.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 4.5, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 9.0, "deducao": 8100}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 10.2, "deducao": 12420}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 14.0, "deducao": 39780}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 22.0, "deducao": 183780}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 33.0, "deducao": 828000}]},
+                "Anexo V": {"nome": "Serviços (fator r >= 28%)", "descricao": "Auditoria, jornalismo, tecnologia, engenharia, etc.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 15.5, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 18.0, "deducao": 4500}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 19.5, "deducao": 9900}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 20.5, "deducao": 17100}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 23.0, "deducao": 62100}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 30.5, "deducao": 540000}]}
+            };
+
+            const areas_de_atuacao = {
+                "Comércio em Geral (Lojas, e-commerce)": "Anexo I",
+                "Indústria e Fábricas em Geral": "Anexo II",
+                "Serviços (Reparos, Academias, Agências de Viagem, Contabilidade)": "Anexo III",
+                "Serviços (Limpeza, Vigilância, Obras, Advocacia)": "Anexo IV",
+                "Serviços (Tecnologia, Auditoria, Engenharia, Publicidade)": "Anexo V"
+            };
+
+            const areaAtuacaoSelect = document.getElementById('area_atuacao');
+            const faturamentoInput = document.getElementById('faturamento_anual');
+            const analisarBtn = document.getElementById('analisar-btn');
+            const limparBtn = document.getElementById('limpar-btn');
+            const toggleTabelasBtn = document.getElementById('toggle-tabelas-btn');
+            const resultadoDiv = document.getElementById('resultado-simulador');
+            const anexosContainer = document.querySelector('.anexos-container');
+
+            // Populate dropdown
+            for (const area in areas_de_atuacao) {
+                const option = document.createElement('option');
+                option.value = area;
+                option.textContent = area;
+                areaAtuacaoSelect.appendChild(option);
+            }
+
+            // Generate and Populate tables
+            const anexoContent = anexosContainer.querySelector('.section-title').nextSibling;
+            for (const anexoId in anexos) {
+                const anexoData = anexos[anexoId];
+                
+                const collapsibleDiv = document.createElement('div');
+                collapsibleDiv.className = 'collapsible-anexo';
+
+                const button = document.createElement('button');
+                button.className = 'collapsible-header';
+                button.textContent = `${anexoId} - ${anexoData.nome}`;
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'collapsible-content';
+                
+                const descriptionP = document.createElement('p');
+                descriptionP.textContent = anexoData.descricao;
+                
+                const table = document.createElement('table');
+                table.className = 'anexo-table';
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th>Faixa</th>
+                            <th>Receita Bruta em 12 Meses</th>
+                            <th>Alíquota</th>
+                            <th>Valor a Deduzir</th>
+                        </tr>
+                    </thead>
+                `;
+                const tbody = document.createElement('tbody');
+                anexoData.faixas.forEach(faixa => {
+                    const row = document.createElement('tr');
+                    const faturamentoTxt = faixa.min === 0 ? `Até ${formatCurrency(faixa.max)}` : `De ${formatCurrency(faixa.min)} a ${formatCurrency(faixa.max)}`;
+                    row.innerHTML = `
+                        <td>${faixa.faixa}</td>
+                        <td>${faturamentoTxt}</td>
+                        <td>${faixa.aliquota.toFixed(1).replace('.', ',')}%</td>
+                        <td>${formatCurrency(faixa.deducao)}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+                table.appendChild(tbody);
+
+                contentDiv.appendChild(descriptionP);
+                contentDiv.appendChild(table);
+                collapsibleDiv.appendChild(button);
+                collapsibleDiv.appendChild(contentDiv);
+                anexosContainer.appendChild(collapsibleDiv);
+            }
+
+
+            function formatCurrency(value) {
+                return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            }
+
+            function limparCampos() {
+                faturamentoInput.value = '';
+                areaAtuacaoSelect.selectedIndex = 0;
+                resultadoDiv.innerHTML = '';
+                document.querySelectorAll('.anexo-table tr.highlight').forEach(row => {
+                    row.classList.remove('highlight');
+                });
+                // Collapse all sections
+                document.querySelectorAll('.collapsible-header.active').forEach(header => {
+                    header.click();
+                });
+                anexosContainer.style.display = 'none';
+                toggleTabelasBtn.textContent = 'Exibir Tabelas';
+            }
+
+            function analisarFaturamento() {
+                resultadoDiv.innerHTML = '';
+                document.querySelectorAll('.anexo-table tr.highlight').forEach(row => {
+                    row.classList.remove('highlight');
+                });
+
+                const faturamentoStr = faturamentoInput.value.replace(/\./g, '').replace(',', '.');
+                const areaSelecionada = areaAtuacaoSelect.value;
+
+                if (!faturamentoStr || !areaSelecionada || areaAtuacaoSelect.selectedIndex === 0) {
+                    resultadoDiv.innerHTML = '<p style="color: #E8A900;">Por favor, preencha todos os campos.</p>';
+                    return;
+                }
+
+                const faturamentoAnual = parseFloat(faturamentoStr);
+                if (isNaN(faturamentoAnual)) {
+                    resultadoDiv.innerHTML = '<p style="color: red;">Erro: Digite um número válido para o faturamento.</p>';
+                    return;
+                }
+
+                const anexoIdAlvo = areas_de_atuacao[areaSelecionada];
+                const dados = anexos[anexoIdAlvo];
+                let enquadramento = null;
+                let targetFaixaIndex = -1;
+
+                for (let i = 0; i < dados.faixas.length; i++) {
+                    const faixa = dados.faixas[i];
+                    if (faturamentoAnual > faixa.min && faturamentoAnual <= faixa.max) {
+                        enquadramento = {
+                            "Anexo": `${anexoIdAlvo} - ${dados.nome}`,
+                            "Faixa": faixa.faixa,
+                            "Alíquota": `${faixa.aliquota.toFixed(1).replace('.', ',')}%`,
+                            "Dedução": formatCurrency(faixa.deducao)
+                        };
+                        targetFaixaIndex = i;
+                        break;
+                    }
+                }
+                
+                if (!enquadramento && faturamentoAnual > 0 && faturamentoAnual <= 180000) {
+                    const faixa = dados.faixas[0];
+                    enquadramento = {
+                        "Anexo": `${anexoIdAlvo} - ${dados.nome}`,
+                        "Faixa": faixa.faixa,
+                        "Alíquota": `${faixa.aliquota.toFixed(1).replace('.', ',')}%`,
+                        "Dedução": formatCurrency(faixa.deducao)
+                    };
+                    targetFaixaIndex = 0;
+                }
+
+                if (enquadramento) {
+                    let resultHTML = '<p style="color: #155724; font-size: 1.1rem;">Enquadramento Encontrado:</p><ul style="padding-left: 0; list-style: none;">';
+                    for (const key in enquadramento) {
+                        resultHTML += `<li style="margin-bottom: 0.5rem;"><strong>${key}:</strong> ${enquadramento[key]}</li>`;
+                    }
+                    resultHTML += '</ul>';
+                    resultadoDiv.innerHTML = resultHTML;
+
+                    const anexoHeader = Array.from(document.querySelectorAll('.collapsible-header')).find(h => h.textContent.startsWith(anexoIdAlvo));
+                    if (anexoHeader) {
+                        const anexoContainer = anexoHeader.parentElement;
+                        const table = anexoContainer.querySelector('.anexo-table');
+                        const row = table.querySelectorAll('tbody tr')[targetFaixaIndex];
+                        row.classList.add('highlight');
+
+                        if (!anexoHeader.classList.contains('active')) {
+                            anexoHeader.click();
+                        }
+                        setTimeout(() => {
+                           anexoHeader.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }, 300); // wait for animation
+                    }
+                } else if (faturamentoAnual > 4800000) {
+                    resultadoDiv.innerHTML = '<p style="color: #D22B2B;">Faturamento acima do teto do Simples Nacional (R$ 4.800.000,00).</p>';
+                } else {
+                    resultadoDiv.innerHTML = '<p style="color: #E8A900;">Não foi possível determinar o enquadramento. Verifique o valor digitado.</p>';
+                }
+            }
+
+            analisarBtn.addEventListener('click', analisarFaturamento);
+            limparBtn.addEventListener('click', limparCampos);
+
+            toggleTabelasBtn.addEventListener('click', function() {
+                const isHidden = anexosContainer.style.display === 'none';
+                if (isHidden) {
+                    anexosContainer.style.display = 'block';
+                    toggleTabelasBtn.textContent = 'Recolher Tabelas';
+                } else {
+                    anexosContainer.style.display = 'none';
+                    toggleTabelasBtn.textContent = 'Exibir Tabelas';
+                }
+            });
+
+            // Collapsible logic
+            anexosContainer.addEventListener('click', function(e) {
+                if (e.target.classList.contains('collapsible-header')) {
+                    e.target.classList.toggle('active');
+                    const content = e.target.nextElementSibling;
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
