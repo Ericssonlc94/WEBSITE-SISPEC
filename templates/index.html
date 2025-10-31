@@ -660,6 +660,41 @@
             transform: translateY(0);
         }
 
+        /* Animações específicas para diferentes tipos de elementos */
+        .fade-in-title {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .fade-in-delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .fade-in-delay-3 {
+            animation-delay: 0.3s;
+        }
+
         @media (max-width: 768px) {
             header {
                 height: auto;
@@ -744,7 +779,7 @@
 
     <section id="quem-somos" class="about">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title fade-in-title">
                 <h2>Quem Somos</h2>
             </div>
             <div class="about-content">
@@ -756,11 +791,11 @@
                     
                     <div class="team-members">
                         <h3>Nossa Equipe</h3>
-                        <div class="member-card">
+                        <div class="member-card fade-in-up fade-in-delay-1">
                             <h4>Ericsson Lemos Cardoso</h4>
                             <p>Graduado em Ciências Contábeis pela Universidade do Estado da Bahia - Campus I (UNEB)</p>
                         </div>
-                        <div class="member-card">
+                        <div class="member-card fade-in-up fade-in-delay-2">
                             <h4>Ricardo Vicente Galiano Junior</h4>
                             <p>Graduado em Ciências Contábeis pela Universidade do Estado da Bahia - Campus I (UNEB)</p>
                         </div>
@@ -774,37 +809,37 @@
 
     <section id="servicos" class="services">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title fade-in-title">
                 <h2>Nossos Serviços</h2>
                 <p>Oferecemos uma ampla gama de serviços contábeis especializados para pequenas empresas</p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card fade-in-up fade-in-delay-1">
                     <div class="service-icon">💼</div>
                     <h3>Abertura de Empresa</h3>
                     <p>Assessoria completa na abertura de empresas, MEIs e demais tipos societários.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card fade-in-up fade-in-delay-2">
                     <div class="service-icon">📊</div>
                     <h3>Assessoria Contábil</h3>
                     <p>Serviços completos de contabilidade para empresas no Simples Nacional e Lucro Presumido.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card fade-in-up fade-in-delay-3">
                     <div class="service-icon">🏛️</div>
                     <h3>Assessoria Fiscal</h3>
                     <p>Orientação sobre obrigações fiscais, emissão de documentos fiscais e compliance tributário.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card fade-in-up fade-in-delay-1">
                     <div class="service-icon">💰</div>
                     <h3>Assessoria Financeira</h3>
                     <p>Controle financeiro, fluxo de caixa e planejamento tributário para sua empresa.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card fade-in-up fade-in-delay-2">
                     <div class="service-icon">📋</div>
                     <h3>Declaração de Imposto de Renda</h3>
                     <p>Assessoria na elaboração e entrega da declaração de imposto de renda pessoal e empresarial.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card fade-in-up fade-in-delay-3">
                     <div class="service-icon">👥</div>
                     <h3>Folha de Pagamento</h3>
                     <p>Gestão completa da folha de pagamento e obrigações trabalhistas da sua empresa.</p>
@@ -815,11 +850,11 @@
 
     <section id="simuladores" class="simuladores">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title fade-in-title">
                 <h2>Simuladores</h2>
                 <p>Ferramentas para cálculo de tributos e planejamento fiscal</p>
             </div>
-            <div class="simulator-card">
+            <div class="simulator-card fade-in-up fade-in-delay-1">
                 <h3>Simulador de Simples Nacional</h3>
                 <p>Estime o imposto devido no regime do Simples Nacional com base no seu faturamento e área de atuação.</p>
                 <a href="#" class="btn btn-primary" id="toggle-simples-nacional">Acessar Simulador</a>
@@ -856,12 +891,12 @@
                     </div>
                 </div>
             </div>
-            <div class="simulator-card">
+            <div class="simulator-card fade-in-up fade-in-delay-2">
                 <h3>Simulador de Lucro Presumido</h3>
                 <p>Calcule o valor aproximado dos impostos de sua empresa sob o regime de Lucro Presumido.</p>
                 <a href="#" class="btn btn-primary">Acessar Simulador</a>
             </div>
-            <div class="simulator-card">
+            <div class="simulator-card fade-in-up fade-in-delay-3">
                 <h3>Calculadora de Imposto de Renda</h3>
                 <p>Simule o valor do imposto de renda a pagar ou restituir com base em suas informações.</p>
                 <a href="#" class="btn btn-primary">Acessar Calculadora</a>
@@ -871,7 +906,7 @@
 
     <section id="artigos" class="news-section">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title fade-in-title">
                 <h2>Blog</h2>
                 <p>Publicações sobre regras, curiosidades e benefícios para sua empresa</p>
             </div>
@@ -881,17 +916,17 @@
                         <h3 style="color: var(--primary-color);">Nossos Artigos</h3>
                     </div>
                     <div class="news-grid">
-                        <div class="news-card">
+                        <div class="news-card fade-in-up fade-in-delay-1">
                             <h3>Novas regras para MEIs em 2025</h3>
                             <p>Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa...</p>
                             <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Novas regras para MEIs em 2025', 'Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa...'); return false;">Ler mais</a>
                         </div>
-                        <div class="news-card">
+                        <div class="news-card fade-in-up fade-in-delay-2">
                             <h3>Benefícios do Simples Nacional</h3>
                             <p>Veja como optar pelo regime simplificado pode reduzir sua carga tributária...</p>
                             <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Benefícios do Simples Nacional', 'Veja como optar pelo regime simplificado pode reduzir sua carga tributária...'); return false;">Ler mais</a>
                         </div>
-                        <div class="news-card">
+                        <div class="news-card fade-in-up fade-in-delay-3">
                             <h3>Declaração de Imposto de Renda</h3>
                             <p>Principais cuidados ao declarar seus rendimentos e deduções este ano...</p>
                             <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Declaração de Imposto de Renda', 'Principais cuidados ao declarar seus rendimentos e deduções este ano...'); return false;">Ler mais</a>
@@ -913,7 +948,7 @@
 
     <section id="contato" class="contact">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title fade-in-title">
                 <h2>Contato</h2>
                 <p>Entre em contato conosco para mais informações sobre nossos serviços</p>
             </div>
@@ -994,39 +1029,120 @@
     </div>
 
         <script>
+            // Função para mostrar detalhes da notícia em um modal
+            function showNewsDetails(title, body) {
+                document.getElementById('modal-title').textContent = title;
+                document.getElementById('modal-body').textContent = body;
+                document.getElementById('article-modal').style.display = 'block';
+            }
 
-            // ... (existing script) ...
+            // Fechar o modal ao clicar no botão de fechar
+            document.querySelector('.close-button').onclick = function() {
+                document.getElementById('article-modal').style.display = 'none';
+            }
 
-    
+            // Fechar o modal ao clicar fora dele
+            window.onclick = function(event) {
+                var modal = document.getElementById('article-modal');
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+
+            // Função para carregar notícias via AJAX
+            function loadNews() {
+                fetch('/api/noticias')
+                    .then(response => response.json())
+                    .then(data => {
+                        const container = document.getElementById('noticias-container');
+                        container.innerHTML = ''; // Limpa o conteúdo anterior (loading...)
+
+                        if (data.length === 0) {
+                            container.innerHTML = '<p>Nenhuma notícia encontrada.</p>';
+                            return;
+                        }
+
+                        const ul = document.createElement('ul');
+
+                        data.forEach(noticia => {
+                            const li = document.createElement('li');
+                            li.innerHTML = `
+                                <a href="${noticia.link}" target="_blank">${noticia.titulo}</a>
+                                <p style="font-size: 0.9rem; color: var(--text-gray); margin-top: 0.5rem;">${noticia.descricao}</p>
+                            `;
+                            ul.appendChild(li);
+                        });
+
+                        container.appendChild(ul);
+                    })
+                    .catch(error => {
+                        console.error('Erro ao carregar as notícias:', error);
+                        document.getElementById('noticias-container').innerHTML = '<p>Erro ao carregar as notícias.</p>';
+                    });
+            }
+
+            // Carrega as notícias quando a página carregar
+            document.addEventListener('DOMContentLoaded', loadNews);
 
             // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
 
             const observer = new IntersectionObserver((entries) => {
-
                 entries.forEach(entry => {
-
                     if (entry.isIntersecting) {
-
                         entry.target.classList.add('visible');
-
+                        
+                        // Remover o observer após a animação para melhor performance
+                        observer.unobserve(entry.target);
                     }
-
                 });
+            }, observerOptions);
 
-            }, {
-
-                threshold: 0.1
-
+            // Observar todos os elementos com classes de animação
+            const elementsToAnimate = document.querySelectorAll('.fade-in, .fade-in-title, .fade-in-up');
+            elementsToAnimate.forEach(element => {
+                observer.observe(element);
             });
 
-    
+            // Função para rolar suavemente para uma seção e acionar animações
+            function scrollToSection(sectionId) {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    // Rolar suavemente para a seção
+                    section.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Forçar a animação dos elementos da seção se ainda não estiverem visíveis
+                    const sectionElements = section.querySelectorAll('.fade-in, .fade-in-title, .fade-in-up');
+                    sectionElements.forEach(element => {
+                        if (!element.classList.contains('visible')) {
+                            element.classList.add('visible');
+                            
+                            // Remover o observer após a animação para melhor performance
+                            observer.unobserve(element);
+                        }
+                    });
+                }
+            }
 
-            const elementsToAnimate = document.querySelectorAll('.fade-in');
-
-            elementsToAnimate.forEach(element => {
-
-                observer.observe(element);
-
+            // Adicionar evento de clique aos links de navegação
+            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    scrollToSection(targetId);
+                    
+                    // Atualizar classe ativa no menu
+                    document.querySelectorAll('nav a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
             });
 
         </script>
