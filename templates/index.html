@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SisPeC - Contabilidade para Pequenas Empresas</title>
+    <title>SisPeC - Contabilidade</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
@@ -79,7 +79,7 @@
         }
         
         .logo img {
-            height: 100px;
+            height: 80px;
             width: auto; /* Fix aspect ratio */
         }
         
@@ -101,26 +101,18 @@
             position: relative;
         }
         
-        nav ul li:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: -0.7rem;
-            top: 50%;
-            transform: translateY(-50%);
-            height: 15px;
-            width: 1px;
-            background-color: var(--text-gray);
-        }
+
         
         nav ul li a {
             color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem; /* Reduced font size to save space */
+            font-size: 1.2rem; /* Reduced font size to save space */
             padding: 0.5rem 0.7rem; /* Reduced padding */
             border-radius: 4px;
             transition: all 0.3s ease;
             position: relative;
+
             display: inline-block;
             white-space: nowrap; /* Prevent text wrapping */
         }
@@ -153,10 +145,10 @@
         .hero {
             background-color: var(--primary-color);
             background-image: 
-                linear-gradient(rgba(4, 155, 140, 0.92), rgba(20, 132, 166, 0.92)),
-                url("{{ url_for('static', filename='Simbolo-positivo.png') }}");
-            background-repeat: no-repeat, repeat;
-            background-size: cover, 150px;
+                linear-gradient(rgba(4, 155, 140, 0.95), rgba(20, 132, 166, 0.95)),
+                url("{{ url_for('static', filename='Apresentação-SisPeC.png') }}");
+            background-repeat: no-repeat;
+            background-size: cover;
             background-position: center, center;
             height: 100vh;
             display: flex;
@@ -169,7 +161,7 @@
         }
         
         .hero-content h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             animation: fadeIn 1s ease-out forwards;
@@ -373,10 +365,16 @@
         
         .about-image img {
             max-width: 100%;
-            max-height: 300px; 
-            object-fit: cover;
+            max-height: 300px; /* Limit image height */
+            object-fit: contain; /* Ensure the entire image is visible */
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .about-image {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            height: 100%; /* Ensure it takes full height of the grid cell */
         }
         
         .contact {
@@ -651,6 +649,17 @@
             color: #155724;
         }
         
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         @media (max-width: 768px) {
             header {
                 height: auto;
@@ -737,7 +746,6 @@
         <div class="container">
             <div class="section-title">
                 <h2>Quem Somos</h2>
-                <p>História e equipe da SisPeC Contabilidade</p>
             </div>
             <div class="about-content">
                 <div class="about-text">
@@ -759,10 +767,9 @@
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="{{ url_for('static', filename='Símbolo.png') }}" alt="SisPeC Logo">
+                    <img src="{{ url_for('static', filename='SisPeC-2.png') }}" alt="SisPeC Logo">
                 </div>
-            </div>
-        </div>
+        </div>   
     </section>
 
     <section id="servicos" class="services">
@@ -986,427 +993,43 @@
         </div>
     </div>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                
-                // Update active class
-                document.querySelectorAll('nav ul li a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                this.classList.add('active');
-            });
-        });
-        
-        // Highlight active section in navigation as user scrolls
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('nav ul li a');
-            
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if(pageYOffset >= (sectionTop - 300)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if(link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
+        <script>
 
-        // --- SIMULADOR SIMPLES NACIONAL ---
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggleSimplesBtn = document.getElementById('toggle-simples-nacional');
-            const calculadoraSimples = document.getElementById('calculadora-simples-nacional');
+            // ... (existing script) ...
 
-            toggleSimplesBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const isHidden = calculadoraSimples.style.display === 'none';
-                if (isHidden) {
-                    calculadoraSimples.style.display = 'block';
-                    toggleSimplesBtn.textContent = 'Recolher Simulador';
-                } else {
-                    calculadoraSimples.style.display = 'none';
-                    toggleSimplesBtn.textContent = 'Acessar Simulador';
-                }
-            });
+    
 
-            const anexos = {
-                "Anexo I": {"nome": "Comércio", "descricao": "Venda de mercadorias.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 4.0, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 7.3, "deducao": 5940}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 9.5, "deducao": 13860}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 10.7, "deducao": 22500}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 14.3, "deducao": 87300}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 19.0, "deducao": 378000}]},
-                "Anexo II": {"nome": "Indústria", "descricao": "Produção e manufatura.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 4.5, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 7.8, "deducao": 5940}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 10.0, "deducao": 13860}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 11.2, "deducao": 22500}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 14.7, "deducao": 85500}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 30.0, "deducao": 720000}]},
-                "Anexo III": {"nome": "Serviços (fator r < 28%)", "descricao": "Instalação, reparos, contabilidade, academias, etc.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 6.0, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 11.2, "deducao": 9360}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 13.5, "deducao": 17640}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 16.0, "deducao": 35640}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 21.0, "deducao": 125640}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 33.0, "deducao": 648000}]},
-                "Anexo IV": {"nome": "Serviços (sem CPP no DAS)", "descricao": "Limpeza, vigilância, obras, advocacia.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 4.5, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 9.0, "deducao": 8100}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 10.2, "deducao": 12420}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 14.0, "deducao": 39780}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 22.0, "deducao": 183780}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 33.0, "deducao": 828000}]},
-                "Anexo V": {"nome": "Serviços (fator r >= 28%)", "descricao": "Auditoria, jornalismo, tecnologia, engenharia, etc.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 15.5, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 18.0, "deducao": 4500}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 19.5, "deducao": 9900}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 20.5, "deducao": 17100}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 23.0, "deducao": 62100}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 30.5, "deducao": 540000}]}}
+            // Intersection Observer for animations
 
-            const areas_de_atuacao = {
-                "Comércio em Geral (Lojas, e-commerce)": "Anexo I",
-                "Indústria e Fábricas em Geral": "Anexo II",
-                "Serviços (Reparos, Academias, Agências de Viagem, Contabilidade)": "Anexo III",
-                "Serviços (Limpeza, Vigilância, Obras, Advocacia)": "Anexo IV",
-                "Serviços (Tecnologia, Auditoria, Engenharia, Publicidade)": "Anexo V"
-            };
+            const observer = new IntersectionObserver((entries) => {
 
-            const areaAtuacaoSelect = document.getElementById('area_atuacao');
-            const faturamentoInput = document.getElementById('faturamento_anual');
-            const analisarBtn = document.getElementById('analisar-btn');
-            const limparBtn = document.getElementById('limpar-btn');
-            const toggleTabelasBtn = document.getElementById('toggle-tabelas-btn');
-            const resultadoDiv = document.getElementById('resultado-simulador');
-            const anexosContainer = document.querySelector('.anexos-container');
+                entries.forEach(entry => {
 
-            // Populate dropdown
-            for (const area in areas_de_atuacao) {
-                const option = document.createElement('option');
-                option.value = area;
-                option.textContent = area;
-                areaAtuacaoSelect.appendChild(option);
-            }
+                    if (entry.isIntersecting) {
 
-            // Generate and Populate tables
-            const anexoContent = anexosContainer.querySelector('.section-title').nextSibling;
-            for (const anexoId in anexos) {
-                const anexoData = anexos[anexoId];
-                
-                const collapsibleDiv = document.createElement('div');
-                collapsibleDiv.className = 'collapsible-anexo';
+                        entry.target.classList.add('visible');
 
-                const button = document.createElement('button');
-                button.className = 'collapsible-header';
-                button.textContent = `${anexoId} - ${anexoData.nome}`;
-                
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'collapsible-content';
-                
-                const descriptionP = document.createElement('p');
-                descriptionP.textContent = anexoData.descricao;
-                
-                const table = document.createElement('table');
-                table.className = 'anexo-table';
-                table.innerHTML = `
-                    <thead>
-                        <tr>
-                            <th>Faixa</th>
-                            <th>Receita Bruta em 12 Meses</th>
-                            <th>Alíquota</th>
-                            <th>Valor a Deduzir</th>
-                        </tr>
-                    </thead>
-                `;
-                const tbody = document.createElement('tbody');
-                anexoData.faixas.forEach(faixa => {
-                    const row = document.createElement('tr');
-                    const faturamentoTxt = faixa.min === 0 ? `Até ${formatCurrency(faixa.max)}` : `De ${formatCurrency(faixa.min)} a ${formatCurrency(faixa.max)}`;
-                    row.innerHTML = `
-                        <td>${faixa.faixa}</td>
-                        <td>${faturamentoTxt}</td>
-                        <td>${faixa.aliquota.toFixed(1).replace('.', ',')}%</td>
-                        <td>${formatCurrency(faixa.deducao)}</td>
-                    `;
-                    tbody.appendChild(row);
-                });
-                table.appendChild(tbody);
+                    }
 
-                contentDiv.appendChild(descriptionP);
-                contentDiv.appendChild(table);
-                collapsibleDiv.appendChild(button);
-                collapsibleDiv.appendChild(contentDiv);
-                anexosContainer.appendChild(collapsibleDiv);
-            }
-
-
-            function formatCurrency(value) {
-                return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            }
-
-            function limparCampos() {
-                faturamentoInput.value = '';
-                areaAtuacaoSelect.selectedIndex = 0;
-                resultadoDiv.innerHTML = '';
-                document.querySelectorAll('.anexo-table tr.highlight').forEach(row => {
-                    row.classList.remove('highlight');
-                });
-                // Collapse all sections
-                document.querySelectorAll('.collapsible-header.active').forEach(header => {
-                    header.click();
-                });
-                anexosContainer.style.display = 'none';
-                toggleTabelasBtn.textContent = 'Exibir Tabelas';
-            }
-
-            function analisarFaturamento() {
-                resultadoDiv.innerHTML = '';
-                document.querySelectorAll('.anexo-table tr.highlight').forEach(row => {
-                    row.classList.remove('highlight');
                 });
 
-                const faturamentoStr = faturamentoInput.value.replace(/\./g, '').replace(',', '.');
-                const areaSelecionada = areaAtuacaoSelect.value;
+            }, {
 
-                if (!faturamentoStr || !areaSelecionada || areaAtuacaoSelect.selectedIndex === 0) {
-                    resultadoDiv.innerHTML = '<p style="color: #E8A900;">Por favor, preencha todos os campos.</p>';
-                    return;
-                }
+                threshold: 0.1
 
-                const faturamentoAnual = parseFloat(faturamentoStr);
-                if (isNaN(faturamentoAnual)) {
-                    resultadoDiv.innerHTML = '<p style="color: red;">Erro: Digite um número válido para o faturamento.</p>';
-                    return;
-                }
-
-                const anexoIdAlvo = areas_de_atuacao[areaSelecionada];
-                const dados = anexos[anexoIdAlvo];
-                let enquadramento = null;
-                let targetFaixaIndex = -1;
-
-                for (let i = 0; i < dados.faixas.length; i++) {
-                    const faixa = dados.faixas[i];
-                    if (faturamentoAnual > faixa.min && faturamentoAnual <= faixa.max) {
-                        enquadramento = {
-                            "Anexo": `${anexoIdAlvo} - ${dados.nome}`,
-                            "Faixa": faixa.faixa,
-                            "Alíquota": `${faixa.aliquota.toFixed(1).replace('.', ',')}%`,
-                            "Dedução": formatCurrency(faixa.deducao)
-                        };
-                        targetFaixaIndex = i;
-                        break;
-                    }
-                }
-                
-                if (!enquadramento && faturamentoAnual > 0 && faturamentoAnual <= 180000) {
-                    const faixa = dados.faixas[0];
-                    enquadramento = {
-                        "Anexo": `${anexoIdAlvo} - ${dados.nome}`,
-                        "Faixa": faixa.faixa,
-                        "Alíquota": `${faixa.aliquota.toFixed(1).replace('.', ',')}%`,
-                        "Dedução": formatCurrency(faixa.deducao)
-                    };
-                    targetFaixaIndex = 0;
-                }
-
-                if (enquadramento) {
-                    let resultHTML = '<p style="color: #155724; font-size: 1.1rem;">Enquadramento Encontrado:</p><ul style="padding-left: 0; list-style: none;">';
-                    for (const key in enquadramento) {
-                        resultHTML += `<li style="margin-bottom: 0.5rem;"><strong>${key}:</strong> ${enquadramento[key]}</li>`;
-                    }
-                    resultHTML += '</ul>';
-                    resultadoDiv.innerHTML = resultHTML;
-
-                    const anexoHeader = Array.from(document.querySelectorAll('.collapsible-header')).find(h => h.textContent.startsWith(anexoIdAlvo));
-                    if (anexoHeader) {
-                        const anexoContainer = anexoHeader.parentElement;
-                        const table = anexoContainer.querySelector('.anexo-table');
-                        const row = table.querySelectorAll('tbody tr')[targetFaixaIndex];
-                        row.classList.add('highlight');
-
-                        if (!anexoHeader.classList.contains('active')) {
-                            anexoHeader.click();
-                        }
-                        setTimeout(() => {
-                           anexoHeader.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }, 300); // wait for animation
-                    }
-                } else if (faturamentoAnual > 4800000) {
-                    resultadoDiv.innerHTML = '<p style="color: #D22B2B;">Faturamento acima do teto do Simples Nacional (R$ 4.800.000,00).</p>';
-                } else {
-                    resultadoDiv.innerHTML = '<p style="color: #E8A900;">Não foi possível determinar o enquadramento. Verifique o valor digitado.</p>';
-                }
-            }
-
-            analisarBtn.addEventListener('click', analisarFaturamento);
-            limparBtn.addEventListener('click', limparCampos);
-
-            toggleTabelasBtn.addEventListener('click', function() {
-                const isHidden = anexosContainer.style.display === 'none';
-                if (isHidden) {
-                    anexosContainer.style.display = 'block';
-                    toggleTabelasBtn.textContent = 'Recolher Tabelas';
-                } else {
-                    anexosContainer.style.display = 'none';
-                    toggleTabelasBtn.textContent = 'Exibir Tabelas';
-                }
             });
 
-            // Collapsible logic
-            anexosContainer.addEventListener('click', function(e) {
-                if (e.target.classList.contains('collapsible-header')) {
-                    e.target.classList.toggle('active');
-                    const content = e.target.nextElementSibling;
-                    if (content.style.maxHeight) {
-                        content.style.maxHeight = null;
-                    } else {
-                        content.style.maxHeight = content.scrollHeight + "px";
-                    }
-                }
+    
+
+            const elementsToAnimate = document.querySelectorAll('.fade-in');
+
+            elementsToAnimate.forEach(element => {
+
+                observer.observe(element);
+
             });
-        });
-        
-        // Função para carregar notícias do Simples Nacional
-        function loadNews() {
-            const noticiasContainer = document.getElementById('noticias-container');
-            
-            // Mostrar indicador de carregamento
-            noticiasContainer.innerHTML = '<p>Carregando notícias...</p>';
-            
-            // Simular carregamento de notícias (em uma implementação real, buscaria de uma API)
-            setTimeout(() => {
-                // Exemplo de notícias relacionadas ao Simples Nacional
-                const noticias = [
-                    {
-                        title: "Receita Federal prorroga prazo para MEIs optantes pelo Simples Nacional",
-                        summary: "Novo calendário traz ajustes importantes para microempreendedores individuais e pequenas empresas optantes do regime simplificado.",
-                        date: "28 de outubro de 2025"
-                    },
-                    {
-                        title: "Novas regras para faturamento no Simples Nacional entram em vigor em janeiro",
-                        summary: "Empresas deverão se adequar às novas faixas de receita bruta e respectivos percentuais de tributação.",
-                        date: "25 de outubro de 2025"
-                    },
-                    {
-                        title: "Simples Nacional: Orientações sobre obrigações acessórias em 2025",
-                        summary: "Confira o calendário completo de obrigações fiscais para empresas optantes do regime simplificado.",
-                        date: "20 de outubro de 2025"
-                    },
-                    {
-                        title: "Sancionada lei que altera regras do Simples Nacional para 2025",
-                        summary: "Novas disposições trazem simplificações operacionais e redução de burocracia para pequenas empresas.",
-                        date: "15 de outubro de 2025"
-                    }
-                ];
-                
-                // Verificar se o container está na sidebar ou seção de notícias
-                if (noticiasContainer && noticiasContainer.closest('.sidebar-news')) {
-                    // Para sidebar, exibir lista compacta com links diretos
-                    let noticiasHTML = '<div style="max-height: 400px; overflow-y: auto;">';
-                    noticias.forEach(noticia => {
-                        noticiasHTML += `
-                            <div style="padding: 0.8rem 0; border-bottom: 1px solid var(--gray-medium); margin-bottom: 0.8rem;">
-                                <a href="#" onclick="openNewsLink('${noticia.title.replace(/'/g, "\\'")}'); return false;" style="text-decoration: none; color: var(--secondary-color); font-weight: 500; display: block;">
-                                    <h4 style="margin: 0 0 0.3rem 0; font-size: 1rem;">${noticia.title}</h4>
-                                </a>
-                                <small style="color: var(--text-gray); display: block; margin-bottom: 0.3rem;">${noticia.date}</small>
-                                <p style="margin: 0; font-size: 0.9rem; color: var(--text-color);">${noticia.summary}</p>
-                            </div>
-                        `;
-                    });
-                    noticiasHTML += '</div>';
-                    
-                    noticiasContainer.innerHTML = noticiasHTML;
-                } else {
-                    // Para seção de notícias completa, usar carrossel
-                    // Criar HTML para o carrossel de notícias
-                    let noticiasHTML = `
-                        <div id="news-carousel" style="position: relative; max-width: 800px; margin: 0 auto;">
-                            <div id="news-display" style="min-height: 200px; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-left: 4px solid var(--primary-color);">
-                                <!-- Conteúdo da notícia atual será inserido aqui -->
-                            </div>
-                            <button id="prev-news" style="position: absolute; left: -40px; top: 50%; transform: translateY(-50%); background: var(--primary-color); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 18px;">&#8249;</button>
-                            <button id="next-news" style="position: absolute; right: -40px; top: 50%; transform: translateY(-50%); background: var(--primary-color); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 18px;">&#8250;</button>
-                            <div id="news-indicators" style="text-align: center; margin-top: 15px;"></div>
-                        </div>
-                    `;
-                    
-                    noticiasContainer.innerHTML = noticiasHTML;
-                    
-                    // Variáveis do carrossel
-                    let currentNewsIndex = 0;
-                    
-                    // Função para exibir notícia atual
-                    function displayCurrentNews() {
-                        const newsDisplay = document.getElementById('news-display');
-                        const noticia = noticias[currentNewsIndex];
-                        
-                        newsDisplay.innerHTML = `
-                            <a href="#" onclick="openNewsLink('${noticia.title.replace(/'/g, "\\'")}'); return false;" style="text-decoration: none; color: var(--dark-color); display: block;">
-                                <h3 style="color: var(--secondary-color); margin-top: 0;">${noticia.title}</h3>
-                            </a>
-                            <p>${noticia.summary}</p>
-                            <small style="color: var(--text-gray);">${noticia.date}</small>
-                        `;
-                        
-                        // Atualizar indicadores
-                        updateIndicators();
-                    }
-                    
-                    // Função para atualizar os indicadores (bolinhas)
-                    function updateIndicators() {
-                        const indicatorsContainer = document.getElementById('news-indicators');
-                        indicatorsContainer.innerHTML = '';
-                        
-                        noticias.forEach((_, index) => {
-                            const indicator = document.createElement('span');
-                            indicator.innerHTML = index === currentNewsIndex ? '●' : '○'; // Bola cheia ou vazia
-                            indicator.style.cursor = 'pointer';
-                            indicator.style.margin = '0 5px';
-                            indicator.style.fontSize = '20px';
-                            indicator.onclick = () => {
-                                currentNewsIndex = index;
-                                displayCurrentNews();
-                            };
-                            indicatorsContainer.appendChild(indicator);
-                        });
-                    }
-                    
-                    // Funções de navegação
-                    document.getElementById('prev-news').addEventListener('click', function() {
-                        currentNewsIndex = (currentNewsIndex - 1 + noticias.length) % noticias.length;
-                        displayCurrentNews();
-                    });
-                    
-                    document.getElementById('next-news').addEventListener('click', function() {
-                        currentNewsIndex = (currentNewsIndex + 1) % noticias.length;
-                        displayCurrentNews();
-                    });
-                    
-                    // Iniciar o carrossel
-                    displayCurrentNews();
-                }
-            }, 1000); // Simular um pequeno atraso de carregamento
-        }
-        
-        // Função para mostrar detalhes da notícia (abre o modal)
-        function showNewsDetails(title, content) {
-            document.getElementById('modal-title').textContent = title;
-            document.getElementById('modal-body').textContent = content;
-            document.getElementById('article-modal').style.display = 'block';
-        }
-        
-        // Função para abrir link da notícia (simula redirecionamento para notícia original)
-        function openNewsLink(title) {
-            // Em uma implementação real, isso redirecionaria para a notícia original
-            // Por enquanto, exibimos um alerta indicando que iria abrir a notícia original
-            alert('Abrindo notícia original: ' + title + '\n(Em uma implementação real, isso redirecionaria para a página da notícia)');
-        }
-        
-        // Fechar modal quando clicar no botão de fechar
-        document.addEventListener('DOMContentLoaded', function() {
-            loadNews();
-            
-            // Adicionar evento de clique ao botão de fechar
-            document.querySelector('.close-button').addEventListener('click', function() {
-                document.getElementById('article-modal').style.display = 'none';
-            });
-            
-            // Fechar modal quando clicar fora do conteúdo
-            window.addEventListener('click', function(event) {
-                const modal = document.getElementById('article-modal');
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-        });
-    </script>
-</body>
+
+        </script>
+
+    </body>
 </html>
