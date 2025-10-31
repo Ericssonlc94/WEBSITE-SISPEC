@@ -4,7 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SisPeC - Contabilidade para Pequenas Empresas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInFromLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
         :root {
             --primary-color: #049b8c;
             --secondary-color: #246cc3;
@@ -24,7 +37,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Source Sans Pro', sans-serif;
         }
         
         body {
@@ -80,25 +93,40 @@
             list-style: none;
             margin: 0;
             padding: 0;
+            flex-wrap: wrap; /* Allow wrapping on very small screens */
         }
         
         nav ul li {
-            margin: 0 1rem;
+            margin: 0 0.7rem; /* Reduced margin to save space */
+            position: relative;
+        }
+        
+        nav ul li:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -0.7rem;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 15px;
+            width: 1px;
+            background-color: var(--text-gray);
         }
         
         nav ul li a {
             color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
-            font-size: 1.1rem;
-            padding: 0.5rem 1rem;
+            font-size: 0.95rem; /* Reduced font size to save space */
+            padding: 0.5rem 0.7rem; /* Reduced padding */
             border-radius: 4px;
             transition: all 0.3s ease;
             position: relative;
+            display: inline-block;
+            white-space: nowrap; /* Prevent text wrapping */
         }
         
         nav ul li a:hover {
-            color: var(--accent-color);
+            color: var(--primary-color);
         }
         
         nav ul li a.active {
@@ -109,18 +137,17 @@
         nav ul li a::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 50%;
+            bottom: 2px; /* Adjusted to be closer to the text */
+            left: 0;
             width: 0;
             height: 2px;
             background-color: var(--primary-color);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
+            transition: width 0.4s ease-in-out;
         }
         
         nav ul li a:hover::after,
         nav ul li a.active::after {
-            width: 70%;
+            width: 100%;
         }
         
         .hero {
@@ -135,7 +162,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
+            text-align: left;
             color: white;
             padding-top: 120px; /* Changed from margin-top to padding-top */
             box-sizing: border-box; /* Ensure padding is included in height */
@@ -145,12 +172,16 @@
             font-size: 3rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeIn 1s ease-out forwards;
         }
         
         .hero-content p {
             font-size: 1.2rem;
             max-width: 700px;
             margin-bottom: 2rem;
+            text-align: justify;
+            animation: slideInFromLeft 1s ease-out 0.5s forwards;
+            opacity: 0; /* Start hidden for animation */
         }
         
         .btn {
@@ -196,6 +227,21 @@
         
         section {
             padding: 6rem 0;
+            position: relative;
+        }
+        
+        section:not(:last-of-type)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--gray-medium);
+        }
+        
+        section[id] {
+            scroll-margin-top: 120px;
         }
         
         .section-title {
@@ -285,7 +331,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            align-items: center;
+            align-items: start;
         }
         
         .about-text h2 {
@@ -293,7 +339,11 @@
             color: var(--primary-color);
             margin-bottom: 1.5rem;
         }
-        
+
+        .about-text p {
+            text-align: justify;
+        }
+
         .team-members {
             margin-top: 2rem;
         }
@@ -323,6 +373,8 @@
         
         .about-image img {
             max-width: 100%;
+            max-height: 300px; 
+            object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
@@ -473,6 +525,71 @@
             margin-top: 0;
         }
 
+        /* --- Modal Styles --- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.6);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 10px;
+            position: relative;
+            animation: fadeIn 0.5s;
+        }
+
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+        }
+
+        #noticias-container ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #noticias-container li {
+            background: #fff;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        #noticias-container li:hover {
+            transform: translateX(5px);
+        }
+
+        #noticias-container a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: bold;
+        }
+
         /* --- Estilos da Calculadora --- */
         .collapsible-anexo {
             margin-bottom: 1rem;
@@ -593,10 +710,10 @@
                 <nav>
                     <ul>
                         <li><a href="#home" class="active">Home</a></li>
-                        <li><a href="#noticias">Notícias</a></li>
+                        <li><a href="#quem-somos">Quem Somos</a></li>
                         <li><a href="#servicos">Serviços</a></li>
                         <li><a href="#simuladores">Simuladores</a></li>
-                        <li><a href="#quem-somos">Quem Somos</a></li>
+                        <li><a href="#artigos">Blog</a></li>
                         <li><a href="#contato">Contato</a></li>
                     </ul>
                 </nav>
@@ -608,33 +725,41 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Contabilidade Especializada para Pequenas Empresas</h1>
-            <p>Atuamos com empresas que utilizam o regime tributário do Simples Nacional ou Lucro Presumido. Sedeados em Salvador, atendemos online e presencialmente em todo o Brasil.</p>
-            <a href="#servicos" class="btn btn-primary">Nossos Serviços</a>
-            <a href="#contato" class="btn btn-outline">Fale Conosco</a>
+            <p style="text-align: justify;">Atuamos com empresas que utilizam o regime tributário do Simples Nacional ou Lucro Presumido. Sedeados em Salvador, atendemos online e presencialmente em todo o Brasil.</p>
+            <div style="text-align: center;">
+                <a href="#servicos" class="btn btn-outline">Nossos Serviços</a>
+                <a href="#contato" class="btn btn-outline">Fale Conosco</a>
+            </div>
         </div>
     </section>
 
-    <section id="noticias" class="news-section">
+    <section id="quem-somos" class="about">
         <div class="container">
             <div class="section-title">
-                <h2>Últimas Notícias</h2>
-                <p>Mantemos você informado sobre as principais novidades fiscais e contábeis</p>
+                <h2>Quem Somos</h2>
+                <p>História e equipe da SisPeC Contabilidade</p>
             </div>
-            <div class="news-grid">
-                <div class="news-card">
-                    <h3>Novas regras para MEIs em 2025</h3>
-                    <p>Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa...</p>
-                    <a href="#" class="btn btn-primary">Ler mais</a>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Nossa História</h2>
+                    <p>Atuamos na área contábil desde 2019, assessorando empresas e sempre buscando os melhores caminhos para que nossos clientes tenham clareza com as informações contábeis e segurança na tomada de decisões.</p>
+                    <p>Com sede em Salvador, nossa atuação se estende a clientes de todo o Brasil, proporcionando um atendimento personalizado e especializado em regimes tributários como Simples Nacional e Lucro Presumido.</p>
+                    <p>Comprometidos com a excelência, oferecemos soluções completas para pequenos negócios, MEIs e empreendedores que buscam crescimento sustentável e conformidade fiscal.</p>
+                    
+                    <div class="team-members">
+                        <h3>Nossa Equipe</h3>
+                        <div class="member-card">
+                            <h4>Ericsson Lemos Cardoso</h4>
+                            <p>Graduado em Ciências Contábeis pela Universidade do Estado da Bahia - Campus I (UNEB)</p>
+                        </div>
+                        <div class="member-card">
+                            <h4>Ricardo Vicente Galiano Junior</h4>
+                            <p>Graduado em Ciências Contábeis pela Universidade do Estado da Bahia - Campus I (UNEB)</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="news-card">
-                    <h3>Benefícios do Simples Nacional</h3>
-                    <p>Veja como optar pelo regime simplificado pode reduzir sua carga tributária...</p>
-                    <a href="#" class="btn btn-primary">Ler mais</a>
-                </div>
-                <div class="news-card">
-                    <h3>Declaração de Imposto de Renda</h3>
-                    <p>Principais cuidados ao declarar seus rendimentos e deduções este ano...</p>
-                    <a href="#" class="btn btn-primary">Ler mais</a>
+                <div class="about-image">
+                    <img src="{{ url_for('static', filename='Símbolo.png') }}" alt="SisPeC Logo">
                 </div>
             </div>
         </div>
@@ -689,37 +814,40 @@
             </div>
             <div class="simulator-card">
                 <h3>Simulador de Simples Nacional</h3>
+                <p>Estime o imposto devido no regime do Simples Nacional com base no seu faturamento e área de atuação.</p>
+                <a href="#" class="btn btn-primary" id="toggle-simples-nacional">Acessar Simulador</a>
                 
-                <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
-                    <label for="faturamento_anual" style="font-weight: 500;">Faturamento anual (R$)</label>
-                    <input type="text" id="faturamento_anual" placeholder="Ex: 150000,00" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #fff; color: #333;">
-                </div>
-
-                <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
-                    <label for="area_atuacao" style="font-weight: 500;">Área de atuação</label>
-                    <select id="area_atuacao" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #fff; color: #333;">
-                        <option value="" disabled selected>Selecione uma área</option>
-                    </select>
-                </div>
-
-                <div style="margin-bottom: 1.5rem;">
-                    <button id="analisar-btn" class="btn btn-primary" style="margin-right: 10px;">Analisar</button>
-                    <button id="limpar-btn" class="btn btn-outline" style="background-color: #6c757d; border-color: #6c757d; color: white;">Limpar</button>
-                    <button id="toggle-tabelas-btn" class="btn">Exibir Tabelas</button>
-                </div>
-
-                <div id="resultado-simulador" style="margin-top: 20px; text-align: left; font-weight: bold; min-height: 50px;">
-                    <!-- Result goes here -->
-                </div>
-
-                <!-- ANEXOS TABLES START HERE -->
-                <div class="anexos-container" style="margin-top: 2rem; display: none;">
-                    <div class="section-title" style="margin-bottom: 2rem; text-align: left;">
-                        <h4 style="font-size: 1.5rem; color: var(--dark-color);">Tabelas de Anexos do Simples Nacional</h4>
+                <div id="calculadora-simples-nacional" style="display: none; margin-top: 1.5rem;">
+                    <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+                        <label for="faturamento_anual" style="font-weight: 500;">Faturamento anual (R$)</label>
+                        <input type="text" id="faturamento_anual" placeholder="Ex: 150000,00" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #fff; color: #333;">
                     </div>
-                    <!-- Anexos will be generated by JS -->
-                </div>
 
+                    <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+                        <label for="area_atuacao" style="font-weight: 500;">Área de atuação</label>
+                        <select id="area_atuacao" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #fff; color: #333;">
+                            <option value="" disabled selected>Selecione uma área</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <button id="analisar-btn" class="btn btn-primary" style="margin-right: 10px;">Analisar</button>
+                        <button id="limpar-btn" class="btn btn-outline" style="background-color: #6c757d; border-color: #6c757d; color: white;">Limpar</button>
+                        <button id="toggle-tabelas-btn" class="btn">Exibir Tabelas</button>
+                    </div>
+
+                    <div id="resultado-simulador" style="margin-top: 20px; text-align: left; font-weight: bold; min-height: 50px;">
+                        <!-- Result goes here -->
+                    </div>
+
+                    <!-- ANEXOS TABLES START HERE -->
+                    <div class="anexos-container" style="margin-top: 2rem; display: none;">
+                        <div class="section-title" style="margin-bottom: 2rem; text-align: left;">
+                            <h4 style="font-size: 1.5rem; color: var(--dark-color);">Tabelas de Anexos do Simples Nacional</h4>
+                        </div>
+                        <!-- Anexos will be generated by JS -->
+                    </div>
+                </div>
             </div>
             <div class="simulator-card">
                 <h3>Simulador de Lucro Presumido</h3>
@@ -734,33 +862,43 @@
         </div>
     </section>
 
-    <section id="quem-somos" class="about">
+    <section id="artigos" class="news-section">
         <div class="container">
             <div class="section-title">
-                <h2>Quem Somos</h2>
-                <p>História e equipe da SisPeC Contabilidade</p>
+                <h2>Blog</h2>
+                <p>Publicações sobre regras, curiosidades e benefícios para sua empresa</p>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Nossa História</h2>
-                    <p>Atuamos na área contábil desde 2019, assessorando empresas e sempre buscando os melhores caminhos para que nossos clientes tenham clareza com as informações contábeis e segurança na tomada de decisões.</p>
-                    <p>Com sede em Salvador, nossa atuação se estende a clientes de todo o Brasil, proporcionando um atendimento personalizado e especializado em regimes tributários como Simples Nacional e Lucro Presumido.</p>
-                    <p>Comprometidos com a excelência, oferecemos soluções completas para pequenos negócios, MEIs e empreendedores que buscam crescimento sustentável e conformidade fiscal.</p>
-                    
-                    <div class="team-members">
-                        <h3>Nossa Equipe</h3>
-                        <div class="member-card">
-                            <h4>Ericsson Lemos Cardoso</h4>
-                            <p>Graduado em Ciências Contábeis pela Universidade do Estado da Bahia - Campus I (UNEB)</p>
+            <div class="blog-container" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start;">
+                <div>
+                    <div class="section-title" style="text-align: left; margin-bottom: 1rem;">
+                        <h3 style="color: var(--primary-color);">Nossos Artigos</h3>
+                    </div>
+                    <div class="news-grid">
+                        <div class="news-card">
+                            <h3>Novas regras para MEIs em 2025</h3>
+                            <p>Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa...</p>
+                            <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Novas regras para MEIs em 2025', 'Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa...'); return false;">Ler mais</a>
                         </div>
-                        <div class="member-card">
-                            <h4>Ricardo Vicente Galiano Junior</h4>
-                            <p>Graduado em Ciências Contábeis pela Universidade do Estado da Bahia - Campus I (UNEB)</p>
+                        <div class="news-card">
+                            <h3>Benefícios do Simples Nacional</h3>
+                            <p>Veja como optar pelo regime simplificado pode reduzir sua carga tributária...</p>
+                            <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Benefícios do Simples Nacional', 'Veja como optar pelo regime simplificado pode reduzir sua carga tributária...'); return false;">Ler mais</a>
+                        </div>
+                        <div class="news-card">
+                            <h3>Declaração de Imposto de Renda</h3>
+                            <p>Principais cuidados ao declarar seus rendimentos e deduções este ano...</p>
+                            <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Declaração de Imposto de Renda', 'Principais cuidados ao declarar seus rendimentos e deduções este ano...'); return false;">Ler mais</a>
                         </div>
                     </div>
                 </div>
-                <div class="about-image">
-                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'><rect width='400' height='300' fill='%23f8f9fa'/><circle cx='100' cy='100' r='40' fill='%23049b8c'/><rect x='150' y='80' width='180' height='100' fill='%23246cc3' rx='5'/><path d='M160 100 H310 M160 120 H280 M160 140 H250' stroke='white' stroke-width='3'/><rect x='200' y='200' width='60' height='60' fill='%231484a6' rx='5'/><circle cx='230' cy='230' r='15' fill='white'/><path d='M220 230 H240 M230 220 V240' stroke='%231484a6' stroke-width='2'/></svg>" alt="SisPeC - Contabilidade para Pequenas Empresas">
+                <div class="sidebar-news">
+                    <div class="section-title" style="text-align: left; margin-bottom: 1rem;">
+                        <h3>Notícias</h3>
+                    </div>
+                    <div id="noticias-container" style="background: var(--light-color); padding: 1rem; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.08);">
+                        <!-- As notícias serão carregadas aqui via JavaScript -->
+                        <p>Carregando notícias...</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -839,6 +977,15 @@
         </div>
     </footer>
 
+    <!-- Modal Structure -->
+    <div id="article-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-body"></p>
+        </div>
+    </div>
+
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -882,13 +1029,27 @@
 
         // --- SIMULADOR SIMPLES NACIONAL ---
         document.addEventListener('DOMContentLoaded', function() {
+            const toggleSimplesBtn = document.getElementById('toggle-simples-nacional');
+            const calculadoraSimples = document.getElementById('calculadora-simples-nacional');
+
+            toggleSimplesBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const isHidden = calculadoraSimples.style.display === 'none';
+                if (isHidden) {
+                    calculadoraSimples.style.display = 'block';
+                    toggleSimplesBtn.textContent = 'Recolher Simulador';
+                } else {
+                    calculadoraSimples.style.display = 'none';
+                    toggleSimplesBtn.textContent = 'Acessar Simulador';
+                }
+            });
+
             const anexos = {
                 "Anexo I": {"nome": "Comércio", "descricao": "Venda de mercadorias.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 4.0, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 7.3, "deducao": 5940}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 9.5, "deducao": 13860}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 10.7, "deducao": 22500}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 14.3, "deducao": 87300}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 19.0, "deducao": 378000}]},
                 "Anexo II": {"nome": "Indústria", "descricao": "Produção e manufatura.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 4.5, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 7.8, "deducao": 5940}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 10.0, "deducao": 13860}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 11.2, "deducao": 22500}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 14.7, "deducao": 85500}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 30.0, "deducao": 720000}]},
                 "Anexo III": {"nome": "Serviços (fator r < 28%)", "descricao": "Instalação, reparos, contabilidade, academias, etc.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 6.0, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 11.2, "deducao": 9360}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 13.5, "deducao": 17640}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 16.0, "deducao": 35640}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 21.0, "deducao": 125640}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 33.0, "deducao": 648000}]},
                 "Anexo IV": {"nome": "Serviços (sem CPP no DAS)", "descricao": "Limpeza, vigilância, obras, advocacia.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 4.5, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 9.0, "deducao": 8100}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 10.2, "deducao": 12420}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 14.0, "deducao": 39780}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 22.0, "deducao": 183780}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 33.0, "deducao": 828000}]},
-                "Anexo V": {"nome": "Serviços (fator r >= 28%)", "descricao": "Auditoria, jornalismo, tecnologia, engenharia, etc.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 15.5, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 18.0, "deducao": 4500}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 19.5, "deducao": 9900}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 20.5, "deducao": 17100}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 23.0, "deducao": 62100}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 30.5, "deducao": 540000}]}
-            };
+                "Anexo V": {"nome": "Serviços (fator r >= 28%)", "descricao": "Auditoria, jornalismo, tecnologia, engenharia, etc.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 15.5, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 18.0, "deducao": 4500}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 19.5, "deducao": 9900}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 20.5, "deducao": 17100}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 23.0, "deducao": 62100}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 30.5, "deducao": 540000}]}}
 
             const areas_de_atuacao = {
                 "Comércio em Geral (Lojas, e-commerce)": "Anexo I",
@@ -1088,6 +1249,161 @@
                     } else {
                         content.style.maxHeight = content.scrollHeight + "px";
                     }
+                }
+            });
+        });
+        
+        // Função para carregar notícias do Simples Nacional
+        function loadNews() {
+            const noticiasContainer = document.getElementById('noticias-container');
+            
+            // Mostrar indicador de carregamento
+            noticiasContainer.innerHTML = '<p>Carregando notícias...</p>';
+            
+            // Simular carregamento de notícias (em uma implementação real, buscaria de uma API)
+            setTimeout(() => {
+                // Exemplo de notícias relacionadas ao Simples Nacional
+                const noticias = [
+                    {
+                        title: "Receita Federal prorroga prazo para MEIs optantes pelo Simples Nacional",
+                        summary: "Novo calendário traz ajustes importantes para microempreendedores individuais e pequenas empresas optantes do regime simplificado.",
+                        date: "28 de outubro de 2025"
+                    },
+                    {
+                        title: "Novas regras para faturamento no Simples Nacional entram em vigor em janeiro",
+                        summary: "Empresas deverão se adequar às novas faixas de receita bruta e respectivos percentuais de tributação.",
+                        date: "25 de outubro de 2025"
+                    },
+                    {
+                        title: "Simples Nacional: Orientações sobre obrigações acessórias em 2025",
+                        summary: "Confira o calendário completo de obrigações fiscais para empresas optantes do regime simplificado.",
+                        date: "20 de outubro de 2025"
+                    },
+                    {
+                        title: "Sancionada lei que altera regras do Simples Nacional para 2025",
+                        summary: "Novas disposições trazem simplificações operacionais e redução de burocracia para pequenas empresas.",
+                        date: "15 de outubro de 2025"
+                    }
+                ];
+                
+                // Verificar se o container está na sidebar ou seção de notícias
+                if (noticiasContainer && noticiasContainer.closest('.sidebar-news')) {
+                    // Para sidebar, exibir lista compacta com links diretos
+                    let noticiasHTML = '<div style="max-height: 400px; overflow-y: auto;">';
+                    noticias.forEach(noticia => {
+                        noticiasHTML += `
+                            <div style="padding: 0.8rem 0; border-bottom: 1px solid var(--gray-medium); margin-bottom: 0.8rem;">
+                                <a href="#" onclick="openNewsLink('${noticia.title.replace(/'/g, "\\'")}'); return false;" style="text-decoration: none; color: var(--secondary-color); font-weight: 500; display: block;">
+                                    <h4 style="margin: 0 0 0.3rem 0; font-size: 1rem;">${noticia.title}</h4>
+                                </a>
+                                <small style="color: var(--text-gray); display: block; margin-bottom: 0.3rem;">${noticia.date}</small>
+                                <p style="margin: 0; font-size: 0.9rem; color: var(--text-color);">${noticia.summary}</p>
+                            </div>
+                        `;
+                    });
+                    noticiasHTML += '</div>';
+                    
+                    noticiasContainer.innerHTML = noticiasHTML;
+                } else {
+                    // Para seção de notícias completa, usar carrossel
+                    // Criar HTML para o carrossel de notícias
+                    let noticiasHTML = `
+                        <div id="news-carousel" style="position: relative; max-width: 800px; margin: 0 auto;">
+                            <div id="news-display" style="min-height: 200px; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-left: 4px solid var(--primary-color);">
+                                <!-- Conteúdo da notícia atual será inserido aqui -->
+                            </div>
+                            <button id="prev-news" style="position: absolute; left: -40px; top: 50%; transform: translateY(-50%); background: var(--primary-color); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 18px;">&#8249;</button>
+                            <button id="next-news" style="position: absolute; right: -40px; top: 50%; transform: translateY(-50%); background: var(--primary-color); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 18px;">&#8250;</button>
+                            <div id="news-indicators" style="text-align: center; margin-top: 15px;"></div>
+                        </div>
+                    `;
+                    
+                    noticiasContainer.innerHTML = noticiasHTML;
+                    
+                    // Variáveis do carrossel
+                    let currentNewsIndex = 0;
+                    
+                    // Função para exibir notícia atual
+                    function displayCurrentNews() {
+                        const newsDisplay = document.getElementById('news-display');
+                        const noticia = noticias[currentNewsIndex];
+                        
+                        newsDisplay.innerHTML = `
+                            <a href="#" onclick="openNewsLink('${noticia.title.replace(/'/g, "\\'")}'); return false;" style="text-decoration: none; color: var(--dark-color); display: block;">
+                                <h3 style="color: var(--secondary-color); margin-top: 0;">${noticia.title}</h3>
+                            </a>
+                            <p>${noticia.summary}</p>
+                            <small style="color: var(--text-gray);">${noticia.date}</small>
+                        `;
+                        
+                        // Atualizar indicadores
+                        updateIndicators();
+                    }
+                    
+                    // Função para atualizar os indicadores (bolinhas)
+                    function updateIndicators() {
+                        const indicatorsContainer = document.getElementById('news-indicators');
+                        indicatorsContainer.innerHTML = '';
+                        
+                        noticias.forEach((_, index) => {
+                            const indicator = document.createElement('span');
+                            indicator.innerHTML = index === currentNewsIndex ? '●' : '○'; // Bola cheia ou vazia
+                            indicator.style.cursor = 'pointer';
+                            indicator.style.margin = '0 5px';
+                            indicator.style.fontSize = '20px';
+                            indicator.onclick = () => {
+                                currentNewsIndex = index;
+                                displayCurrentNews();
+                            };
+                            indicatorsContainer.appendChild(indicator);
+                        });
+                    }
+                    
+                    // Funções de navegação
+                    document.getElementById('prev-news').addEventListener('click', function() {
+                        currentNewsIndex = (currentNewsIndex - 1 + noticias.length) % noticias.length;
+                        displayCurrentNews();
+                    });
+                    
+                    document.getElementById('next-news').addEventListener('click', function() {
+                        currentNewsIndex = (currentNewsIndex + 1) % noticias.length;
+                        displayCurrentNews();
+                    });
+                    
+                    // Iniciar o carrossel
+                    displayCurrentNews();
+                }
+            }, 1000); // Simular um pequeno atraso de carregamento
+        }
+        
+        // Função para mostrar detalhes da notícia (abre o modal)
+        function showNewsDetails(title, content) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-body').textContent = content;
+            document.getElementById('article-modal').style.display = 'block';
+        }
+        
+        // Função para abrir link da notícia (simula redirecionamento para notícia original)
+        function openNewsLink(title) {
+            // Em uma implementação real, isso redirecionaria para a notícia original
+            // Por enquanto, exibimos um alerta indicando que iria abrir a notícia original
+            alert('Abrindo notícia original: ' + title + '\n(Em uma implementação real, isso redirecionaria para a página da notícia)');
+        }
+        
+        // Fechar modal quando clicar no botão de fechar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadNews();
+            
+            // Adicionar evento de clique ao botão de fechar
+            document.querySelector('.close-button').addEventListener('click', function() {
+                document.getElementById('article-modal').style.display = 'none';
+            });
+            
+            // Fechar modal quando clicar fora do conteúdo
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('article-modal');
+                if (event.target === modal) {
+                    modal.style.display = 'none';
                 }
             });
         });
