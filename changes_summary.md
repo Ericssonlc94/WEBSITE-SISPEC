@@ -31,3 +31,27 @@ O objetivo principal foi redesenhar o cabeçalho para aumentar seu tamanho e gar
 - **Diagnóstico de Problema:** O efeito de papel timbrado não funcionou porque a imagem fornecida era preta, o que a tornava invisível sob o gradiente de cor escuro.
 - **Tentativa de Correção:** Tentei usar a propriedade `background-blend-mode: screen;` para "inverter" a cor da imagem e torná-la visível.
 - **Rollback:** A tentativa com `background-blend-mode` foi revertida a seu pedido, retornando o CSS ao estado anterior (com a imagem de fundo configurada, mas não visível).
+
+## 3. Ajustes de Estilo e Layout (Sessão Atual)
+
+Nesta sessão, focamos em refinar a experiência do usuário, fontes, animações e alinhamento de conteúdo.
+
+- **Fonte e Animações:**
+  - A fonte principal do site foi alterada para 'Source Sans Pro', importada do Google Fonts, para uma aparência mais moderna.
+  - Uma animação de `fade-in` foi adicionada ao título principal na seção "Hero".
+  - Uma animação de `slide-in` da esquerda foi aplicada ao parágrafo de introdução para um carregamento mais dinâmico.
+
+- **Layout da Seção "Hero":**
+  - O botão "Nossos Serviços" teve seu estilo alterado para "outline", criando uma identidade visual consistente com o botão "Fale Conosco".
+  - O título e o parágrafo da seção foram alinhados à esquerda para melhorar a legibilidade, mas os botões abaixo foram mantidos centralizados na página para um call-to-action claro.
+  - O texto do parágrafo principal foi justificado.
+
+- **Seção "Quem Somos":**
+  - A imagem genérica ao lado de "Nossa História" foi substituída pela logo `Símbolo.png`.
+  - O texto dos parágrafos da história foi justificado.
+  - O alinhamento vertical da imagem e do texto foi ajustado para que ambos começassem no topo da seção.
+  - Para que a imagem se alinhasse em altura apenas com o texto da história (sem invadir a seção da equipe), uma altura máxima (`max-height: 300px`) foi definida para a imagem, resolvendo o requisito de layout de forma visual.
+
+- **Refatoração da Seção de Notícias (Revertida):**
+  - Foi iniciada a implementação de uma nova seção "Artigos" e de um visualizador de notícias dinâmico que consumiria dados de um site externo.
+  - A pedido, todas as alterações relacionadas a esta funcionalidade (no HTML, CSS, JavaScript e no back-end `app.py`) foram completamente revertidas, restaurando o site ao seu estado anterior.
