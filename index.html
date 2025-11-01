@@ -874,21 +874,7 @@
                         <h3 style="color: var(--primary-color);">Nossos Artigos</h3>
                     </div>
                     <div class="news-grid">
-                        <div class="news-card">
-                            <h3>Novas regras para MEIs em 2025</h3>
-                            <p>Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa...</p>
-                            <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Novas regras para MEIs em 2025', 'Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa...'); return false;">Ler mais</a>
-                        </div>
-                        <div class="news-card">
-                            <h3>Benefícios do Simples Nacional</h3>
-                            <p>Veja como optar pelo regime simplificado pode reduzir sua carga tributária...</p>
-                            <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Benefícios do Simples Nacional', 'Veja como optar pelo regime simplificado pode reduzir sua carga tributária...'); return false;">Ler mais</a>
-                        </div>
-                        <div class="news-card">
-                            <h3>Declaração de Imposto de Renda</h3>
-                            <p>Principais cuidados ao declarar seus rendimentos e deduções este ano...</p>
-                            <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Declaração de Imposto de Renda', 'Principais cuidados ao declarar seus rendimentos e deduções este ano...'); return false;">Ler mais</a>
-                        </div>
+                        <!-- Artigos serão carregados aqui via JavaScript -->
                     </div>
                 </div>
                 <div class="sidebar-news">
@@ -1034,13 +1020,16 @@
 
             toggleSimplesBtn.addEventListener('click', function(e) {
                 e.preventDefault();
+                console.log('Botão do simulador clicado!');
                 const isHidden = calculadoraSimples.style.display === 'none';
                 if (isHidden) {
                     calculadoraSimples.style.display = 'block';
                     toggleSimplesBtn.textContent = 'Recolher Simulador';
+                    console.log('Calculadora Simples Nacional exibida.');
                 } else {
                     calculadoraSimples.style.display = 'none';
                     toggleSimplesBtn.textContent = 'Acessar Simulador';
+                    console.log('Calculadora Simples Nacional oculta.');
                 }
             });
 
@@ -1255,145 +1244,74 @@
         });
         
         // Função para carregar notícias do Simples Nacional
-        function loadNews() {
-            const noticiasContainer = document.getElementById('noticias-container');
+        function loadNews(targetContainer) {
+            const noticiasContainer = targetContainer;
             
             // Mostrar indicador de carregamento
             noticiasContainer.innerHTML = '<p>Carregando notícias...</p>';
             
-            // Simular carregamento de notícias (em uma implementação real, buscaria de uma API)
-            setTimeout(() => {
-                // Exemplo de notícias relacionadas ao Simples Nacional
-                const noticias = [
-                    {
-                        title: "Receita Federal prorroga prazo para MEIs optantes pelo Simples Nacional",
-                        summary: "Novo calendário traz ajustes importantes para microempreendedores individuais e pequenas empresas optantes do regime simplificado.",
-                        date: "28 de outubro de 2025"
-                    },
-                    {
-                        title: "Novas regras para faturamento no Simples Nacional entram em vigor em janeiro",
-                        summary: "Empresas deverão se adequar às novas faixas de receita bruta e respectivos percentuais de tributação.",
-                        date: "25 de outubro de 2025"
-                    },
-                    {
-                        title: "Simples Nacional: Orientações sobre obrigações acessórias em 2025",
-                        summary: "Confira o calendário completo de obrigações fiscais para empresas optantes do regime simplificado.",
-                        date: "20 de outubro de 2025"
-                    },
-                    {
-                        title: "Sancionada lei que altera regras do Simples Nacional para 2025",
-                        summary: "Novas disposições trazem simplificações operacionais e redução de burocracia para pequenas empresas.",
-                        date: "15 de outubro de 2025"
-                    }
-                ];
-                
-                // Verificar se o container está na sidebar ou seção de notícias
-                if (noticiasContainer && noticiasContainer.closest('.sidebar-news')) {
-                    // Para sidebar, exibir lista compacta com links diretos
-                    let noticiasHTML = '<div style="max-height: 400px; overflow-y: auto;">';
-                    noticias.forEach(noticia => {
-                        noticiasHTML += `
-                            <div style="padding: 0.8rem 0; border-bottom: 1px solid var(--gray-medium); margin-bottom: 0.8rem;">
-                                <a href="#" onclick="openNewsLink('${noticia.title.replace(/'/g, "\'")}'); return false;" style="text-decoration: none; color: var(--secondary-color); font-weight: 500; display: block;">
-                                    <h4 style="margin: 0 0 0.3rem 0; font-size: 1rem;">${noticia.title}</h4>
-                                </a>
-                                <small style="color: var(--text-gray); display: block; margin-bottom: 0.3rem;">${noticia.date}</small>
-                                <p style="margin: 0; font-size: 0.9rem; color: var(--text-color);">${noticia.summary}</p>
-                            </div>
-                        `;
-                    });
-                    noticiasHTML += '</div>';
-                    
-                    noticiasContainer.innerHTML = noticiasHTML;
-                } else {
-                    // Para seção de notícias completa, usar carrossel
-                    // Criar HTML para o carrossel de notícias
-                    let noticiasHTML = `
-                        <div id="news-carousel" style="position: relative; max-width: 800px; margin: 0 auto;">
-                            <div id="news-display" style="min-height: 200px; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-left: 4px solid var(--primary-color);">
-                                <!-- Conteúdo da notícia atual será inserido aqui -->
-                            </div>
-                            <button id="prev-news" style="position: absolute; left: -40px; top: 50%; transform: translateY(-50%); background: var(--primary-color); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 18px;">&#8249;</button>
-                            <button id="next-news" style="position: absolute; right: -40px; top: 50%; transform: translateY(-50%); background: var(--primary-color); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 18px;">&#8250;</button>
-                            <div id="news-indicators" style="text-align: center; margin-top: 15px;"></div>
-                        </div>
-                    `;
-                    
-                    noticiasContainer.innerHTML = noticiasHTML;
-                    
-                    // Variáveis do carrossel
-                    let currentNewsIndex = 0;
-                    
-                    // Função para exibir notícia atual
-                    function displayCurrentNews() {
-                        const newsDisplay = document.getElementById('news-display');
-                        const noticia = noticias[currentNewsIndex];
-                        
-                        newsDisplay.innerHTML = `
-                            <a href="#" onclick="openNewsLink('${noticia.title.replace(/'/g, "\'")}'); return false;" style="text-decoration: none; color: var(--dark-color); display: block;">
-                                <h3 style="color: var(--secondary-color); margin-top: 0;">${noticia.title}</h3>
-                            </a>
-                            <p>${noticia.summary}</p>
-                            <small style="color: var(--text-gray);">${noticia.date}</small>
-                        `;
-                        
-                        // Atualizar indicadores
-                        updateIndicators();
-                    }
-                    
-                    // Função para atualizar os indicadores (bolinhas)
-                    function updateIndicators() {
-                        const indicatorsContainer = document.getElementById('news-indicators');
-                        indicatorsContainer.innerHTML = '';
-                        
-                        noticias.forEach((_, index) => {
-                            const indicator = document.createElement('span');
-                            indicator.innerHTML = index === currentNewsIndex ? '●' : '○'; // Bola cheia ou vazia
-                            indicator.style.cursor = 'pointer';
-                            indicator.style.margin = '0 5px';
-                            indicator.style.fontSize = '20px';
-                            indicator.onclick = () => {
-                                currentNewsIndex = index;
-                                displayCurrentNews();
-                            };
-                            indicatorsContainer.appendChild(indicator);
+            fetch('/api/noticias')
+                .then(response => response.json())
+                .then(noticias => {
+                    // Verificar se o container está na sidebar ou seção de notícias
+                    if (noticiasContainer && noticiasContainer.closest('.sidebar-news')) {
+                        // Para sidebar, exibir lista compacta com links diretos
+                        let noticiasHTML = '<div style="max-height: 400px; overflow-y: auto;">';
+                        noticias.forEach(noticia => {
+                            noticiasHTML += `
+                                <div style="padding: 0.8rem 0; border-bottom: 1px solid var(--gray-medium); margin-bottom: 0.8rem;">
+                                    <a href="#" onclick="openNewsLink('${noticia.titulo.replace(/'/g, "\'")}'); return false;" style="text-decoration: none; color: var(--secondary-color); font-weight: 500; display: block;">
+                                        <h4 style="margin: 0 0 0.3rem 0; font-size: 1rem;">${noticia.titulo}</h4>
+                                    </a>
+                                    <p style="margin: 0; font-size: 0.9rem; color: var(--text-color);">${noticia.descricao}</p>
+                                </div>
+                            `;
                         });
+                        noticiasHTML += '</div>';
+                        
+                        noticiasContainer.innerHTML = noticiasHTML;
+                    } else {
+                        // Para a seção "Nossos Artigos", preencher o news-grid
+                        const newsGrid = document.querySelector('.news-grid');
+                        if (newsGrid) {
+                            let articlesHTML = '';
+                            noticias.forEach(noticia => {
+                                articlesHTML += `
+                                    <div class="news-card">
+                                        <h3>${noticia.titulo}</h3>
+                                        <p>${noticia.descricao}</p>
+                                        <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('${noticia.titulo.replace(/'/g, "\'")}', '${noticia.descricao.replace(/'/g, "\'")}'); return false;">Ler mais</a>
+                                    </div>
+                                `;
+                            });
+                            newsGrid.innerHTML = articlesHTML;
+                        }
                     }
-                    
-                    // Funções de navegação
-                    document.getElementById('prev-news').addEventListener('click', function() {
-                        currentNewsIndex = (currentNewsIndex - 1 + noticias.length) % noticias.length;
-                        displayCurrentNews();
-                    });
-                    
-                    document.getElementById('next-news').addEventListener('click', function() {
-                        currentNewsIndex = (currentNewsIndex + 1) % noticias.length;
-                        displayCurrentNews();
-                    });
-                    
-                    // Iniciar o carrossel
-                    displayCurrentNews();
-                }
-            }, 1000); // Simular um pequeno atraso de carregamento
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar notícias:', error);
+                    noticiasContainer.innerHTML = '<p style="color: red;">Erro ao carregar notícias.</p>';
+                });
         }
         
         // Função para mostrar detalhes da notícia (abre o modal)
-        function showNewsDetails(title, content) {
-            document.getElementById('modal-title').textContent = title;
-            document.getElementById('modal-body').textContent = content;
+        function showNewsDetails(titulo, descricao) {
+            document.getElementById('modal-title').textContent = titulo;
+            document.getElementById('modal-body').textContent = descricao;
             document.getElementById('article-modal').style.display = 'block';
         }
         
         // Função para abrir link da notícia (simula redirecionamento para notícia original)
-        function openNewsLink(title) {
+        function openNewsLink(titulo) {
             // Em uma implementação real, isso redirecionaria para a notícia original
             // Por enquanto, exibimos um alerta indicando que iria abrir a notícia original
-            alert('Abrindo notícia original: ' + title + '\n(Em uma implementação real, isso redirecionaria para a página da notícia)');
+            alert('Abrindo notícia original: ' + titulo + '\n(Em uma implementação real, isso redirecionaria para a página da notícia)');
         }
         
         // Fechar modal quando clicar no botão de fechar
         document.addEventListener('DOMContentLoaded', function() {
-            loadNews();
+            loadNews(document.getElementById('noticias-container')); // Carrega notícias para a sidebar
+            loadNews(document.querySelector('.news-grid')); // Carrega notícias para a seção de artigos
             
             // Adicionar evento de clique ao botão de fechar
             document.querySelector('.close-button').addEventListener('click', function() {
