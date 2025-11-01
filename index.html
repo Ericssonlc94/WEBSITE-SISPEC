@@ -79,7 +79,7 @@
         }
         
         .logo img {
-            height: 100px;
+            height: 80px;
             width: auto; /* Fix aspect ratio */
         }
         
@@ -101,26 +101,18 @@
             position: relative;
         }
         
-        nav ul li:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: -0.7rem;
-            top: 50%;
-            transform: translateY(-50%);
-            height: 15px;
-            width: 1px;
-            background-color: var(--text-gray);
-        }
+
         
         nav ul li a {
             color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem; /* Reduced font size to save space */
+            font-size: 1.2rem; /* Reduced font size to save space */
             padding: 0.5rem 0.7rem; /* Reduced padding */
             border-radius: 4px;
             transition: all 0.3s ease;
             position: relative;
+
             display: inline-block;
             white-space: nowrap; /* Prevent text wrapping */
         }
@@ -153,11 +145,11 @@
         .hero {
             background-color: var(--primary-color);
             background-image: 
-                linear-gradient(rgba(4, 155, 140, 0.92), rgba(20, 132, 166, 0.92)),
-                url("static/Simbolo-positivo.png");
-            background-repeat: no-repeat, repeat;
-            background-size: cover, 150px;
-            background-position: center, center;
+                linear-gradient(rgba(4, 155, 140, 0.85), rgba(20, 132, 166, 0.85)),
+                url("static/Apresentação-SisPec.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -165,6 +157,7 @@
             text-align: left;
             color: white;
             padding-top: 120px; /* Changed from margin-top to padding-top */
+            padding-bottom: 1rem; /* Reduced bottom spacing for home section */
             box-sizing: border-box; /* Ensure padding is included in height */
         }
         
@@ -331,7 +324,23 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            align-items: start;
+        }
+        
+        .about-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .about-image {
+            align-self: stretch;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ajusta a imagem para cobrir o container mantendo proporção */
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
         .about-text h2 {
@@ -369,14 +378,18 @@
         
         .about-image {
             text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alinha ao topo para alinhar com o título */
         }
         
         .about-image img {
             max-width: 100%;
             max-height: 300px; 
-            object-fit: cover;
+            object-fit: contain; /* Mantém a proporção original da imagem */
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            align-self: flex-start; /* Alinha a imagem ao topo */
         }
         
         .contact {
@@ -476,7 +489,7 @@
         
         .news-section {
             background-color: white;
-            padding: 2rem 0;
+            padding: 4rem 0;
         }
         
         .news-grid {
@@ -759,7 +772,7 @@
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="static/Símbolo.png" alt="SisPeC Logo">
+                    <img src="static/SisPeC-2.png" alt="SisPeC Logo">
                 </div>
             </div>
         </div>
@@ -874,14 +887,28 @@
                         <h3 style="color: var(--primary-color);">Nossos Artigos</h3>
                     </div>
                     <div class="news-grid">
-                        <!-- Artigos serão carregados aqui via JavaScript -->
+                        <div class="news-card">
+                            <h3>Novas regras para MEIs em 2025</h3>
+                            <p>Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa...</p>
+                            <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Novas regras para MEIs em 2025', 'Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa...'); return false;">Ler mais</a>
+                        </div>
+                        <div class="news-card">
+                            <h3>Benefícios do Simples Nacional</h3>
+                            <p>Veja como optar pelo regime simplificado pode reduzir sua carga tributária...</p>
+                            <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Benefícios do Simples Nacional', 'Veja como optar pelo regime simplificado pode reduzir sua carga tributária...'); return false;">Ler mais</a>
+                        </div>
+                        <div class="news-card">
+                            <h3>Declaração de Imposto de Renda</h3>
+                            <p>Principais cuidados ao declarar seus rendimentos e deduções este ano...</p>
+                            <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Declaração de Imposto de Renda', 'Principais cuidados ao declarar seus rendimentos e deduções este ano...'); return false;">Ler mais</a>
+                        </div>
                     </div>
                 </div>
                 <div class="sidebar-news">
                     <div class="section-title" style="text-align: left; margin-bottom: 1rem;">
                         <h3>Notícias</h3>
                     </div>
-                    <div id="noticias-container" style="background: var(--light-color); padding: 1rem; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.08);">
+                    <div id="noticias-container" style="background: var(--light-color); padding: 1rem; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); max-height: 400px; overflow-y: auto;">
                         <!-- As notícias serão carregadas aqui via JavaScript -->
                         <p>Carregando notícias...</p>
                     </div>
@@ -1020,16 +1047,13 @@
 
             toggleSimplesBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                console.log('Botão do simulador clicado!');
                 const isHidden = calculadoraSimples.style.display === 'none';
                 if (isHidden) {
                     calculadoraSimples.style.display = 'block';
                     toggleSimplesBtn.textContent = 'Recolher Simulador';
-                    console.log('Calculadora Simples Nacional exibida.');
                 } else {
                     calculadoraSimples.style.display = 'none';
                     toggleSimplesBtn.textContent = 'Acessar Simulador';
-                    console.log('Calculadora Simples Nacional oculta.');
                 }
             });
 
@@ -1235,97 +1259,53 @@
                     const content = e.target.nextElementSibling;
                     if (content.style.maxHeight) {
                         content.style.maxHeight = null;
-                    }
-                    else {
+                    } else {
                         content.style.maxHeight = content.scrollHeight + "px";
                     }
                 }
             });
         });
         
-        // Função para carregar notícias do Simples Nacional
-        function loadNews(targetContainer) {
-            const noticiasContainer = targetContainer;
-            
-            // Mostrar indicador de carregamento
-            noticiasContainer.innerHTML = '<p>Carregando notícias...</p>';
-            
-            fetch('/api/noticias')
-                .then(response => response.json())
-                .then(noticias => {
-                    // Verificar se o container está na sidebar ou seção de notícias
-                    if (noticiasContainer && noticiasContainer.closest('.sidebar-news')) {
-                        // Para sidebar, exibir lista compacta com links diretos
-                        let noticiasHTML = '<div style="max-height: 400px; overflow-y: auto;">';
-                        noticias.forEach(noticia => {
-                            noticiasHTML += `
-                                <div style="padding: 0.8rem 0; border-bottom: 1px solid var(--gray-medium); margin-bottom: 0.8rem;">
-                                    <a href="#" onclick="openNewsLink('${noticia.titulo.replace(/'/g, "\'")}'); return false;" style="text-decoration: none; color: var(--secondary-color); font-weight: 500; display: block;">
-                                        <h4 style="margin: 0 0 0.3rem 0; font-size: 1rem;">${noticia.titulo}</h4>
-                                    </a>
-                                    <p style="margin: 0; font-size: 0.9rem; color: var(--text-color);">${noticia.descricao}</p>
-                                </div>
-                            `;
-                        });
-                        noticiasHTML += '</div>';
-                        
-                        noticiasContainer.innerHTML = noticiasHTML;
-                    } else {
-                        // Para a seção "Nossos Artigos", preencher o news-grid
-                        const newsGrid = document.querySelector('.news-grid');
-                        if (newsGrid) {
-                            let articlesHTML = '';
-                            noticias.forEach(noticia => {
-                                articlesHTML += `
-                                    <div class="news-card">
-                                        <h3>${noticia.titulo}</h3>
-                                        <p>${noticia.descricao}</p>
-                                        <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('${noticia.titulo.replace(/'/g, "\'")}', '${noticia.descricao.replace(/'/g, "\'")}'); return false;">Ler mais</a>
-                                    </div>
-                                `;
-                            });
-                            newsGrid.innerHTML = articlesHTML;
+            // Função para carregar notícias via AJAX
+            function loadNews() {
+                fetch('/api/noticias')
+                    .then(response => response.json())
+                    .then(data => {
+                        const container = document.getElementById('noticias-container');
+                        container.innerHTML = ''; // Limpa o conteúdo anterior (loading...)
+
+                        if (data.length === 0) {
+                            container.innerHTML = '<p>Nenhuma notícia encontrada.</p>';
+                            return;
                         }
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro ao carregar notícias:', error);
-                    noticiasContainer.innerHTML = '<p style="color: red;">Erro ao carregar notícias.</p>';
-                });
-        }
-        
-        // Função para mostrar detalhes da notícia (abre o modal)
-        function showNewsDetails(titulo, descricao) {
-            document.getElementById('modal-title').textContent = titulo;
-            document.getElementById('modal-body').textContent = descricao;
-            document.getElementById('article-modal').style.display = 'block';
-        }
-        
-        // Função para abrir link da notícia (simula redirecionamento para notícia original)
-        function openNewsLink(titulo) {
-            // Em uma implementação real, isso redirecionaria para a notícia original
-            // Por enquanto, exibimos um alerta indicando que iria abrir a notícia original
-            alert('Abrindo notícia original: ' + titulo + '\n(Em uma implementação real, isso redirecionaria para a página da notícia)');
-        }
-        
-        // Fechar modal quando clicar no botão de fechar
-        document.addEventListener('DOMContentLoaded', function() {
-            loadNews(document.getElementById('noticias-container')); // Carrega notícias para a sidebar
-            loadNews(document.querySelector('.news-grid')); // Carrega notícias para a seção de artigos
-            
-            // Adicionar evento de clique ao botão de fechar
-            document.querySelector('.close-button').addEventListener('click', function() {
-                document.getElementById('article-modal').style.display = 'none';
-            });
-            
-            // Fechar modal quando clicar fora do conteúdo
-            window.addEventListener('click', function(event) {
-                const modal = document.getElementById('article-modal');
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-        });
-    </script>
+
+                        const ul = document.createElement('ul');
+
+                        data.forEach(noticia => {
+                            const li = document.createElement('li');
+                            li.style.cursor = 'pointer';
+                            li.onclick = () => window.open(noticia.link, '_blank');
+                            li.innerHTML = `
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <h4 style="margin: 0; font-size: 1rem; color: var(--secondary-color);">${noticia.titulo}</h4>
+                                    <small style="color: var(--text-gray);">${noticia.data}</small>
+                                </div>
+                                <p style="font-size: 0.9rem; color: var(--text-gray); margin-top: 0.5rem;">${noticia.descricao}</p>
+                            `;
+                            ul.appendChild(li);
+                        });
+
+                        container.appendChild(ul);
+                    })
+                    .catch(error => {
+                        console.error('Erro ao carregar as notícias:', error);
+                        document.getElementById('noticias-container').innerHTML = '<p>Erro ao carregar as notícias.</p>';
+                    });
+            }
+
+            // Carrega as notícias quando a página carregar
+            document.addEventListener('DOMContentLoaded', loadNews);
+
+        </script>
 </body>
 </html>
