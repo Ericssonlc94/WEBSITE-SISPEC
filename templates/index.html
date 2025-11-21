@@ -1141,36 +1141,49 @@
                 const container = document.getElementById('noticias-container');
                 if (!container) return;
 
-                fetch('/api/noticias')
-                    .then(response => response.json())
-                    .then(data => {
-                        container.innerHTML = ''; // Clear loading message
+                const staticNewsData = [
+                    {
+                        "titulo": "Novas regras para MEIs em 2025",
+                        "link": "#",
+                        "descricao": "Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa...",
+                        "data": "2025-11-21" // Added a date for consistency
+                    },
+                    {
+                        "titulo": "Benefícios do Simples Nacional",
+                        "link": "#",
+                        "descricao": "Veja como optar pelo regime simplificado pode reduzir sua carga tributária...",
+                        "data": "2025-10-15"
+                    },
+                    {
+                        "titulo": "Declaração de Imposto de Renda",
+                        "link": "#",
+                        "descricao": "Principais cuidados ao declarar seus rendimentos e deduções este ano...",
+                        "data": "2025-09-01"
+                    }
+                ];
 
-                        if (!data || data.length === 0) {
-                            container.innerHTML = '<p>Nenhuma notícia encontrada.</p>';
-                            return;
-                        }
+                container.innerHTML = ''; // Clear loading message
 
-                        const ul = document.createElement('ul');
-                        data.forEach(noticia => {
-                            const li = document.createElement('li');
-                            li.style.cursor = 'pointer';
-                            li.onclick = () => window.open(noticia.link, '_blank');
-                            li.innerHTML = `
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <h4 style="margin: 0; font-size: 1rem; color: var(--secondary-color);">${noticia.titulo}</h4>
-                                    <small style="color: var(--text-gray);">${noticia.data}</small>
-                                </div>
-                                <p style="font-size: 0.9rem; color: var(--text-gray); margin-top: 0.5rem;">${noticia.descricao}</p>
-                            `;
-                            ul.appendChild(li);
-                        });
-                        container.appendChild(ul);
-                    })
-                    .catch(error => {
-                        console.error('Erro ao carregar as notícias:', error);
-                        container.innerHTML = '<p>Erro ao carregar as notícias.</p>';
-                    });
+                if (!staticNewsData || staticNewsData.length === 0) {
+                    container.innerHTML = '<p>Nenhuma notícia encontrada.</p>';
+                    return;
+                }
+
+                const ul = document.createElement('ul');
+                staticNewsData.forEach(noticia => {
+                    const li = document.createElement('li');
+                    li.style.cursor = 'pointer';
+                    li.onclick = () => window.open(noticia.link, '_blank');
+                    li.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h4 style="margin: 0; font-size: 1rem; color: var(--secondary-color);">${noticia.titulo}</h4>
+                            <small style="color: var(--text-gray);">${noticia.data}</small>
+                        </div>
+                        <p style="font-size: 0.9rem; color: var(--text-gray); margin-top: 0.5rem;">${noticia.descricao}</p>
+                    `;
+                    ul.appendChild(li);
+                });
+                container.appendChild(ul);
             }
             loadNews();
 
