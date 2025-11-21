@@ -146,7 +146,7 @@
             background-color: var(--primary-color);
             background-image: 
                 linear-gradient(rgba(4, 155, 140, 0.85), rgba(20, 132, 166, 0.85)),
-                url("{{ url_for('static', filename='Apresentação-SisPec.png') }}");
+                url("static/Apresentação-SisPec.png");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -157,7 +157,7 @@
             text-align: left;
             color: white;
             padding-top: 120px; /* Changed from margin-top to padding-top */
-            padding-bottom: 3rem; /* Reduced bottom spacing for home section */
+            padding-bottom: 1rem; /* Reduced bottom spacing for home section */
             box-sizing: border-box; /* Ensure padding is included in height */
         }
         
@@ -245,28 +245,16 @@
         .section-title h2 {
             font-size: 2.5rem;
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             position: relative;
             display: inline-block;
             padding-bottom: 10px;
         }
         
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--secondary-color);
-            border-radius: 3px;
-        }
-        
         .section-title p {
             color: var(--text-gray);
             max-width: 700px;
-            margin: 1rem auto 0;
+            margin: 0.5rem auto 0;
         }
         
         .services {
@@ -296,16 +284,18 @@
         }
         
         .service-icon {
-            font-size: 3rem;
-            color: var(--secondary-color);
             margin-bottom: 1.5rem;
-            display: block;
+        }
+
+        .service-icon img {
+            height: 60px;
+            width: auto;
         }
         
         .service-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             margin-bottom: 1rem;
-            color: var(--primary-color);
+            color: var(--text-color);
         }
         
         .service-card p {
@@ -344,7 +334,7 @@
         }
         
         .about-text h2 {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--primary-color);
             margin-bottom: 1.5rem;
         }
@@ -355,13 +345,20 @@
 
         .team-members {
             margin-top: 2rem;
+            align-self: center;
+        }
+
+        .member-cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
         }
         
         .member-card {
             background: white;
             padding: 1.5rem;
             border-radius: 8px;
-            margin-bottom: 1rem;
             box-shadow: 0 3px 10px rgba(0,0,0,0.08);
             border-top: 3px solid var(--accent-color);
             transition: transform 0.3s;
@@ -374,6 +371,35 @@
         
         .member-card h4 {
             color: var(--accent-color);
+        }
+
+        .team-members h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem; /* Add some space below the title */
+        }
+
+        .member-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 250px; /* Limit width to allow side-by-side display */
+        }
+
+        .image-placeholder {
+            width: 150px;
+            height: 200px;
+            background-color: #f0f0f0;
+            border: 1px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #888;
+            border-radius: 8px;
+            flex-shrink: 0;
+            margin-bottom: 1rem; /* Space between image and card */
         }
         
         .about-image {
@@ -515,6 +541,10 @@
         .news-card h3 {
             color: var(--secondary-color);
             margin-top: 0;
+        }
+
+        .sidebar-news .section-title h3 {
+            color: var(--primary-color);
         }
         
         .simulator-card {
@@ -718,7 +748,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="{{ url_for('static', filename='SisPeC.png') }}" alt="SisPeC Logo">
+                    <img src="static/SisPeC.png" alt="SisPeC Logo">
                 </div>
                 <nav>
                     <ul>
@@ -737,8 +767,8 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Contabilidade Especializada para Pequenas Empresas</h1>
-            <p style="text-align: justify;">Atuamos com empresas que utilizam o regime tributário do Simples Nacional ou Lucro Presumido. Sedeados em Salvador, atendemos online e presencialmente em todo o Brasil.</p>
+            <h1>Contabilidade especializada para micro e pequenas empresas</h1>
+            <p style="text-align: justify;">Vem conosco evoluir!<br><br>Cuidamos do seu negócio com agilidade e compromisso. Na SisPeC você encontra soluções que ajudam a impulsionar o crescimento da sua empresa!</p>
             <div style="text-align: center;">
                 <a href="#servicos" class="btn btn-outline">Nossos Serviços</a>
                 <a href="#contato" class="btn btn-outline">Fale Conosco</a>
@@ -761,18 +791,30 @@
                     
                     <div class="team-members">
                         <h3>Nossa Equipe</h3>
-                        <div class="member-card">
-                            <h4>Ericsson Lemos Cardoso</h4>
-                            <p>Graduado em Ciências Contábeis pela Universidade do Estado da Bahia - Campus I (UNEB)</p>
-                        </div>
-                        <div class="member-card">
-                            <h4>Ricardo Vicente Galiano Junior</h4>
-                            <p>Graduado em Ciências Contábeis pela Universidade do Estado da Bahia - Campus I (UNEB)</p>
+                        <div class="member-cards-container">
+                            <div class="member-profile">
+                                <div class="image-placeholder">
+                                    Foto do Membro (150x200px)
+                                </div>
+                                <div class="member-card">
+                                    <h4>Ericsson Lemos Cardoso</h4>
+                                    <p>Graduado em Ciências Contábeis pela Universidade do Estado da Bahia - Campus I (UNEB)</p>
+                                </div>
+                            </div>
+                            <div class="member-profile">
+                                <div class="image-placeholder">
+                                    Foto do Membro (150x200px)
+                                </div>
+                                <div class="member-card">
+                                    <h4>Ricardo Vicente Galiano Junior</h4>
+                                    <p>Graduado em Ciências Contábeis pela Universidade do Estado da Bahia - Campus I (UNEB)</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="{{ url_for('static', filename='SisPeC-2.png') }}" alt="SisPeC Logo">
+                    <img src="static/SisPeC-2.png" alt="SisPeC Logo">
                 </div>
             </div>
         </div>
@@ -786,34 +828,40 @@
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">💼</div>
+                    <div class="service-icon">
+                        <img src="{{ url_for('static', filename='icones/abertura de empresa.png') }}" alt="Abertura de Empresa">
+                    </div>
                     <h3>Abertura de Empresa</h3>
-                    <p>Assessoria completa na abertura de empresas, MEIs e demais tipos societários.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">📊</div>
+                    <div class="service-icon">
+                        <img src="{{ url_for('static', filename='icones/assessoria contabil.png') }}" alt="Assessoria Contábil">
+                    </div>
                     <h3>Assessoria Contábil</h3>
-                    <p>Serviços completos de contabilidade para empresas no Simples Nacional e Lucro Presumido.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🏛️</div>
+                    <div class="service-icon">
+                        <img src="{{ url_for('static', filename='icones/assessoria fiscal.png') }}" alt="Assessoria Fiscal">
+                    </div>
                     <h3>Assessoria Fiscal</h3>
-                    <p>Orientação sobre obrigações fiscais, emissão de documentos fiscais e compliance tributário.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">💰</div>
+                    <div class="service-icon">
+                        <img src="{{ url_for('static', filename='icones/assessoria financeira.png') }}" alt="Assessoria Financeira">
+                    </div>
                     <h3>Assessoria Financeira</h3>
-                    <p>Controle financeiro, fluxo de caixa e planejamento tributário para sua empresa.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">📋</div>
+                    <div class="service-icon">
+                        <img src="{{ url_for('static', filename='icones/imposto de renda.png') }}" alt="Imposto de Renda">
+                    </div>
                     <h3>Declaração de Imposto de Renda</h3>
-                    <p>Assessoria na elaboração e entrega da declaração de imposto de renda pessoal e empresarial.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">👥</div>
+                    <div class="service-icon">
+                        <img src="{{ url_for('static', filename='icones/folha de pagamento.png') }}" alt="Folha de Pagamento">
+                    </div>
                     <h3>Folha de Pagamento</h3>
-                    <p>Gestão completa da folha de pagamento e obrigações trabalhistas da sua empresa.</p>
                 </div>
             </div>
         </div>
@@ -826,9 +874,11 @@
                 <p>Ferramentas para cálculo de tributos e planejamento fiscal</p>
             </div>
             <div class="simulator-card">
-                <h3>Simulador de Simples Nacional</h3>
+                <h3>Simulador do Simples Nacional</h3>
                 <p>Estime o imposto devido no regime do Simples Nacional com base no seu faturamento e área de atuação.</p>
                 <a href="#" class="btn btn-primary" id="toggle-simples-nacional">Acessar Simulador</a>
+                <span style="color: red; margin-left: 10px; font-weight: bold;">Em breve.</span>
+                <p style="font-size: 0.8rem; color: var(--text-gray); margin-top: 10px;">Calculadora meramente ilustrativa. Para saber mais, entre em contato conosco.</p>
                 
                 <div id="calculadora-simples-nacional" style="display: none; margin-top: 1.5rem;">
                     <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
@@ -863,14 +913,11 @@
                 </div>
             </div>
             <div class="simulator-card">
-                <h3>Simulador de Lucro Presumido</h3>
+                <h3>Simulador do Lucro Presumido</h3>
                 <p>Calcule o valor aproximado dos impostos de sua empresa sob o regime de Lucro Presumido.</p>
                 <a href="#" class="btn btn-primary">Acessar Simulador</a>
-            </div>
-            <div class="simulator-card">
-                <h3>Calculadora de Imposto de Renda</h3>
-                <p>Simule o valor do imposto de renda a pagar ou restituir com base em suas informações.</p>
-                <a href="#" class="btn btn-primary">Acessar Calculadora</a>
+                <span style="color: red; margin-left: 10px; font-weight: bold;">Em breve.</span>
+                <p style="font-size: 0.8rem; color: var(--text-gray); margin-top: 10px;">Calculadora meramente ilustrativa. Para saber mais, entre em contato conosco.</p>
             </div>
         </div>
     </section>
@@ -890,17 +937,26 @@
                         <div class="news-card">
                             <h3>Novas regras para MEIs em 2025</h3>
                             <p>Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa...</p>
-                            <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Novas regras para MEIs em 2025', 'Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa...'); return false;">Ler mais</a>
+                            <a href="#" class="btn btn-primary read-more" 
+                               data-title="Novas regras para MEIs em 2025" 
+                               data-body="Aqui entra o conteúdo completo do artigo sobre as novas regras para MEIs em 2025. Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa, os novos limites de faturamento e as obrigações acessórias."
+                               onclick="showArticleModal(this); return false;">Ler mais</a>
                         </div>
                         <div class="news-card">
                             <h3>Benefícios do Simples Nacional</h3>
                             <p>Veja como optar pelo regime simplificado pode reduzir sua carga tributária...</p>
-                            <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Benefícios do Simples Nacional', 'Veja como optar pelo regime simplificado pode reduzir sua carga tributária...'); return false;">Ler mais</a>
+                            <a href="#" class="btn btn-primary read-more"
+                               data-title="Benefícios do Simples Nacional"
+                               data-body="Este é o corpo do artigo sobre os benefícios do Simples Nacional. Veja como optar pelo regime simplificado pode reduzir sua carga tributária, facilitar o pagamento de impostos e diminuir a burocracia para sua empresa."
+                               onclick="showArticleModal(this); return false;">Ler mais</a>
                         </div>
                         <div class="news-card">
                             <h3>Declaração de Imposto de Renda</h3>
                             <p>Principais cuidados ao declarar seus rendimentos e deduções este ano...</p>
-                            <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Declaração de Imposto de Renda', 'Principais cuidados ao declarar seus rendimentos e deduções este ano...'); return false;">Ler mais</a>
+                             <a href="#" class="btn btn-primary read-more"
+                               data-title="Declaração de Imposto de Renda"
+                               data-body="O conteúdo completo sobre a Declaração de Imposto de Renda. Conheça os principais cuidados ao declarar seus rendimentos e deduções este ano para evitar a malha fina e garantir sua conformidade com a Receita Federal."
+                               onclick="showArticleModal(this); return false;">Ler mais</a>
                         </div>
                     </div>
                 </div>
@@ -924,22 +980,26 @@
                 <p>Entre em contato conosco para mais informações sobre nossos serviços</p>
             </div>
             <div class="contact-form">
-                <form>
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="c334e569-8474-42f8-a0e2-c7f41a546736">
+                    <input type="hidden" name="subject" value="Novo Contato do Site SisPeC">
+                    <input type="hidden" name="redirect" value="https://contabilidadesispec.com.br/#contato"> <!-- URL de redirecionamento após o envio -->
+
                     <div class="form-group">
                         <label for="nome">Nome</label>
-                        <input type="text" id="nome" required>
+                        <input type="text" id="nome" name="nome" required>
                     </div>
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input type="email" id="email" required>
+                        <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
                         <label for="telefone">Telefone</label>
-                        <input type="tel" id="telefone">
+                        <input type="tel" id="telefone" name="telefone">
                     </div>
                     <div class="form-group">
                         <label for="tipo-empresa">Tipo de Empresa</label>
-                        <select id="tipo-empresa">
+                        <select id="tipo-empresa" name="tipo_empresa">
                             <option value="">Selecione</option>
                             <option value="mei">MEI - Microempreendedor Individual</option>
                             <option value="simples">Simples Nacional</option>
@@ -949,7 +1009,7 @@
                     </div>
                     <div class="form-group">
                         <label for="mensagem">Mensagem</label>
-                        <textarea id="mensagem" required></textarea>
+                        <textarea id="mensagem" name="mensagem" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
                 </form>
@@ -1000,13 +1060,46 @@
     </div>
 
     <script>
-        // Smooth scrolling for navigation links
+        // --- Modal Logic ---
+        const modal = document.getElementById('article-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const closeButton = document.querySelector('.close-button');
+
+        function showArticleModal(element) {
+            if (!modal || !modalTitle || !modalBody) return;
+
+            const title = element.getAttribute('data-title');
+            const body = element.getAttribute('data-body');
+            
+            modalTitle.textContent = title;
+            modalBody.textContent = body;
+            
+            modal.style.display = 'block';
+        }
+
+        if (closeButton) {
+            closeButton.onclick = function() {
+                modal.style.display = 'none';
+            }
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // --- Smooth Scrolling ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
                 
                 // Update active class
                 document.querySelectorAll('nav ul li a').forEach(link => {
@@ -1016,17 +1109,14 @@
             });
         });
         
-        // Highlight active section in navigation as user scrolls
+        // --- Active Nav on Scroll ---
         window.addEventListener('scroll', function() {
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('nav ul li a');
-            
             let current = '';
             
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
                 if(pageYOffset >= (sectionTop - 300)) {
                     current = section.getAttribute('id');
                 }
@@ -1040,22 +1130,65 @@
             });
         });
 
-        // --- SIMULADOR SIMPLES NACIONAL ---
+        // --- All scripts that run after DOM is loaded ---
         document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- News Loading via API ---
+            function loadNews() {
+                const container = document.getElementById('noticias-container');
+                if (!container) return;
+
+                fetch('/api/noticias')
+                    .then(response => response.json())
+                    .then(data => {
+                        container.innerHTML = ''; // Clear loading message
+
+                        if (!data || data.length === 0) {
+                            container.innerHTML = '<p>Nenhuma notícia encontrada.</p>';
+                            return;
+                        }
+
+                        const ul = document.createElement('ul');
+                        data.forEach(noticia => {
+                            const li = document.createElement('li');
+                            li.style.cursor = 'pointer';
+                            li.onclick = () => window.open(noticia.link, '_blank');
+                            li.innerHTML = `
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <h4 style="margin: 0; font-size: 1rem; color: var(--secondary-color);">${noticia.titulo}</h4>
+                                    <small style="color: var(--text-gray);">${noticia.data}</small>
+                                </div>
+                                <p style="font-size: 0.9rem; color: var(--text-gray); margin-top: 0.5rem;">${noticia.descricao}</p>
+                            `;
+                            ul.appendChild(li);
+                        });
+                        container.appendChild(ul);
+                    })
+                    .catch(error => {
+                        console.error('Erro ao carregar as notícias:', error);
+                        container.innerHTML = '<p>Erro ao carregar as notícias.</p>';
+                    });
+            }
+            loadNews();
+
+
+            // --- SIMULADOR SIMPLES NACIONAL ---
             const toggleSimplesBtn = document.getElementById('toggle-simples-nacional');
             const calculadoraSimples = document.getElementById('calculadora-simples-nacional');
 
-            toggleSimplesBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const isHidden = calculadoraSimples.style.display === 'none';
-                if (isHidden) {
-                    calculadoraSimples.style.display = 'block';
-                    toggleSimplesBtn.textContent = 'Recolher Simulador';
-                } else {
-                    calculadoraSimples.style.display = 'none';
-                    toggleSimplesBtn.textContent = 'Acessar Simulador';
-                }
-            });
+            if (toggleSimplesBtn && calculadoraSimples) {
+                toggleSimplesBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const isHidden = calculadoraSimples.style.display === 'none';
+                    if (isHidden) {
+                        calculadoraSimples.style.display = 'block';
+                        toggleSimplesBtn.textContent = 'Recolher Simulador';
+                    } else {
+                        calculadoraSimples.style.display = 'none';
+                        toggleSimplesBtn.textContent = 'Acessar Simulador';
+                    }
+                });
+            }
 
             const anexos = {
                 "Anexo I": {"nome": "Comércio", "descricao": "Venda de mercadorias.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 4.0, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 7.3, "deducao": 5940}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 9.5, "deducao": 13860}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 10.7, "deducao": 22500}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 14.3, "deducao": 87300}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 19.0, "deducao": 378000}]},
@@ -1079,233 +1212,179 @@
             const toggleTabelasBtn = document.getElementById('toggle-tabelas-btn');
             const resultadoDiv = document.getElementById('resultado-simulador');
             const anexosContainer = document.querySelector('.anexos-container');
+            
+            if (calculadoraSimples) {
+                // Populate dropdown
+                for (const area in areas_de_atuacao) {
+                    const option = document.createElement('option');
+                    option.value = area;
+                    option.textContent = area;
+                    areaAtuacaoSelect.appendChild(option);
+                }
 
-            // Populate dropdown
-            for (const area in areas_de_atuacao) {
-                const option = document.createElement('option');
-                option.value = area;
-                option.textContent = area;
-                areaAtuacaoSelect.appendChild(option);
-            }
+                // Generate and Populate tables
+                const anexoContent = anexosContainer.querySelector('.section-title').nextSibling;
+                for (const anexoId in anexos) {
+                    const anexoData = anexos[anexoId];
+                    
+                    const collapsibleDiv = document.createElement('div');
+                    collapsibleDiv.className = 'collapsible-anexo';
 
-            // Generate and Populate tables
-            const anexoContent = anexosContainer.querySelector('.section-title').nextSibling;
-            for (const anexoId in anexos) {
-                const anexoData = anexos[anexoId];
-                
-                const collapsibleDiv = document.createElement('div');
-                collapsibleDiv.className = 'collapsible-anexo';
-
-                const button = document.createElement('button');
-                button.className = 'collapsible-header';
-                button.textContent = `${anexoId} - ${anexoData.nome}`;
-                
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'collapsible-content';
-                
-                const descriptionP = document.createElement('p');
-                descriptionP.textContent = anexoData.descricao;
-                
-                const table = document.createElement('table');
-                table.className = 'anexo-table';
-                table.innerHTML = `
-                    <thead>
-                        <tr>
-                            <th>Faixa</th>
-                            <th>Receita Bruta em 12 Meses</th>
-                            <th>Alíquota</th>
-                            <th>Valor a Deduzir</th>
-                        </tr>
-                    </thead>
-                `;
-                const tbody = document.createElement('tbody');
-                anexoData.faixas.forEach(faixa => {
-                    const row = document.createElement('tr');
-                    const faturamentoTxt = faixa.min === 0 ? `Até ${formatCurrency(faixa.max)}` : `De ${formatCurrency(faixa.min)} a ${formatCurrency(faixa.max)}`;
-                    row.innerHTML = `
-                        <td>${faixa.faixa}</td>
-                        <td>${faturamentoTxt}</td>
-                        <td>${faixa.aliquota.toFixed(1).replace('.', ',')}%</td>
-                        <td>${formatCurrency(faixa.deducao)}</td>
+                    const button = document.createElement('button');
+                    button.className = 'collapsible-header';
+                    button.textContent = `${anexoId} - ${anexoData.nome}`;
+                    
+                    const contentDiv = document.createElement('div');
+                    contentDiv.className = 'collapsible-content';
+                    
+                    const descriptionP = document.createElement('p');
+                    descriptionP.textContent = anexoData.descricao;
+                    
+                    const table = document.createElement('table');
+                    table.className = 'anexo-table';
+                    table.innerHTML = `
+                        <thead>
+                            <tr>
+                                <th>Faixa</th>
+                                <th>Receita Bruta em 12 Meses</th>
+                                <th>Alíquota</th>
+                                <th>Valor a Deduzir</th>
+                            </tr>
+                        </thead>
                     `;
-                    tbody.appendChild(row);
-                });
-                table.appendChild(tbody);
+                    const tbody = document.createElement('tbody');
+                    anexoData.faixas.forEach(faixa => {
+                        const row = document.createElement('tr');
+                        const faturamentoTxt = faixa.min === 0 ? `Até ${formatCurrency(faixa.max)}` : `De ${formatCurrency(faixa.min)} a ${formatCurrency(faixa.max)}`;
+                        row.innerHTML = `
+                            <td>${faixa.faixa}</td>
+                            <td>${faturamentoTxt}</td>
+                            <td>${faixa.aliquota.toFixed(1).replace('.', ',')}%</td>
+                            <td>${formatCurrency(faixa.deducao)}</td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                    table.appendChild(tbody);
 
-                contentDiv.appendChild(descriptionP);
-                contentDiv.appendChild(table);
-                collapsibleDiv.appendChild(button);
-                collapsibleDiv.appendChild(contentDiv);
-                anexosContainer.appendChild(collapsibleDiv);
-            }
-
-
-            function formatCurrency(value) {
-                return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            }
-
-            function limparCampos() {
-                faturamentoInput.value = '';
-                areaAtuacaoSelect.selectedIndex = 0;
-                resultadoDiv.innerHTML = '';
-                document.querySelectorAll('.anexo-table tr.highlight').forEach(row => {
-                    row.classList.remove('highlight');
-                });
-                // Collapse all sections
-                document.querySelectorAll('.collapsible-header.active').forEach(header => {
-                    header.click();
-                });
-                anexosContainer.style.display = 'none';
-                toggleTabelasBtn.textContent = 'Exibir Tabelas';
-            }
-
-            function analisarFaturamento() {
-                resultadoDiv.innerHTML = '';
-                document.querySelectorAll('.anexo-table tr.highlight').forEach(row => {
-                    row.classList.remove('highlight');
-                });
-
-                const faturamentoStr = faturamentoInput.value.replace(/\./g, '').replace(',', '.');
-                const areaSelecionada = areaAtuacaoSelect.value;
-
-                if (!faturamentoStr || !areaSelecionada || areaAtuacaoSelect.selectedIndex === 0) {
-                    resultadoDiv.innerHTML = '<p style="color: #E8A900;">Por favor, preencha todos os campos.</p>';
-                    return;
+                    contentDiv.appendChild(descriptionP);
+                    contentDiv.appendChild(table);
+                    collapsibleDiv.appendChild(button);
+                    collapsibleDiv.appendChild(contentDiv);
+                    anexosContainer.appendChild(collapsibleDiv);
                 }
 
-                const faturamentoAnual = parseFloat(faturamentoStr);
-                if (isNaN(faturamentoAnual)) {
-                    resultadoDiv.innerHTML = '<p style="color: red;">Erro: Digite um número válido para o faturamento.</p>';
-                    return;
+
+                function formatCurrency(value) {
+                    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
                 }
 
-                const anexoIdAlvo = areas_de_atuacao[areaSelecionada];
-                const dados = anexos[anexoIdAlvo];
-                let enquadramento = null;
-                let targetFaixaIndex = -1;
-
-                for (let i = 0; i < dados.faixas.length; i++) {
-                    const faixa = dados.faixas[i];
-                    if (faturamentoAnual > faixa.min && faturamentoAnual <= faixa.max) {
-                        enquadramento = {
-                            "Anexo": `${anexoIdAlvo} - ${dados.nome}`,
-                            "Faixa": faixa.faixa,
-                            "Alíquota": `${faixa.aliquota.toFixed(1).replace('.', ',')}%`,
-                            "Dedução": formatCurrency(faixa.deducao)
-                        };
-                        targetFaixaIndex = i;
-                        break;
-                    }
-                }
-                
-                if (!enquadramento && faturamentoAnual > 0 && faturamentoAnual <= 180000) {
-                    const faixa = dados.faixas[0];
-                    enquadramento = {
-                        "Anexo": `${anexoIdAlvo} - ${dados.nome}`,
-                        "Faixa": faixa.faixa,
-                        "Alíquota": `${faixa.aliquota.toFixed(1).replace('.', ',')}%`,
-                        "Dedução": formatCurrency(faixa.deducao)
-                    };
-                    targetFaixaIndex = 0;
-                }
-
-                if (enquadramento) {
-                    let resultHTML = '<p style="color: #155724; font-size: 1.1rem;">Enquadramento Encontrado:</p><ul style="padding-left: 0; list-style: none;">';
-                    for (const key in enquadramento) {
-                        resultHTML += `<li style="margin-bottom: 0.5rem;"><strong>${key}:</strong> ${enquadramento[key]}</li>`;
-                    }
-                    resultHTML += '</ul>';
-                    resultadoDiv.innerHTML = resultHTML;
-
-                    const anexoHeader = Array.from(document.querySelectorAll('.collapsible-header')).find(h => h.textContent.startsWith(anexoIdAlvo));
-                    if (anexoHeader) {
-                        const anexoContainer = anexoHeader.parentElement;
-                        const table = anexoContainer.querySelector('.anexo-table');
-                        const row = table.querySelectorAll('tbody tr')[targetFaixaIndex];
-                        row.classList.add('highlight');
-
-                        if (!anexoHeader.classList.contains('active')) {
-                            anexoHeader.click();
-                        }
-                        setTimeout(() => {
-                           anexoHeader.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }, 300); // wait for animation
-                    }
-                } else if (faturamentoAnual > 4800000) {
-                    resultadoDiv.innerHTML = '<p style="color: #D22B2B;">Faturamento acima do teto do Simples Nacional (R$ 4.800.000,00).</p>';
-                } else {
-                    resultadoDiv.innerHTML = '<p style="color: #E8A900;">Não foi possível determinar o enquadramento. Verifique o valor digitado.</p>';
-                }
-            }
-
-            analisarBtn.addEventListener('click', analisarFaturamento);
-            limparBtn.addEventListener('click', limparCampos);
-
-            toggleTabelasBtn.addEventListener('click', function() {
-                const isHidden = anexosContainer.style.display === 'none';
-                if (isHidden) {
-                    anexosContainer.style.display = 'block';
-                    toggleTabelasBtn.textContent = 'Recolher Tabelas';
-                } else {
+                function limparCampos() {
+                    faturamentoInput.value = '';
+                    areaAtuacaoSelect.selectedIndex = 0;
+                    resultadoDiv.innerHTML = '';
+                    document.querySelectorAll('.anexo-table tr.highlight').forEach(row => {
+                        row.classList.remove('highlight');
+                    });
+                    document.querySelectorAll('.collapsible-header.active').forEach(header => {
+                        header.click();
+                    });
                     anexosContainer.style.display = 'none';
                     toggleTabelasBtn.textContent = 'Exibir Tabelas';
                 }
-            });
 
-            // Collapsible logic
-            anexosContainer.addEventListener('click', function(e) {
-                if (e.target.classList.contains('collapsible-header')) {
-                    e.target.classList.toggle('active');
-                    const content = e.target.nextElementSibling;
-                    if (content.style.maxHeight) {
-                        content.style.maxHeight = null;
+                function analisarFaturamento() {
+                    resultadoDiv.innerHTML = '';
+                    document.querySelectorAll('.anexo-table tr.highlight').forEach(row => {
+                        row.classList.remove('highlight');
+                    });
+
+                    const faturamentoStr = faturamentoInput.value.replace(/\./g, '').replace(',', '.');
+                    const areaSelecionada = areaAtuacaoSelect.value;
+
+                    if (!faturamentoStr || !areaSelecionada || areaAtuacaoSelect.selectedIndex === 0) {
+                        resultadoDiv.innerHTML = '<p style="color: #E8A900;">Por favor, preencha todos os campos.</p>';
+                        return;
+                    }
+
+                    const faturamentoAnual = parseFloat(faturamentoStr);
+                    if (isNaN(faturamentoAnual)) {
+                        resultadoDiv.innerHTML = '<p style="color: red;">Erro: Digite um número válido para o faturamento.</p>';
+                        return;
+                    }
+
+                    const anexoIdAlvo = areas_de_atuacao[areaSelecionada];
+                    const dados = anexos[anexoIdAlvo];
+                    let enquadramento = null;
+                    let targetFaixaIndex = -1;
+
+                    for (let i = 0; i < dados.faixas.length; i++) {
+                        const faixa = dados.faixas[i];
+                        if (faturamentoAnual > faixa.min && faturamentoAnual <= faixa.max) {
+                            enquadramento = { "Anexo": `${anexoIdAlvo} - ${dados.nome}`, "Faixa": faixa.faixa, "Alíquota": `${faixa.aliquota.toFixed(1).replace('.', ',')}%`, "Dedução": formatCurrency(faixa.deducao) };
+                            targetFaixaIndex = i;
+                            break;
+                        }
+                    }
+                    
+                    if (!enquadramento && faturamentoAnual > 0 && faturamentoAnual <= 180000) {
+                        const faixa = dados.faixas[0];
+                        enquadramento = { "Anexo": `${anexoIdAlvo} - ${dados.nome}`, "Faixa": faixa.faixa, "Alíquota": `${faixa.aliquota.toFixed(1).replace('.', ',')}%`, "Dedução": formatCurrency(faixa.deducao) };
+                        targetFaixaIndex = 0;
+                    }
+
+                    if (enquadramento) {
+                        let resultHTML = '<p style="color: #155724; font-size: 1.1rem;">Enquadramento Encontrado:</p><ul style="padding-left: 0; list-style: none;">';
+                        for (const key in enquadramento) {
+                            resultHTML += `<li style="margin-bottom: 0.5rem;"><strong>${key}:</strong> ${enquadramento[key]}</li>`;
+                        }
+                        resultHTML += '</ul>';
+                        resultadoDiv.innerHTML = resultHTML;
+
+                        const anexoHeader = Array.from(document.querySelectorAll('.collapsible-header')).find(h => h.textContent.startsWith(anexoIdAlvo));
+                        if (anexoHeader) {
+                            const anexoContainer = anexoHeader.parentElement;
+                            const table = anexoContainer.querySelector('.anexo-table');
+                            const row = table.querySelectorAll('tbody tr')[targetFaixaIndex];
+                            row.classList.add('highlight');
+
+                            if (!anexoHeader.classList.contains('active')) {
+                                anexoHeader.click();
+                            }
+                            setTimeout(() => {
+                               anexoHeader.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }, 300); // wait for animation
+                        }
+                    } else if (faturamentoAnual > 4800000) {
+                        resultadoDiv.innerHTML = '<p style="color: #D22B2B;">Faturamento acima do teto do Simples Nacional (R$ 4.800.000,00).</p>';
                     } else {
-                        content.style.maxHeight = content.scrollHeight + "px";
+                        resultadoDiv.innerHTML = '<p style="color: #E8A900;">Não foi possível determinar o enquadramento. Verifique o valor digitado.</p>';
                     }
                 }
-            });
-        });
-        
-            // Função para carregar notícias via AJAX
-            function loadNews() {
-                fetch('/api/noticias')
-                    .then(response => response.json())
-                    .then(data => {
-                        const container = document.getElementById('noticias-container');
-                        container.innerHTML = ''; // Limpa o conteúdo anterior (loading...)
+                analisarBtn.addEventListener('click', analisarFaturamento);
+                limparBtn.addEventListener('click', limparCampos);
+                toggleTabelasBtn.addEventListener('click', function() {
+                    const isHidden = anexosContainer.style.display === 'none';
+                    if (isHidden) {
+                        anexosContainer.style.display = 'block';
+                        toggleTabelasBtn.textContent = 'Recolher Tabelas';
+                    } else {
+                        anexosContainer.style.display = 'none';
+                        toggleTabelasBtn.textContent = 'Exibir Tabelas';
+                    }
+                });
 
-                        if (data.length === 0) {
-                            container.innerHTML = '<p>Nenhuma notícia encontrada.</p>';
-                            return;
+                // Collapsible logic
+                anexosContainer.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('collapsible-header')) {
+                        e.target.classList.toggle('active');
+                        const content = e.target.nextElementSibling;
+                        if (content.style.maxHeight) {
+                            content.style.maxHeight = null;
+                        } else {
+                            content.style.maxHeight = content.scrollHeight + "px";
                         }
-
-                        const ul = document.createElement('ul');
-
-                        data.forEach(noticia => {
-                            const li = document.createElement('li');
-                            li.style.cursor = 'pointer';
-                            li.onclick = () => window.open(noticia.link, '_blank');
-                            li.innerHTML = `
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <h4 style="margin: 0; font-size: 1rem; color: var(--secondary-color);">${noticia.titulo}</h4>
-                                    <small style="color: var(--text-gray);">${noticia.data}</small>
-                                </div>
-                                <p style="font-size: 0.9rem; color: var(--text-gray); margin-top: 0.5rem;">${noticia.descricao}</p>
-                            `;
-                            ul.appendChild(li);
-                        });
-
-                        container.appendChild(ul);
-                    })
-                    .catch(error => {
-                        console.error('Erro ao carregar as notícias:', error);
-                        document.getElementById('noticias-container').innerHTML = '<p>Erro ao carregar as notícias.</p>';
-                    });
+                    }
+                });
             }
-
-            // Carrega as notícias quando a página carregar
-            document.addEventListener('DOMContentLoaded', loadNews);
-
-        </script>
-</body>
-</html>
+        });
+    </script>
