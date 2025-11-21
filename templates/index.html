@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SisPeC - Contabilidade</title>
+    <title>SisPeC - Contabilidade para Pequenas Empresas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
@@ -145,19 +145,11 @@
         .hero {
             background-color: var(--primary-color);
             background-image: 
-<<<<<<< HEAD
                 linear-gradient(rgba(4, 155, 140, 0.85), rgba(20, 132, 166, 0.85)),
                 url("static/Apresentação-SisPec.png");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
-=======
-                linear-gradient(rgba(4, 155, 140, 0.95), rgba(20, 132, 166, 0.95)),
-                url("{{ url_for('static', filename='Apresentação-SisPeC.png') }}");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center, center;
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
             height: 100vh;
             display: flex;
             align-items: center;
@@ -170,7 +162,7 @@
         }
         
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             animation: fadeIn 1s ease-out forwards;
@@ -230,8 +222,6 @@
             padding: 6rem 0;
             position: relative;
         }
-        
-
         
         section[id] {
             scroll-margin-top: 120px;
@@ -415,22 +405,11 @@
         
         .about-image img {
             max-width: 100%;
-<<<<<<< HEAD
             max-height: 300px; 
             object-fit: contain; /* Mantém a proporção original da imagem */
-=======
-            max-height: 300px; /* Limit image height */
-            object-fit: contain; /* Ensure the entire image is visible */
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             align-self: flex-start; /* Alinha a imagem ao topo */
-        }
-        .about-image {
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            height: 100%; /* Ensure it takes full height of the grid cell */
         }
         
         .contact {
@@ -529,16 +508,11 @@
         }
         
         .news-section {
-<<<<<<< HEAD
             background-color: var(--gray-light);
             padding: 4rem 0;
         }
         .news-section::after {
             display: none;
-=======
-            background-color: white;
-            padding: 6rem 0;
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
         }
         
         .news-grid {
@@ -717,52 +691,6 @@
             color: #155724;
         }
         
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Animações específicas para diferentes tipos de elementos */
-        .fade-in-title {
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in-title.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-        }
-
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .fade-in-delay-1 {
-            animation-delay: 0.1s;
-        }
-
-        .fade-in-delay-2 {
-            animation-delay: 0.2s;
-        }
-
-        .fade-in-delay-3 {
-            animation-delay: 0.3s;
-        }
-
         @media (max-width: 768px) {
             header {
                 height: auto;
@@ -847,13 +775,12 @@
 
     <section id="quem-somos" class="about">
         <div class="container">
-            <div class="section-title fade-in-title">
+            <div class="section-title">
                 <h2>Quem Somos</h2>
             </div>
             <div class="about-content">
                 <div class="about-text">
                     <h2>Nossa História</h2>
-<<<<<<< HEAD
                     <p>Desde 2019 no mercado contábil, estamos sempre buscando os melhores caminhos para impulsionar o crescimento de nossos clientes e parceiros, com foco na
                        clareza das orientações contábeis e proporcionando mais segurança na tomada de decisões.</p>
                     <p>Com sede em Salvador, nossa atuação se estende a clientes de todo o Brasil, de forma online e também presencial, realizando atendimentos personalizados e 
@@ -875,15 +802,6 @@
                             Foto do Membro (150x200px)
                         </div>
                         <div class="member-card">
-=======
-                    <p>Atuamos na área contábil desde 2019, assessorando empresas e sempre buscando os melhores caminhos para que nossos clientes tenham clareza com as informações contábeis e segurança na tomada de decisões.</p>
-                    <p>Com sede em Salvador, nossa atuação se estende a clientes de todo o Brasil, proporcionando um atendimento personalizado e especializado em regimes tributários como Simples Nacional e Lucro Presumido.</p>
-                    <p>Comprometidos com a excelência, oferecemos soluções completas para pequenos negócios, MEIs e empreendedores que buscam crescimento sustentável e conformidade fiscal.</p>
-                    
-                    <div class="team-members">
-                        <h3>Nossa Equipe</h3>
-                        <div class="member-card fade-in-up fade-in-delay-1">
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
                             <h4>Ericsson Lemos Cardoso</h4>
                             <p>Começou sua trajetória profissional com o cálculo e perícia contábil, tendo também em sua bagagem experiência com a Contabilidade Pública. 
                                Hoje se dedica às atualizações da Tecnologia da Informação e como isso está
@@ -894,7 +812,7 @@
                         <div class="image-placeholder">
                             Foto do Membro (150x200px)
                         </div>
-                        <div class="member-card fade-in-up fade-in-delay-2">
+                        <div class="member-card">
                             <h4>Ricardo Vicente Galiano Junior</h4>
                             <p>Iniciou sua carreira profissional na contabilidade ainda antes da faculdade,
                                trabalhando inicialmente no setor de registros e regularização de empresas.
@@ -903,88 +821,51 @@
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
             </div>
         </div>
-=======
-                <div class="about-image">
-                    <img src="{{ url_for('static', filename='SisPeC-2.png') }}" alt="SisPeC Logo">
-                </div>
-        </div>   
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
     </section>
 
     <section id="servicos" class="services">
         <div class="container">
-            <div class="section-title fade-in-title">
+            <div class="section-title">
                 <h2>Nossos Serviços</h2>
                 <p>Oferecemos uma ampla gama de serviços contábeis especializados para pequenas empresas</p>
             </div>
             <div class="services-grid">
-<<<<<<< HEAD
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="{{ url_for('static', filename='icones/abertura de empresa.png') }}" alt="Abertura de Empresa">
+                        <img src="static/icones/abertura de empresa.png" alt="Abertura de Empresa">
                     </div>
-=======
-                <div class="service-card fade-in-up fade-in-delay-1">
-                    <div class="service-icon">💼</div>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
                     <h3>Abertura de Empresa</h3>
                 </div>
-<<<<<<< HEAD
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="{{ url_for('static', filename='icones/assessoria contabil.png') }}" alt="Assessoria Contábil">
+                        <img src="static/icones/assessoria contabil.png" alt="Assessoria Contábil">
                     </div>
-=======
-                <div class="service-card fade-in-up fade-in-delay-2">
-                    <div class="service-icon">📊</div>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
                     <h3>Assessoria Contábil</h3>
                 </div>
-<<<<<<< HEAD
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="{{ url_for('static', filename='icones/assessoria fiscal.png') }}" alt="Assessoria Fiscal">
+                        <img src="static/icones/assessoria fiscal.png" alt="Assessoria Fiscal">
                     </div>
-=======
-                <div class="service-card fade-in-up fade-in-delay-3">
-                    <div class="service-icon">🏛️</div>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
                     <h3>Assessoria Fiscal</h3>
                 </div>
-<<<<<<< HEAD
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="{{ url_for('static', filename='icones/assessoria financeira.png') }}" alt="Assessoria Financeira">
+                        <img src="static/icones/assessoria financeira.png" alt="Assessoria Financeira">
                     </div>
-=======
-                <div class="service-card fade-in-up fade-in-delay-1">
-                    <div class="service-icon">💰</div>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
                     <h3>Assessoria Financeira</h3>
                 </div>
-<<<<<<< HEAD
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="{{ url_for('static', filename='icones/imposto de renda.png') }}" alt="Imposto de Renda">
+                        <img src="static/icones/imposto de renda.png" alt="Imposto de Renda">
                     </div>
-=======
-                <div class="service-card fade-in-up fade-in-delay-2">
-                    <div class="service-icon">📋</div>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
                     <h3>Declaração de Imposto de Renda</h3>
                 </div>
-<<<<<<< HEAD
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="{{ url_for('static', filename='icones/folha de pagamento.png') }}" alt="Folha de Pagamento">
+                        <img src="static/icones/folha de pagamento.png" alt="Folha de Pagamento">
                     </div>
-=======
-                <div class="service-card fade-in-up fade-in-delay-3">
-                    <div class="service-icon">👥</div>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
                     <h3>Folha de Pagamento</h3>
                 </div>
             </div>
@@ -993,17 +874,12 @@
 
     <section id="simuladores" class="simuladores">
         <div class="container">
-            <div class="section-title fade-in-title">
+            <div class="section-title">
                 <h2>Simuladores</h2>
                 <p>Ferramentas para cálculo de tributos e planejamento fiscal</p>
             </div>
-<<<<<<< HEAD
             <div class="simulator-card">
                 <h3>Simulador do Simples Nacional</h3>
-=======
-            <div class="simulator-card fade-in-up fade-in-delay-1">
-                <h3>Simulador de Simples Nacional</h3>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
                 <p>Estime o imposto devido no regime do Simples Nacional com base no seu faturamento e área de atuação.</p>
                 <a href="#" class="btn btn-primary" id="toggle-simples-nacional">Acessar Simulador</a>
                 <p style="font-size: 0.8rem; color: var(--text-gray); margin-top: 10px;">Calculadora meramente ilustrativa. Para saber mais, entre em contato conosco.</p>
@@ -1040,31 +916,19 @@
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
             <div class="simulator-card">
                 <h3>Simulador do Lucro Presumido</h3>
                 <p>Calcule o valor aproximado dos impostos de sua empresa sob o regime de Lucro Presumido.</p>
                 <a href="#" class="btn btn-primary">Acessar Simulador</a>
                 <span style="color: red; margin-left: 10px; font-weight: bold;">Em breve.</span>
                 <p style="font-size: 0.8rem; color: var(--text-gray); margin-top: 10px;">Calculadora meramente ilustrativa. Para saber mais, entre em contato conosco.</p>
-=======
-            <div class="simulator-card fade-in-up fade-in-delay-2">
-                <h3>Simulador de Lucro Presumido</h3>
-                <p>Calcule o valor aproximado dos impostos de sua empresa sob o regime de Lucro Presumido.</p>
-                <a href="#" class="btn btn-primary">Acessar Simulador</a>
-            </div>
-            <div class="simulator-card fade-in-up fade-in-delay-3">
-                <h3>Calculadora de Imposto de Renda</h3>
-                <p>Simule o valor do imposto de renda a pagar ou restituir com base em suas informações.</p>
-                <a href="#" class="btn btn-primary">Acessar Calculadora</a>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
             </div>
         </div>
     </section>
 
     <section id="artigos" class="news-section">
         <div class="container">
-            <div class="section-title fade-in-title">
+            <div class="section-title">
                 <h2>Blog</h2>
                 <p>Publicações sobre regras, curiosidades e benefícios para sua empresa</p>
             </div>
@@ -1074,7 +938,7 @@
                         <h3 style="color: var(--text-color);">Nossos Artigos</h3>
                     </div>
                     <div class="news-grid">
-                        <div class="news-card fade-in-up fade-in-delay-1">
+                        <div class="news-card">
                             <h3>Novas regras para MEIs em 2025</h3>
                             <p>Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa...</p>
                             <a href="#" class="btn btn-primary read-more" 
@@ -1082,7 +946,7 @@
                                data-body="Aqui entra o conteúdo completo do artigo sobre as novas regras para MEIs em 2025. Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa, os novos limites de faturamento e as obrigações acessórias."
                                onclick="showArticleModal(this); return false;">Ler mais</a>
                         </div>
-                        <div class="news-card fade-in-up fade-in-delay-2">
+                        <div class="news-card">
                             <h3>Benefícios do Simples Nacional</h3>
                             <p>Veja como optar pelo regime simplificado pode reduzir sua carga tributária...</p>
                             <a href="#" class="btn btn-primary read-more"
@@ -1090,7 +954,7 @@
                                data-body="Este é o corpo do artigo sobre os benefícios do Simples Nacional. Veja como optar pelo regime simplificado pode reduzir sua carga tributária, facilitar o pagamento de impostos e diminuir a burocracia para sua empresa."
                                onclick="showArticleModal(this); return false;">Ler mais</a>
                         </div>
-                        <div class="news-card fade-in-up fade-in-delay-3">
+                        <div class="news-card">
                             <h3>Declaração de Imposto de Renda</h3>
                             <p>Principais cuidados ao declarar seus rendimentos e deduções este ano...</p>
                              <a href="#" class="btn btn-primary read-more"
@@ -1115,7 +979,7 @@
 
     <section id="contato" class="contact">
         <div class="container">
-            <div class="section-title fade-in-title">
+            <div class="section-title">
                 <h2>Contato</h2>
                 <p>Entre em contato conosco para mais informações sobre nossos serviços</p>
             </div>
@@ -1179,7 +1043,7 @@
                     <h3>Contato</h3>
                     <ul>
                         <li>Email: contato@contabilidadesispec.com.br</li>
-                        <li>Telefone: (71) 99606-6673</li>
+                        <li>Telefone: (71) 9 9606-6673</li>
                     </ul>
                 </div>
             </div>
@@ -1198,7 +1062,6 @@
         </div>
     </div>
 
-<<<<<<< HEAD
     <script>
         // --- Modal Logic ---
         const modal = document.getElementById('article-modal');
@@ -1528,126 +1391,5 @@
             }
         });
     </script>
-=======
-        <script>
-            // Função para mostrar detalhes da notícia em um modal
-            function showNewsDetails(title, body) {
-                document.getElementById('modal-title').textContent = title;
-                document.getElementById('modal-body').textContent = body;
-                document.getElementById('article-modal').style.display = 'block';
-            }
-
-            // Fechar o modal ao clicar no botão de fechar
-            document.querySelector('.close-button').onclick = function() {
-                document.getElementById('article-modal').style.display = 'none';
-            }
-
-            // Fechar o modal ao clicar fora dele
-            window.onclick = function(event) {
-                var modal = document.getElementById('article-modal');
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                }
-            }
-
-            // Função para carregar notícias via AJAX
-            function loadNews() {
-                fetch('/api/noticias')
-                    .then(response => response.json())
-                    .then(data => {
-                        const container = document.getElementById('noticias-container');
-                        container.innerHTML = ''; // Limpa o conteúdo anterior (loading...)
-
-                        if (data.length === 0) {
-                            container.innerHTML = '<p>Nenhuma notícia encontrada.</p>';
-                            return;
-                        }
-
-                        const ul = document.createElement('ul');
-
-                        data.forEach(noticia => {
-                            const li = document.createElement('li');
-                            li.innerHTML = `
-                                <a href="${noticia.link}" target="_blank">${noticia.titulo}</a>
-                                <p style="font-size: 0.9rem; color: var(--text-gray); margin-top: 0.5rem;">${noticia.descricao}</p>
-                            `;
-                            ul.appendChild(li);
-                        });
-
-                        container.appendChild(ul);
-                    })
-                    .catch(error => {
-                        console.error('Erro ao carregar as notícias:', error);
-                        document.getElementById('noticias-container').innerHTML = '<p>Erro ao carregar as notícias.</p>';
-                    });
-            }
-
-            // Carrega as notícias quando a página carregar
-            document.addEventListener('DOMContentLoaded', loadNews);
-
-            // Intersection Observer for animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        
-                        // Remover o observer após a animação para melhor performance
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            // Observar todos os elementos com classes de animação
-            const elementsToAnimate = document.querySelectorAll('.fade-in, .fade-in-title, .fade-in-up');
-            elementsToAnimate.forEach(element => {
-                observer.observe(element);
-            });
-
-            // Função para rolar suavemente para uma seção e acionar animações
-            function scrollToSection(sectionId) {
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    // Rolar suavemente para a seção
-                    section.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    
-                    // Forçar a animação dos elementos da seção se ainda não estiverem visíveis
-                    const sectionElements = section.querySelectorAll('.fade-in, .fade-in-title, .fade-in-up');
-                    sectionElements.forEach(element => {
-                        if (!element.classList.contains('visible')) {
-                            element.classList.add('visible');
-                            
-                            // Remover o observer após a animação para melhor performance
-                            observer.unobserve(element);
-                        }
-                    });
-                }
-            }
-
-            // Adicionar evento de clique aos links de navegação
-            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    scrollToSection(targetId);
-                    
-                    // Atualizar classe ativa no menu
-                    document.querySelectorAll('nav a').forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                });
-            });
-
-        </script>
-
-    </body>
+</body>
 </html>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f

@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import requests
 from bs4 import BeautifulSoup
-=======
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
 from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
@@ -18,7 +15,6 @@ def noticias():
 
 @app.route('/api/noticias')
 def api_noticias():
-<<<<<<< HEAD
     try:
         url = "https://www8.receita.fazenda.gov.br/simplesnacional/noticias/TodasNoticias.aspx"
         base_url = "https://www8.receita.fazenda.gov.br/simplesnacional/noticias/"
@@ -74,27 +70,6 @@ def api_noticias():
     except Exception as e:
         return jsonify([{"titulo": "Erro inesperado", "link": "#", "descricao": f"Ocorreu um erro ao processar as notícias: {e}", "data": ""}])
 
-=======
-    # Retorna as notícias em formato JSON para uso via JavaScript
-    noticias = [
-        {
-            "titulo": "Novas regras para MEIs em 2025",
-            "link": "#",
-            "descricao": "Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa..."
-        },
-        {
-            "titulo": "Benefícios do Simples Nacional",
-            "link": "#",
-            "descricao": "Veja como optar pelo regime simplificado pode reduzir sua carga tributária..."
-        },
-        {
-            "titulo": "Declaração de Imposto de Renda",
-            "link": "#",
-            "descricao": "Principais cuidados ao declarar seus rendimentos e deduções este ano..."
-        }
-    ]
-    return jsonify(noticias)
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
 
 @app.route('/servicos')
 def servicos():
