@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SisPeC - Contabilidade</title>
+    <title>SisPeC - Contabilidade para Pequenas Empresas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
@@ -145,19 +145,11 @@
         .hero {
             background-color: var(--primary-color);
             background-image: 
-<<<<<<< HEAD
                 linear-gradient(rgba(4, 155, 140, 0.85), rgba(20, 132, 166, 0.85)),
                 url("static/Apresentação-SisPec.png");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
-=======
-                linear-gradient(rgba(4, 155, 140, 0.95), rgba(20, 132, 166, 0.95)),
-                url("{{ url_for('static', filename='Apresentação-SisPeC.png') }}");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center, center;
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
             height: 100vh;
             display: flex;
             align-items: center;
@@ -170,7 +162,7 @@
         }
         
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             animation: fadeIn 1s ease-out forwards;
@@ -231,7 +223,15 @@
             position: relative;
         }
         
-
+        section:not(:last-of-type)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--gray-medium);
+        }
         
         section[id] {
             scroll-margin-top: 120px;
@@ -245,16 +245,28 @@
         .section-title h2 {
             font-size: 2.5rem;
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             position: relative;
             display: inline-block;
             padding-bottom: 10px;
         }
         
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary-color);
+            border-radius: 3px;
+        }
+        
         .section-title p {
             color: var(--text-gray);
             max-width: 700px;
-            margin: 0.5rem auto 0;
+            margin: 1rem auto 0;
         }
         
         .services {
@@ -284,18 +296,16 @@
         }
         
         .service-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
             margin-bottom: 1.5rem;
-        }
-
-        .service-icon img {
-            height: 60px;
-            width: auto;
+            display: block;
         }
         
         .service-card h3 {
-            font-size: 1.35rem;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--text-color);
+            color: var(--primary-color);
         }
         
         .service-card p {
@@ -307,8 +317,7 @@
         }
         
         .about {
-            background-color: var(--light-color);
-            padding-top: 2rem; /* Reduced distance from Home section */
+            background-color: var(--gray-light);
         }
         
         .about-content {
@@ -335,8 +344,8 @@
         }
         
         .about-text h2 {
-            font-size: 1.5rem;
-            color: var(--text-color);
+            font-size: 2rem;
+            color: var(--primary-color);
             margin-bottom: 1.5rem;
         }
 
@@ -345,22 +354,16 @@
         }
 
         .team-members {
-            margin-top: 6rem;
-        }
-
-        .member-cards-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 5rem;
+            margin-top: 2rem;
         }
         
         .member-card {
             background: white;
             padding: 1.5rem;
             border-radius: 8px;
+            margin-bottom: 1rem;
             box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            border-top: 3px solid var(--primary-color);
+            border-top: 3px solid var(--accent-color);
             transition: transform 0.3s;
         }
         
@@ -370,39 +373,12 @@
         }
         
         .member-card h4 {
-            color: var(--secondary-color);
-        }
-        .member-card p {
-            text-align: justify;
+            color: var(--accent-color);
         }
 
         .team-members h3 {
-            color: var(--text-color);
-            font-size: 1.5rem;
-            text-align: center;
-            margin-bottom: 2rem; /* Add some space below the title */
-        }
-
-        .member-profile {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 400px; /* Limit width to allow side-by-side display */
-        }
-
-        .image-placeholder {
-            width: 150px;
-            height: 200px;
-            background-color: #f0f0f0;
-            border: 1px dashed #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #888;
-            border-radius: 8px;
-            flex-shrink: 0;
-            margin-bottom: 1rem; /* Space between image and card */
+            color: var(--primary-color);
+            font-size: 2rem;
         }
         
         .about-image {
@@ -410,27 +386,15 @@
             display: flex;
             justify-content: center;
             align-items: flex-start; /* Alinha ao topo para alinhar com o título */
-            margin-top: 3rem; /* Adjusted for better alignment with text */
         }
         
         .about-image img {
             max-width: 100%;
-<<<<<<< HEAD
             max-height: 300px; 
             object-fit: contain; /* Mantém a proporção original da imagem */
-=======
-            max-height: 300px; /* Limit image height */
-            object-fit: contain; /* Ensure the entire image is visible */
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             align-self: flex-start; /* Alinha a imagem ao topo */
-        }
-        .about-image {
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            height: 100%; /* Ensure it takes full height of the grid cell */
         }
         
         .contact {
@@ -529,16 +493,8 @@
         }
         
         .news-section {
-<<<<<<< HEAD
-            background-color: var(--gray-light);
-            padding: 4rem 0;
-        }
-        .news-section::after {
-            display: none;
-=======
             background-color: white;
-            padding: 6rem 0;
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
+            padding: 4rem 0;
         }
         
         .news-grid {
@@ -552,7 +508,7 @@
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            border-left: 4px solid var(--primary-color);
+            border-left: 4px solid var(--secondary-color);
             transition: transform 0.3s, box-shadow 0.3s;
         }
         
@@ -564,10 +520,6 @@
         .news-card h3 {
             color: var(--secondary-color);
             margin-top: 0;
-        }
-
-        .sidebar-news .section-title h3 {
-            color: var(--text-color);
         }
         
         .simulator-card {
@@ -587,7 +539,7 @@
         }
         
         .simulator-card h3 {
-            color: var(--secondary-color);
+            color: var(--primary-color);
             margin-top: 0;
         }
 
@@ -717,52 +669,6 @@
             color: #155724;
         }
         
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Animações específicas para diferentes tipos de elementos */
-        .fade-in-title {
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in-title.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-        }
-
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .fade-in-delay-1 {
-            animation-delay: 0.1s;
-        }
-
-        .fade-in-delay-2 {
-            animation-delay: 0.2s;
-        }
-
-        .fade-in-delay-3 {
-            animation-delay: 0.3s;
-        }
-
         @media (max-width: 768px) {
             header {
                 height: auto;
@@ -836,8 +742,8 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Contabilidade especializada para micro e pequenas empresas</h1>
-            <p style="text-align: justify;">Vem conosco evoluir!<br><br>Cuidamos do seu negócio com agilidade e compromisso. Na SisPeC você encontra soluções que ajudam a impulsionar o crescimento da sua empresa!</p>
+            <h1>Contabilidade Especializada para Pequenas Empresas</h1>
+            <p style="text-align: justify;">Atuamos com empresas que utilizam o regime tributário do Simples Nacional ou Lucro Presumido. Sedeados em Salvador, atendemos online e presencialmente em todo o Brasil.</p>
             <div style="text-align: center;">
                 <a href="#servicos" class="btn btn-outline">Nossos Serviços</a>
                 <a href="#contato" class="btn btn-outline">Fale Conosco</a>
@@ -847,144 +753,65 @@
 
     <section id="quem-somos" class="about">
         <div class="container">
-            <div class="section-title fade-in-title">
+            <div class="section-title">
                 <h2>Quem Somos</h2>
+                <p>História e equipe da SisPeC Contabilidade</p>
             </div>
             <div class="about-content">
                 <div class="about-text">
                     <h2>Nossa História</h2>
-<<<<<<< HEAD
-                    <p>Desde 2019 no mercado contábil, estamos sempre buscando os melhores caminhos para impulsionar o crescimento de nossos clientes e parceiros, com foco na
-                       clareza das orientações contábeis e proporcionando mais segurança na tomada de decisões.</p>
-                    <p>Com sede em Salvador, nossa atuação se estende a clientes de todo o Brasil, de forma online e também presencial, realizando atendimentos personalizados e 
-                       especializado em regimes tributários como o Simples Nacional e o Lucro Presumido.</p>
-                    <p>Comprometidos com a excelência, oferecemos soluções completas, desde Pessoas Físicas e pequenos negócios como MEIs e também a Micro e Pequenas empresas 
-                       que buscam crescimento sustentável do seu negócio.</p>
-                    <p>Com conformidade fiscal e um olhar atento à realidade de sua empresa, vem ser nosso cliente você também!</p>
-                </div>
-                <div class="about-image">
-                    <img src="static/SisPeC-2.png" alt="SisPeC Logo">
-                </div>
-            </div>
-            <div class="team-members">
-                <h3>Nossa Equipe</h3>
-                <p style="text-align: center; max-width: 800px; margin: 0 auto 6rem;">Graduados em Ciências Contábeis pela Universidade do Estado da Bahia (UNEB), os nossos sócios Ericsson e Ricardo, constroem uma parceria de longa data com um objetivo em comum: levar informação de forma clara e segura aos nossos clientes, para que assim possam realizar seus sonhos e alcançar seus seus objetivos!</p>
-                <div class="member-cards-container">
-                    <div class="member-profile">
-                        <div class="image-placeholder">
-                            Foto do Membro (150x200px)
-                        </div>
-                        <div class="member-card">
-=======
                     <p>Atuamos na área contábil desde 2019, assessorando empresas e sempre buscando os melhores caminhos para que nossos clientes tenham clareza com as informações contábeis e segurança na tomada de decisões.</p>
                     <p>Com sede em Salvador, nossa atuação se estende a clientes de todo o Brasil, proporcionando um atendimento personalizado e especializado em regimes tributários como Simples Nacional e Lucro Presumido.</p>
                     <p>Comprometidos com a excelência, oferecemos soluções completas para pequenos negócios, MEIs e empreendedores que buscam crescimento sustentável e conformidade fiscal.</p>
                     
                     <div class="team-members">
                         <h3>Nossa Equipe</h3>
-                        <div class="member-card fade-in-up fade-in-delay-1">
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
+                        <div class="member-card">
                             <h4>Ericsson Lemos Cardoso</h4>
-                            <p>Começou sua trajetória profissional com o cálculo e perícia contábil, tendo também em sua bagagem experiência com a Contabilidade Pública. 
-                               Hoje se dedica às atualizações da Tecnologia da Informação e como isso está
-                               diretamente ligado ao dia a dia das empresas.</p>
+                            <p>Graduado em Ciências Contábeis pela Universidade do Estado da Bahia - Campus I (UNEB)</p>
                         </div>
-                    </div>
-                    <div class="member-profile">
-                        <div class="image-placeholder">
-                            Foto do Membro (150x200px)
-                        </div>
-                        <div class="member-card fade-in-up fade-in-delay-2">
+                        <div class="member-card">
                             <h4>Ricardo Vicente Galiano Junior</h4>
-                            <p>Iniciou sua carreira profissional na contabilidade ainda antes da faculdade,
-                               trabalhando inicialmente no setor de registros e regularização de empresas.
-                               Desde então, acumula sólida experiência na assessoria contábil e
-                               consultoria empresarial.</p>
+                            <p>Graduado em Ciências Contábeis pela Universidade do Estado da Bahia - Campus I (UNEB)</p>
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
+                <div class="about-image">
+                    <img src="static/SisPeC-2.png" alt="SisPeC Logo">
+                </div>
             </div>
         </div>
-=======
-                <div class="about-image">
-                    <img src="{{ url_for('static', filename='SisPeC-2.png') }}" alt="SisPeC Logo">
-                </div>
-        </div>   
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
     </section>
 
     <section id="servicos" class="services">
         <div class="container">
-            <div class="section-title fade-in-title">
+            <div class="section-title">
                 <h2>Nossos Serviços</h2>
                 <p>Oferecemos uma ampla gama de serviços contábeis especializados para pequenas empresas</p>
             </div>
             <div class="services-grid">
-<<<<<<< HEAD
                 <div class="service-card">
-                    <div class="service-icon">
-                        <img src="{{ url_for('static', filename='icones/abertura de empresa.png') }}" alt="Abertura de Empresa">
-                    </div>
-=======
-                <div class="service-card fade-in-up fade-in-delay-1">
-                    <div class="service-icon">💼</div>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
+                    <div class="service-icon">🔵</div>
                     <h3>Abertura de Empresa</h3>
                 </div>
-<<<<<<< HEAD
                 <div class="service-card">
-                    <div class="service-icon">
-                        <img src="{{ url_for('static', filename='icones/assessoria contabil.png') }}" alt="Assessoria Contábil">
-                    </div>
-=======
-                <div class="service-card fade-in-up fade-in-delay-2">
-                    <div class="service-icon">📊</div>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
+                    <div class="service-icon">🔵</div>
                     <h3>Assessoria Contábil</h3>
                 </div>
-<<<<<<< HEAD
                 <div class="service-card">
-                    <div class="service-icon">
-                        <img src="{{ url_for('static', filename='icones/assessoria fiscal.png') }}" alt="Assessoria Fiscal">
-                    </div>
-=======
-                <div class="service-card fade-in-up fade-in-delay-3">
-                    <div class="service-icon">🏛️</div>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
+                    <div class="service-icon">🔵</div>
                     <h3>Assessoria Fiscal</h3>
                 </div>
-<<<<<<< HEAD
                 <div class="service-card">
-                    <div class="service-icon">
-                        <img src="{{ url_for('static', filename='icones/assessoria financeira.png') }}" alt="Assessoria Financeira">
-                    </div>
-=======
-                <div class="service-card fade-in-up fade-in-delay-1">
-                    <div class="service-icon">💰</div>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
+                    <div class="service-icon">🔵</div>
                     <h3>Assessoria Financeira</h3>
                 </div>
-<<<<<<< HEAD
                 <div class="service-card">
-                    <div class="service-icon">
-                        <img src="{{ url_for('static', filename='icones/imposto de renda.png') }}" alt="Imposto de Renda">
-                    </div>
-=======
-                <div class="service-card fade-in-up fade-in-delay-2">
-                    <div class="service-icon">📋</div>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
+                    <div class="service-icon">🔵</div>
                     <h3>Declaração de Imposto de Renda</h3>
                 </div>
-<<<<<<< HEAD
                 <div class="service-card">
-                    <div class="service-icon">
-                        <img src="{{ url_for('static', filename='icones/folha de pagamento.png') }}" alt="Folha de Pagamento">
-                    </div>
-=======
-                <div class="service-card fade-in-up fade-in-delay-3">
-                    <div class="service-icon">👥</div>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
+                    <div class="service-icon">🔵</div>
                     <h3>Folha de Pagamento</h3>
                 </div>
             </div>
@@ -993,20 +820,14 @@
 
     <section id="simuladores" class="simuladores">
         <div class="container">
-            <div class="section-title fade-in-title">
+            <div class="section-title">
                 <h2>Simuladores</h2>
                 <p>Ferramentas para cálculo de tributos e planejamento fiscal</p>
             </div>
-<<<<<<< HEAD
             <div class="simulator-card">
                 <h3>Simulador do Simples Nacional</h3>
-=======
-            <div class="simulator-card fade-in-up fade-in-delay-1">
-                <h3>Simulador de Simples Nacional</h3>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
                 <p>Estime o imposto devido no regime do Simples Nacional com base no seu faturamento e área de atuação.</p>
                 <a href="#" class="btn btn-primary" id="toggle-simples-nacional">Acessar Simulador</a>
-                <p style="font-size: 0.8rem; color: var(--text-gray); margin-top: 10px;">Calculadora meramente ilustrativa. Para saber mais, entre em contato conosco.</p>
                 
                 <div id="calculadora-simples-nacional" style="display: none; margin-top: 1.5rem;">
                     <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
@@ -1040,63 +861,40 @@
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
             <div class="simulator-card">
                 <h3>Simulador do Lucro Presumido</h3>
                 <p>Calcule o valor aproximado dos impostos de sua empresa sob o regime de Lucro Presumido.</p>
                 <a href="#" class="btn btn-primary">Acessar Simulador</a>
-                <span style="color: red; margin-left: 10px; font-weight: bold;">Em breve.</span>
-                <p style="font-size: 0.8rem; color: var(--text-gray); margin-top: 10px;">Calculadora meramente ilustrativa. Para saber mais, entre em contato conosco.</p>
-=======
-            <div class="simulator-card fade-in-up fade-in-delay-2">
-                <h3>Simulador de Lucro Presumido</h3>
-                <p>Calcule o valor aproximado dos impostos de sua empresa sob o regime de Lucro Presumido.</p>
-                <a href="#" class="btn btn-primary">Acessar Simulador</a>
-            </div>
-            <div class="simulator-card fade-in-up fade-in-delay-3">
-                <h3>Calculadora de Imposto de Renda</h3>
-                <p>Simule o valor do imposto de renda a pagar ou restituir com base em suas informações.</p>
-                <a href="#" class="btn btn-primary">Acessar Calculadora</a>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
             </div>
         </div>
     </section>
 
     <section id="artigos" class="news-section">
         <div class="container">
-            <div class="section-title fade-in-title">
+            <div class="section-title">
                 <h2>Blog</h2>
                 <p>Publicações sobre regras, curiosidades e benefícios para sua empresa</p>
             </div>
             <div class="blog-container" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start;">
                 <div>
                     <div class="section-title" style="text-align: left; margin-bottom: 1rem;">
-                        <h3 style="color: var(--text-color);">Nossos Artigos</h3>
+                        <h3 style="color: var(--primary-color);">Nossos Artigos</h3>
                     </div>
                     <div class="news-grid">
-                        <div class="news-card fade-in-up fade-in-delay-1">
+                        <div class="news-card">
                             <h3>Novas regras para MEIs em 2025</h3>
                             <p>Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa...</p>
-                            <a href="#" class="btn btn-primary read-more" 
-                               data-title="Novas regras para MEIs em 2025" 
-                               data-body="Aqui entra o conteúdo completo do artigo sobre as novas regras para MEIs em 2025. Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa, os novos limites de faturamento e as obrigações acessórias."
-                               onclick="showArticleModal(this); return false;">Ler mais</a>
+                            <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Novas regras para MEIs em 2025', 'Entenda como as alterações nas regras para Microempreendedores Individuais afetam sua empresa...'); return false;">Ler mais</a>
                         </div>
-                        <div class="news-card fade-in-up fade-in-delay-2">
+                        <div class="news-card">
                             <h3>Benefícios do Simples Nacional</h3>
                             <p>Veja como optar pelo regime simplificado pode reduzir sua carga tributária...</p>
-                            <a href="#" class="btn btn-primary read-more"
-                               data-title="Benefícios do Simples Nacional"
-                               data-body="Este é o corpo do artigo sobre os benefícios do Simples Nacional. Veja como optar pelo regime simplificado pode reduzir sua carga tributária, facilitar o pagamento de impostos e diminuir a burocracia para sua empresa."
-                               onclick="showArticleModal(this); return false;">Ler mais</a>
+                            <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Benefícios do Simples Nacional', 'Veja como optar pelo regime simplificado pode reduzir sua carga tributária...'); return false;">Ler mais</a>
                         </div>
-                        <div class="news-card fade-in-up fade-in-delay-3">
+                        <div class="news-card">
                             <h3>Declaração de Imposto de Renda</h3>
                             <p>Principais cuidados ao declarar seus rendimentos e deduções este ano...</p>
-                             <a href="#" class="btn btn-primary read-more"
-                               data-title="Declaração de Imposto de Renda"
-                               data-body="O conteúdo completo sobre a Declaração de Imposto de Renda. Conheça os principais cuidados ao declarar seus rendimentos e deduções este ano para evitar a malha fina e garantir sua conformidade com a Receita Federal."
-                               onclick="showArticleModal(this); return false;">Ler mais</a>
+                            <a href="#" class="btn btn-primary read-more" onclick="showNewsDetails('Declaração de Imposto de Renda', 'Principais cuidados ao declarar seus rendimentos e deduções este ano...'); return false;">Ler mais</a>
                         </div>
                     </div>
                 </div>
@@ -1115,31 +913,27 @@
 
     <section id="contato" class="contact">
         <div class="container">
-            <div class="section-title fade-in-title">
+            <div class="section-title">
                 <h2>Contato</h2>
                 <p>Entre em contato conosco para mais informações sobre nossos serviços</p>
             </div>
             <div class="contact-form">
-                <form action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="c334e569-8474-42f8-a0e2-c7f41a546736">
-                    <input type="hidden" name="subject" value="Novo Contato do Site SisPeC">
-                    <input type="hidden" name="redirect" value="https://contabilidadesispec.com.br/#contato"> <!-- URL de redirecionamento após o envio -->
-
+                <form>
                     <div class="form-group">
                         <label for="nome">Nome</label>
-                        <input type="text" id="nome" name="nome" required>
+                        <input type="text" id="nome" required>
                     </div>
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" required>
                     </div>
                     <div class="form-group">
                         <label for="telefone">Telefone</label>
-                        <input type="tel" id="telefone" name="telefone">
+                        <input type="tel" id="telefone">
                     </div>
                     <div class="form-group">
                         <label for="tipo-empresa">Tipo de Empresa</label>
-                        <select id="tipo-empresa" name="tipo_empresa">
+                        <select id="tipo-empresa">
                             <option value="">Selecione</option>
                             <option value="mei">MEI - Microempreendedor Individual</option>
                             <option value="simples">Simples Nacional</option>
@@ -1149,7 +943,7 @@
                     </div>
                     <div class="form-group">
                         <label for="mensagem">Mensagem</label>
-                        <textarea id="mensagem" name="mensagem" required></textarea>
+                        <textarea id="mensagem" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
                 </form>
@@ -1162,7 +956,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>SisPeC</h3>
-                    <p>Contabilidade para micro e pequenas empresas</p>
+                    <p>Contabilidade para Pequenas Empresas</p>
                     <p>Sede em Salvador - BA</p>
                 </div>
                 <div class="footer-section">
@@ -1179,7 +973,8 @@
                     <h3>Contato</h3>
                     <ul>
                         <li>Email: contato@contabilidadesispec.com.br</li>
-                        <li>Telefone: (71) 99606-6673</li>
+                        <li>Telefone: (71) 9606-6673</li>
+                        <li>Endereço: Av. Sete de Setembro, 1000 - Sala 101, Salvador - BA</li>
                     </ul>
                 </div>
             </div>
@@ -1198,48 +993,14 @@
         </div>
     </div>
 
-<<<<<<< HEAD
     <script>
-        // --- Modal Logic ---
-        const modal = document.getElementById('article-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalBody = document.getElementById('modal-body');
-        const closeButton = document.querySelector('.close-button');
-
-        function showArticleModal(element) {
-            if (!modal || !modalTitle || !modalBody) return;
-
-            const title = element.getAttribute('data-title');
-            const body = element.getAttribute('data-body');
-            
-            modalTitle.textContent = title;
-            modalBody.textContent = body;
-            
-            modal.style.display = 'block';
-        }
-
-        if (closeButton) {
-            closeButton.onclick = function() {
-                modal.style.display = 'none';
-            }
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
-
-        // --- Smooth Scrolling ---
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetElement = document.querySelector(this.getAttribute('href'));
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
                 
                 // Update active class
                 document.querySelectorAll('nav ul li a').forEach(link => {
@@ -1249,14 +1010,17 @@
             });
         });
         
-        // --- Active Nav on Scroll ---
+        // Highlight active section in navigation as user scrolls
         window.addEventListener('scroll', function() {
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('nav ul li a');
+            
             let current = '';
             
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
                 if(pageYOffset >= (sectionTop - 300)) {
                     current = section.getAttribute('id');
                 }
@@ -1270,65 +1034,22 @@
             });
         });
 
-        // --- All scripts that run after DOM is loaded ---
+        // --- SIMULADOR SIMPLES NACIONAL ---
         document.addEventListener('DOMContentLoaded', function() {
-            
-            // --- News Loading via API ---
-            function loadNews() {
-                const container = document.getElementById('noticias-container');
-                if (!container) return;
-
-                fetch('/api/noticias')
-                    .then(response => response.json())
-                    .then(data => {
-                        container.innerHTML = ''; // Clear loading message
-
-                        if (!data || data.length === 0) {
-                            container.innerHTML = '<p>Nenhuma notícia encontrada.</p>';
-                            return;
-                        }
-
-                        const ul = document.createElement('ul');
-                        data.forEach(noticia => {
-                            const li = document.createElement('li');
-                            li.style.cursor = 'pointer';
-                            li.onclick = () => window.open(noticia.link, '_blank');
-                            li.innerHTML = `
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <h4 style="margin: 0; font-size: 1rem; color: var(--secondary-color);">${noticia.titulo}</h4>
-                                    <small style="color: var(--text-gray);">${noticia.data}</small>
-                                </div>
-                                <p style="font-size: 0.9rem; color: var(--text-gray); margin-top: 0.5rem;">${noticia.descricao}</p>
-                            `;
-                            ul.appendChild(li);
-                        });
-                        container.appendChild(ul);
-                    })
-                    .catch(error => {
-                        console.error('Erro ao carregar as notícias:', error);
-                        container.innerHTML = '<p>Erro ao carregar as notícias.</p>';
-                    });
-            }
-            loadNews();
-
-
-            // --- SIMULADOR SIMPLES NACIONAL ---
             const toggleSimplesBtn = document.getElementById('toggle-simples-nacional');
             const calculadoraSimples = document.getElementById('calculadora-simples-nacional');
 
-            if (toggleSimplesBtn && calculadoraSimples) {
-                toggleSimplesBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const isHidden = calculadoraSimples.style.display === 'none';
-                    if (isHidden) {
-                        calculadoraSimples.style.display = 'block';
-                        toggleSimplesBtn.textContent = 'Recolher Simulador';
-                    } else {
-                        calculadoraSimples.style.display = 'none';
-                        toggleSimplesBtn.textContent = 'Acessar Simulador';
-                    }
-                });
-            }
+            toggleSimplesBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const isHidden = calculadoraSimples.style.display === 'none';
+                if (isHidden) {
+                    calculadoraSimples.style.display = 'block';
+                    toggleSimplesBtn.textContent = 'Recolher Simulador';
+                } else {
+                    calculadoraSimples.style.display = 'none';
+                    toggleSimplesBtn.textContent = 'Acessar Simulador';
+                }
+            });
 
             const anexos = {
                 "Anexo I": {"nome": "Comércio", "descricao": "Venda de mercadorias.", "faixas": [{"faixa": "1ª", "min": 0, "max": 180000, "aliquota": 4.0, "deducao": 0}, {"faixa": "2ª", "min": 180000.01, "max": 360000, "aliquota": 7.3, "deducao": 5940}, {"faixa": "3ª", "min": 360000.01, "max": 720000, "aliquota": 9.5, "deducao": 13860}, {"faixa": "4ª", "min": 720000.01, "max": 1800000, "aliquota": 10.7, "deducao": 22500}, {"faixa": "5ª", "min": 1800000.01, "max": 3600000, "aliquota": 14.3, "deducao": 87300}, {"faixa": "6ª", "min": 3600000.01, "max": 4800000, "aliquota": 19.0, "deducao": 378000}]},
@@ -1352,204 +1073,193 @@
             const toggleTabelasBtn = document.getElementById('toggle-tabelas-btn');
             const resultadoDiv = document.getElementById('resultado-simulador');
             const anexosContainer = document.querySelector('.anexos-container');
-            
-            if (calculadoraSimples) {
-                // Populate dropdown
-                for (const area in areas_de_atuacao) {
-                    const option = document.createElement('option');
-                    option.value = area;
-                    option.textContent = area;
-                    areaAtuacaoSelect.appendChild(option);
-                }
 
-                // Generate and Populate tables
-                const anexoContent = anexosContainer.querySelector('.section-title').nextSibling;
-                for (const anexoId in anexos) {
-                    const anexoData = anexos[anexoId];
-                    
-                    const collapsibleDiv = document.createElement('div');
-                    collapsibleDiv.className = 'collapsible-anexo';
+            // Populate dropdown
+            for (const area in areas_de_atuacao) {
+                const option = document.createElement('option');
+                option.value = area;
+                option.textContent = area;
+                areaAtuacaoSelect.appendChild(option);
+            }
 
-                    const button = document.createElement('button');
-                    button.className = 'collapsible-header';
-                    button.textContent = `${anexoId} - ${anexoData.nome}`;
-                    
-                    const contentDiv = document.createElement('div');
-                    contentDiv.className = 'collapsible-content';
-                    
-                    const descriptionP = document.createElement('p');
-                    descriptionP.textContent = anexoData.descricao;
-                    
-                    const table = document.createElement('table');
-                    table.className = 'anexo-table';
-                    table.innerHTML = `
-                        <thead>
-                            <tr>
-                                <th>Faixa</th>
-                                <th>Receita Bruta em 12 Meses</th>
-                                <th>Alíquota</th>
-                                <th>Valor a Deduzir</th>
-                            </tr>
-                        </thead>
+            // Generate and Populate tables
+            const anexoContent = anexosContainer.querySelector('.section-title').nextSibling;
+            for (const anexoId in anexos) {
+                const anexoData = anexos[anexoId];
+                
+                const collapsibleDiv = document.createElement('div');
+                collapsibleDiv.className = 'collapsible-anexo';
+
+                const button = document.createElement('button');
+                button.className = 'collapsible-header';
+                button.textContent = `${anexoId} - ${anexoData.nome}`;
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'collapsible-content';
+                
+                const descriptionP = document.createElement('p');
+                descriptionP.textContent = anexoData.descricao;
+                
+                const table = document.createElement('table');
+                table.className = 'anexo-table';
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th>Faixa</th>
+                            <th>Receita Bruta em 12 Meses</th>
+                            <th>Alíquota</th>
+                            <th>Valor a Deduzir</th>
+                        </tr>
+                    </thead>
+                `;
+                const tbody = document.createElement('tbody');
+                anexoData.faixas.forEach(faixa => {
+                    const row = document.createElement('tr');
+                    const faturamentoTxt = faixa.min === 0 ? `Até ${formatCurrency(faixa.max)}` : `De ${formatCurrency(faixa.min)} a ${formatCurrency(faixa.max)}`;
+                    row.innerHTML = `
+                        <td>${faixa.faixa}</td>
+                        <td>${faturamentoTxt}</td>
+                        <td>${faixa.aliquota.toFixed(1).replace('.', ',')}%</td>
+                        <td>${formatCurrency(faixa.deducao)}</td>
                     `;
-                    const tbody = document.createElement('tbody');
-                    anexoData.faixas.forEach(faixa => {
-                        const row = document.createElement('tr');
-                        const faturamentoTxt = faixa.min === 0 ? `Até ${formatCurrency(faixa.max)}` : `De ${formatCurrency(faixa.min)} a ${formatCurrency(faixa.max)}`;
-                        row.innerHTML = `
-                            <td>${faixa.faixa}</td>
-                            <td>${faturamentoTxt}</td>
-                            <td>${faixa.aliquota.toFixed(1).replace('.', ',')}%</td>
-                            <td>${formatCurrency(faixa.deducao)}</td>
-                        `;
-                        tbody.appendChild(row);
-                    });
-                    table.appendChild(tbody);
+                    tbody.appendChild(row);
+                });
+                table.appendChild(tbody);
 
-                    contentDiv.appendChild(descriptionP);
-                    contentDiv.appendChild(table);
-                    collapsibleDiv.appendChild(button);
-                    collapsibleDiv.appendChild(contentDiv);
-                    anexosContainer.appendChild(collapsibleDiv);
+                contentDiv.appendChild(descriptionP);
+                contentDiv.appendChild(table);
+                collapsibleDiv.appendChild(button);
+                collapsibleDiv.appendChild(contentDiv);
+                anexosContainer.appendChild(collapsibleDiv);
+            }
+
+
+            function formatCurrency(value) {
+                return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            }
+
+            function limparCampos() {
+                faturamentoInput.value = '';
+                areaAtuacaoSelect.selectedIndex = 0;
+                resultadoDiv.innerHTML = '';
+                document.querySelectorAll('.anexo-table tr.highlight').forEach(row => {
+                    row.classList.remove('highlight');
+                });
+                // Collapse all sections
+                document.querySelectorAll('.collapsible-header.active').forEach(header => {
+                    header.click();
+                });
+                anexosContainer.style.display = 'none';
+                toggleTabelasBtn.textContent = 'Exibir Tabelas';
+            }
+
+            function analisarFaturamento() {
+                resultadoDiv.innerHTML = '';
+                document.querySelectorAll('.anexo-table tr.highlight').forEach(row => {
+                    row.classList.remove('highlight');
+                });
+
+                const faturamentoStr = faturamentoInput.value.replace(/\./g, '').replace(',', '.');
+                const areaSelecionada = areaAtuacaoSelect.value;
+
+                if (!faturamentoStr || !areaSelecionada || areaAtuacaoSelect.selectedIndex === 0) {
+                    resultadoDiv.innerHTML = '<p style="color: #E8A900;">Por favor, preencha todos os campos.</p>';
+                    return;
                 }
 
-
-                function formatCurrency(value) {
-                    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                const faturamentoAnual = parseFloat(faturamentoStr);
+                if (isNaN(faturamentoAnual)) {
+                    resultadoDiv.innerHTML = '<p style="color: red;">Erro: Digite um número válido para o faturamento.</p>';
+                    return;
                 }
 
-                function limparCampos() {
-                    faturamentoInput.value = '';
-                    areaAtuacaoSelect.selectedIndex = 0;
-                    resultadoDiv.innerHTML = '';
-                    document.querySelectorAll('.anexo-table tr.highlight').forEach(row => {
-                        row.classList.remove('highlight');
-                    });
-                    document.querySelectorAll('.collapsible-header.active').forEach(header => {
-                        header.click();
-                    });
+                const anexoIdAlvo = areas_de_atuacao[areaSelecionada];
+                const dados = anexos[anexoIdAlvo];
+                let enquadramento = null;
+                let targetFaixaIndex = -1;
+
+                for (let i = 0; i < dados.faixas.length; i++) {
+                    const faixa = dados.faixas[i];
+                    if (faturamentoAnual > faixa.min && faturamentoAnual <= faixa.max) {
+                        enquadramento = {
+                            "Anexo": `${anexoIdAlvo} - ${dados.nome}`,
+                            "Faixa": faixa.faixa,
+                            "Alíquota": `${faixa.aliquota.toFixed(1).replace('.', ',')}%`,
+                            "Dedução": formatCurrency(faixa.deducao)
+                        };
+                        targetFaixaIndex = i;
+                        break;
+                    }
+                }
+                
+                if (!enquadramento && faturamentoAnual > 0 && faturamentoAnual <= 180000) {
+                    const faixa = dados.faixas[0];
+                    enquadramento = {
+                        "Anexo": `${anexoIdAlvo} - ${dados.nome}`,
+                        "Faixa": faixa.faixa,
+                        "Alíquota": `${faixa.aliquota.toFixed(1).replace('.', ',')}%`,
+                        "Dedução": formatCurrency(faixa.deducao)
+                    };
+                    targetFaixaIndex = 0;
+                }
+
+                if (enquadramento) {
+                    let resultHTML = '<p style="color: #155724; font-size: 1.1rem;">Enquadramento Encontrado:</p><ul style="padding-left: 0; list-style: none;">';
+                    for (const key in enquadramento) {
+                        resultHTML += `<li style="margin-bottom: 0.5rem;"><strong>${key}:</strong> ${enquadramento[key]}</li>`;
+                    }
+                    resultHTML += '</ul>';
+                    resultadoDiv.innerHTML = resultHTML;
+
+                    const anexoHeader = Array.from(document.querySelectorAll('.collapsible-header')).find(h => h.textContent.startsWith(anexoIdAlvo));
+                    if (anexoHeader) {
+                        const anexoContainer = anexoHeader.parentElement;
+                        const table = anexoContainer.querySelector('.anexo-table');
+                        const row = table.querySelectorAll('tbody tr')[targetFaixaIndex];
+                        row.classList.add('highlight');
+
+                        if (!anexoHeader.classList.contains('active')) {
+                            anexoHeader.click();
+                        }
+                        setTimeout(() => {
+                           anexoHeader.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }, 300); // wait for animation
+                    }
+                } else if (faturamentoAnual > 4800000) {
+                    resultadoDiv.innerHTML = '<p style="color: #D22B2B;">Faturamento acima do teto do Simples Nacional (R$ 4.800.000,00).</p>';
+                } else {
+                    resultadoDiv.innerHTML = '<p style="color: #E8A900;">Não foi possível determinar o enquadramento. Verifique o valor digitado.</p>';
+                }
+            }
+
+            analisarBtn.addEventListener('click', analisarFaturamento);
+            limparBtn.addEventListener('click', limparCampos);
+
+            toggleTabelasBtn.addEventListener('click', function() {
+                const isHidden = anexosContainer.style.display === 'none';
+                if (isHidden) {
+                    anexosContainer.style.display = 'block';
+                    toggleTabelasBtn.textContent = 'Recolher Tabelas';
+                } else {
                     anexosContainer.style.display = 'none';
                     toggleTabelasBtn.textContent = 'Exibir Tabelas';
                 }
+            });
 
-                function analisarFaturamento() {
-                    resultadoDiv.innerHTML = '';
-                    document.querySelectorAll('.anexo-table tr.highlight').forEach(row => {
-                        row.classList.remove('highlight');
-                    });
-
-                    const faturamentoStr = faturamentoInput.value.replace(/\./g, '').replace(',', '.');
-                    const areaSelecionada = areaAtuacaoSelect.value;
-
-                    if (!faturamentoStr || !areaSelecionada || areaAtuacaoSelect.selectedIndex === 0) {
-                        resultadoDiv.innerHTML = '<p style="color: #E8A900;">Por favor, preencha todos os campos.</p>';
-                        return;
-                    }
-
-                    const faturamentoAnual = parseFloat(faturamentoStr);
-                    if (isNaN(faturamentoAnual)) {
-                        resultadoDiv.innerHTML = '<p style="color: red;">Erro: Digite um número válido para o faturamento.</p>';
-                        return;
-                    }
-
-                    const anexoIdAlvo = areas_de_atuacao[areaSelecionada];
-                    const dados = anexos[anexoIdAlvo];
-                    let enquadramento = null;
-                    let targetFaixaIndex = -1;
-
-                    for (let i = 0; i < dados.faixas.length; i++) {
-                        const faixa = dados.faixas[i];
-                        if (faturamentoAnual > faixa.min && faturamentoAnual <= faixa.max) {
-                            enquadramento = { "Anexo": `${anexoIdAlvo} - ${dados.nome}`, "Faixa": faixa.faixa, "Alíquota": `${faixa.aliquota.toFixed(1).replace('.', ',')}%`, "Dedução": formatCurrency(faixa.deducao) };
-                            targetFaixaIndex = i;
-                            break;
-                        }
-                    }
-                    
-                    if (!enquadramento && faturamentoAnual > 0 && faturamentoAnual <= 180000) {
-                        const faixa = dados.faixas[0];
-                        enquadramento = { "Anexo": `${anexoIdAlvo} - ${dados.nome}`, "Faixa": faixa.faixa, "Alíquota": `${faixa.aliquota.toFixed(1).replace('.', ',')}%`, "Dedução": formatCurrency(faixa.deducao) };
-                        targetFaixaIndex = 0;
-                    }
-
-                    if (enquadramento) {
-                        let resultHTML = '<p style="color: #155724; font-size: 1.1rem;">Enquadramento Encontrado:</p><ul style="padding-left: 0; list-style: none;">';
-                        for (const key in enquadramento) {
-                            resultHTML += `<li style="margin-bottom: 0.5rem;"><strong>${key}:</strong> ${enquadramento[key]}</li>`;
-                        }
-                        resultHTML += '</ul>';
-                        resultadoDiv.innerHTML = resultHTML;
-
-                        const anexoHeader = Array.from(document.querySelectorAll('.collapsible-header')).find(h => h.textContent.startsWith(anexoIdAlvo));
-                        if (anexoHeader) {
-                            const anexoContainer = anexoHeader.parentElement;
-                            const table = anexoContainer.querySelector('.anexo-table');
-                            const row = table.querySelectorAll('tbody tr')[targetFaixaIndex];
-                            row.classList.add('highlight');
-
-                            if (!anexoHeader.classList.contains('active')) {
-                                anexoHeader.click();
-                            }
-                            setTimeout(() => {
-                               anexoHeader.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            }, 300); // wait for animation
-                        }
-                    } else if (faturamentoAnual > 4800000) {
-                        resultadoDiv.innerHTML = '<p style="color: #D22B2B;">Faturamento acima do teto do Simples Nacional (R$ 4.800.000,00).</p>';
+            // Collapsible logic
+            anexosContainer.addEventListener('click', function(e) {
+                if (e.target.classList.contains('collapsible-header')) {
+                    e.target.classList.toggle('active');
+                    const content = e.target.nextElementSibling;
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
                     } else {
-                        resultadoDiv.innerHTML = '<p style="color: #E8A900;">Não foi possível determinar o enquadramento. Verifique o valor digitado.</p>';
+                        content.style.maxHeight = content.scrollHeight + "px";
                     }
                 }
-                analisarBtn.addEventListener('click', analisarFaturamento);
-                limparBtn.addEventListener('click', limparCampos);
-                toggleTabelasBtn.addEventListener('click', function() {
-                    const isHidden = anexosContainer.style.display === 'none';
-                    if (isHidden) {
-                        anexosContainer.style.display = 'block';
-                        toggleTabelasBtn.textContent = 'Recolher Tabelas';
-                    } else {
-                        anexosContainer.style.display = 'none';
-                        toggleTabelasBtn.textContent = 'Exibir Tabelas';
-                    }
-                });
-
-                // Collapsible logic
-                anexosContainer.addEventListener('click', function(e) {
-                    if (e.target.classList.contains('collapsible-header')) {
-                        e.target.classList.toggle('active');
-                        const content = e.target.nextElementSibling;
-                        if (content.style.maxHeight) {
-                            content.style.maxHeight = null;
-                        } else {
-                            content.style.maxHeight = content.scrollHeight + "px";
-                        }
-                    }
-                });
-            }
+            });
         });
-    </script>
-=======
-        <script>
-            // Função para mostrar detalhes da notícia em um modal
-            function showNewsDetails(title, body) {
-                document.getElementById('modal-title').textContent = title;
-                document.getElementById('modal-body').textContent = body;
-                document.getElementById('article-modal').style.display = 'block';
-            }
-
-            // Fechar o modal ao clicar no botão de fechar
-            document.querySelector('.close-button').onclick = function() {
-                document.getElementById('article-modal').style.display = 'none';
-            }
-
-            // Fechar o modal ao clicar fora dele
-            window.onclick = function(event) {
-                var modal = document.getElementById('article-modal');
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                }
-            }
-
+        
             // Função para carregar notícias via AJAX
             function loadNews() {
                 fetch('/api/noticias')
@@ -1567,8 +1277,13 @@
 
                         data.forEach(noticia => {
                             const li = document.createElement('li');
+                            li.style.cursor = 'pointer';
+                            li.onclick = () => window.open(noticia.link, '_blank');
                             li.innerHTML = `
-                                <a href="${noticia.link}" target="_blank">${noticia.titulo}</a>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <h4 style="margin: 0; font-size: 1rem; color: var(--secondary-color);">${noticia.titulo}</h4>
+                                    <small style="color: var(--text-gray);">${noticia.data}</small>
+                                </div>
                                 <p style="font-size: 0.9rem; color: var(--text-gray); margin-top: 0.5rem;">${noticia.descricao}</p>
                             `;
                             ul.appendChild(li);
@@ -1585,69 +1300,6 @@
             // Carrega as notícias quando a página carregar
             document.addEventListener('DOMContentLoaded', loadNews);
 
-            // Intersection Observer for animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        
-                        // Remover o observer após a animação para melhor performance
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            // Observar todos os elementos com classes de animação
-            const elementsToAnimate = document.querySelectorAll('.fade-in, .fade-in-title, .fade-in-up');
-            elementsToAnimate.forEach(element => {
-                observer.observe(element);
-            });
-
-            // Função para rolar suavemente para uma seção e acionar animações
-            function scrollToSection(sectionId) {
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    // Rolar suavemente para a seção
-                    section.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    
-                    // Forçar a animação dos elementos da seção se ainda não estiverem visíveis
-                    const sectionElements = section.querySelectorAll('.fade-in, .fade-in-title, .fade-in-up');
-                    sectionElements.forEach(element => {
-                        if (!element.classList.contains('visible')) {
-                            element.classList.add('visible');
-                            
-                            // Remover o observer após a animação para melhor performance
-                            observer.unobserve(element);
-                        }
-                    });
-                }
-            }
-
-            // Adicionar evento de clique aos links de navegação
-            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    scrollToSection(targetId);
-                    
-                    // Atualizar classe ativa no menu
-                    document.querySelectorAll('nav a').forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                });
-            });
-
         </script>
-
-    </body>
+</body>
 </html>
->>>>>>> 6c0d003d7f294dcf44c0e7fb1504440f525c684f
