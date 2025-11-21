@@ -54,3 +54,33 @@ Este documento resume as principais alterações e funcionalidades implementadas
 **Próximos Passos Pendentes:**
 - Ajustar a cor e o tamanho dos títulos "Nossa História" e "Nossa Equipe" para serem pretos e ligeiramente menores, padronizando-os com o título "Notícias" da seção "Blog".
 - Garantir que o "Nossa Equipe" e os cartões estejam centralizados e alinhados verticalmente com o "Nossos Serviços" (considerando a estrutura atual onde "Nossa Equipe" está dentro de "Quem Somos").
+
+---
+
+### 7. Ajustes de Layout e Conteúdo (21/11/2025)
+
+- **Seção "Quem Somos":**
+    - O bloco "Nossa Equipe" foi movido para uma linha própria, fora de `div.about-text` e após `div.about-content`, garantindo centralização.
+    - A propriedade `align-self: center;` foi removida do CSS de `.team-members`.
+    - O espaçamento (`gap`) entre os cartões de membros em `.member-cards-container` foi aumentado para `5rem`.
+    - Adicionado um texto descritivo abaixo do título "Nossa Equipe", com alinhamento central e `margin-bottom` de `6rem`.
+    - A largura máxima (`max-width`) dos cartões de perfil (`.member-profile`) foi aumentada para `400px`.
+    - O texto dentro de cada cartão de membro (`.member-card p`) foi justificado.
+    - A `margin-top` do bloco "Nossa Equipe" (`.team-members`) foi aumentada para `6rem`.
+    - O `padding-top` da seção "Quem Somos" (`.about`) foi reduzido para `2rem`.
+    - A cor de fundo da seção "Quem Somos" (`.about`) foi alterada para `var(--light-color)` (branco).
+    - A `margin-top` da imagem SisPeC (`.about-image`) foi ajustada para `3rem` para melhor alinhamento com o texto de "Nossa História".
+    - A propriedade `line-height` do texto descritivo foi revertida para o padrão (removida).
+
+- **Seção "Simuladores":**
+    - A cor dos títulos de cada simulador (`.simulator-card h3`) foi alterada para `var(--secondary-color)`.
+
+- **Seção "Blog":**
+    - A cor de fundo da seção "Blog" (`.news-section`) foi alterada para `var(--gray-light)`.
+    - A `margin-bottom` da seção "Blog" (`.news-section`) foi removida.
+    - A linha de separação na parte inferior da seção "Blog" (`.news-section::after`) foi removida (configurada para `display: none;`).
+    - A regra CSS geral que adicionava linhas de separação entre todas as seções (`section:not(:last-of-type)::after`) foi removida.
+
+- **Padronização de Cores:**
+    - A cor dos títulos "Nossa História" (`.about-text h2`) e "Nossa Equipe" (`.team-members h3`) foi alterada para `var(--text-color)`.
+    - A cor dos títulos "Nossos Artigos" (estilo inline) e "Notícias" (`.sidebar-news .section-title h3`) foi alterada para `var(--text-color)`.

@@ -223,15 +223,7 @@
             position: relative;
         }
         
-        section:not(:last-of-type)::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background-color: var(--gray-medium);
-        }
+
         
         section[id] {
             scroll-margin-top: 120px;
@@ -307,7 +299,8 @@
         }
         
         .about {
-            background-color: var(--gray-light);
+            background-color: var(--light-color);
+            padding-top: 2rem; /* Reduced distance from Home section */
         }
         
         .about-content {
@@ -335,7 +328,7 @@
         
         .about-text h2 {
             font-size: 1.5rem;
-            color: var(--primary-color);
+            color: var(--text-color);
             margin-bottom: 1.5rem;
         }
 
@@ -344,15 +337,14 @@
         }
 
         .team-members {
-            margin-top: 2rem;
-            align-self: center;
+            margin-top: 6rem;
         }
 
         .member-cards-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 2rem;
+            gap: 5rem;
         }
         
         .member-card {
@@ -360,7 +352,7 @@
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            border-top: 3px solid var(--accent-color);
+            border-top: 3px solid var(--primary-color);
             transition: transform 0.3s;
         }
         
@@ -370,11 +362,14 @@
         }
         
         .member-card h4 {
-            color: var(--accent-color);
+            color: var(--secondary-color);
+        }
+        .member-card p {
+            text-align: justify;
         }
 
         .team-members h3 {
-            color: var(--primary-color);
+            color: var(--text-color);
             font-size: 1.5rem;
             text-align: center;
             margin-bottom: 2rem; /* Add some space below the title */
@@ -384,7 +379,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            max-width: 250px; /* Limit width to allow side-by-side display */
+            max-width: 400px; /* Limit width to allow side-by-side display */
         }
 
         .image-placeholder {
@@ -407,6 +402,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-start; /* Alinha ao topo para alinhar com o título */
+            margin-top: 3rem; /* Adjusted for better alignment with text */
         }
         
         .about-image img {
@@ -514,8 +510,11 @@
         }
         
         .news-section {
-            background-color: white;
+            background-color: var(--gray-light);
             padding: 4rem 0;
+        }
+        .news-section::after {
+            display: none;
         }
         
         .news-grid {
@@ -529,7 +528,7 @@
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            border-left: 4px solid var(--secondary-color);
+            border-left: 4px solid var(--primary-color);
             transition: transform 0.3s, box-shadow 0.3s;
         }
         
@@ -544,7 +543,7 @@
         }
 
         .sidebar-news .section-title h3 {
-            color: var(--primary-color);
+            color: var(--text-color);
         }
         
         .simulator-card {
@@ -564,7 +563,7 @@
         }
         
         .simulator-card h3 {
-            color: var(--primary-color);
+            color: var(--secondary-color);
             margin-top: 0;
         }
 
@@ -785,36 +784,45 @@
             <div class="about-content">
                 <div class="about-text">
                     <h2>Nossa História</h2>
-                    <p>Atuamos na área contábil desde 2019, assessorando empresas e sempre buscando os melhores caminhos para que nossos clientes tenham clareza com as informações contábeis e segurança na tomada de decisões.</p>
-                    <p>Com sede em Salvador, nossa atuação se estende a clientes de todo o Brasil, proporcionando um atendimento personalizado e especializado em regimes tributários como Simples Nacional e Lucro Presumido.</p>
-                    <p>Comprometidos com a excelência, oferecemos soluções completas para pequenos negócios, MEIs e empreendedores que buscam crescimento sustentável e conformidade fiscal.</p>
-                    
-                    <div class="team-members">
-                        <h3>Nossa Equipe</h3>
-                        <div class="member-cards-container">
-                            <div class="member-profile">
-                                <div class="image-placeholder">
-                                    Foto do Membro (150x200px)
-                                </div>
-                                <div class="member-card">
-                                    <h4>Ericsson Lemos Cardoso</h4>
-                                    <p>Graduado em Ciências Contábeis pela Universidade do Estado da Bahia - Campus I (UNEB)</p>
-                                </div>
-                            </div>
-                            <div class="member-profile">
-                                <div class="image-placeholder">
-                                    Foto do Membro (150x200px)
-                                </div>
-                                <div class="member-card">
-                                    <h4>Ricardo Vicente Galiano Junior</h4>
-                                    <p>Graduado em Ciências Contábeis pela Universidade do Estado da Bahia - Campus I (UNEB)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <p>Desde 2019 no mercado contábil, estamos sempre buscando os melhores caminhos para impulsionar o crescimento de nossos clientes e parceiros, com foco na
+                       clareza das orientações contábeis e proporcionando mais segurança na tomada de decisões.</p>
+                    <p>Com sede em Salvador, nossa atuação se estende a clientes de todo o Brasil, de forma online e também presencial, realizando atendimentos personalizados e 
+                       especializado em regimes tributários como o Simples Nacional e o Lucro Presumido.</p>
+                    <p>Comprometidos com a excelência, oferecemos soluções completas, desde Pessoas Físicas e pequenos negócios como MEIs e também a Micro e Pequenas empresas 
+                       que buscam crescimento sustentável do seu negócio.</p>
+                    <p>Com conformidade fiscal e um olhar atento à realidade de sua empresa, vem ser nosso cliente você também!</p>
                 </div>
                 <div class="about-image">
                     <img src="static/SisPeC-2.png" alt="SisPeC Logo">
+                </div>
+            </div>
+            <div class="team-members">
+                <h3>Nossa Equipe</h3>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 6rem;">Graduados em Ciências Contábeis pela Universidade do Estado da Bahia (UNEB), os nossos sócios Ericsson e Ricardo, constroem uma parceria de longa data com um objetivo em comum: levar informação de forma clara e segura aos nossos clientes, para que assim possam realizar seus sonhos e alcançar seus seus objetivos!</p>
+                <div class="member-cards-container">
+                    <div class="member-profile">
+                        <div class="image-placeholder">
+                            Foto do Membro (150x200px)
+                        </div>
+                        <div class="member-card">
+                            <h4>Ericsson Lemos Cardoso</h4>
+                            <p>Começou sua trajetória profissional com o cálculo e perícia contábil, tendo também em sua bagagem experiência com a Contabilidade Pública. 
+                               Hoje se dedica às atualizações da Tecnologia da Informação e como isso está
+                               diretamente ligado ao dia a dia das empresas.</p>
+                        </div>
+                    </div>
+                    <div class="member-profile">
+                        <div class="image-placeholder">
+                            Foto do Membro (150x200px)
+                        </div>
+                        <div class="member-card">
+                            <h4>Ricardo Vicente Galiano Junior</h4>
+                            <p>Iniciou sua carreira profissional na contabilidade ainda antes da faculdade,
+                               trabalhando inicialmente no setor de registros e regularização de empresas.
+                               Desde então, acumula sólida experiência na assessoria contábil e
+                               consultoria empresarial.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -877,7 +885,6 @@
                 <h3>Simulador do Simples Nacional</h3>
                 <p>Estime o imposto devido no regime do Simples Nacional com base no seu faturamento e área de atuação.</p>
                 <a href="#" class="btn btn-primary" id="toggle-simples-nacional">Acessar Simulador</a>
-                <span style="color: red; margin-left: 10px; font-weight: bold;">Em breve.</span>
                 <p style="font-size: 0.8rem; color: var(--text-gray); margin-top: 10px;">Calculadora meramente ilustrativa. Para saber mais, entre em contato conosco.</p>
                 
                 <div id="calculadora-simples-nacional" style="display: none; margin-top: 1.5rem;">
@@ -931,7 +938,7 @@
             <div class="blog-container" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start;">
                 <div>
                     <div class="section-title" style="text-align: left; margin-bottom: 1rem;">
-                        <h3 style="color: var(--primary-color);">Nossos Artigos</h3>
+                        <h3 style="color: var(--text-color);">Nossos Artigos</h3>
                     </div>
                     <div class="news-grid">
                         <div class="news-card">
@@ -1022,7 +1029,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>SisPeC</h3>
-                    <p>Contabilidade para Pequenas Empresas</p>
+                    <p>Contabilidade para micro e pequenas empresas</p>
                     <p>Sede em Salvador - BA</p>
                 </div>
                 <div class="footer-section">
@@ -1039,8 +1046,7 @@
                     <h3>Contato</h3>
                     <ul>
                         <li>Email: contato@contabilidadesispec.com.br</li>
-                        <li>Telefone: (71) 9606-6673</li>
-                        <li>Endereço: Av. Sete de Setembro, 1000 - Sala 101, Salvador - BA</li>
+                        <li>Telefone: (71) 99606-6673</li>
                     </ul>
                 </div>
             </div>
