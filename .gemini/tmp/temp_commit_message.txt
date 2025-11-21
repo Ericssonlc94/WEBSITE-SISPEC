@@ -1,0 +1,12 @@
+feat: Adjust layout and prepare for GitHub Pages deployment
+
+- Resolved git merge conflicts in `app.py` and `templates/index.html`.
+- Refactored "Nossa Equipe" section: moved block, adjusted spacing and card width,
+  added descriptive text, and justified card text.
+- Standardized colors for titles in "Quem Somos", "Simuladores", and "Blog" sections.
+- Refined section spacing: reduced distance between "Home" and "Quem Somos",
+  adjusted background colors for "Quem Somos" (white) and "Blog" (gray-light).
+- Eliminated all section separating lines.
+- Prepared `index.html` for GitHub Pages by converting dynamic Flask `url_for`
+  calls for service icons to static relative paths.
+- Updated `changes_summary.md` to reflect these changes.
